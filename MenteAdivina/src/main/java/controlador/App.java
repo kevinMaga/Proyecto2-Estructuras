@@ -1,4 +1,4 @@
-package com.mycompany.menteadivina;
+package controlador;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

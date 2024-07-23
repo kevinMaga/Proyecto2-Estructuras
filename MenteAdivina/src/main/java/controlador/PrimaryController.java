@@ -1,4 +1,4 @@
-package com.mycompany.menteadivina;
+package controlador;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
