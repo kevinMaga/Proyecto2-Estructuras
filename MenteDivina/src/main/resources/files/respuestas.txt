@@ -1,4 +1,50 @@
-Oso SI SI SI
-Lechuza NO SI NO
-Venado SI NO SI
-Paloma NO NO NO
+Elefante si si si no no no si no no si no si no no no si no no si no
+León si si si no si si si no no no no si si no no no no no si si
+Tigre si si si no si si si no no no no si si no no no no no si si
+Oso si si si no si si si no no no no si si no no si no no si si
+Gorila si si si no no no no no no si no no si no no no no si si no
+Delfín no si si no si si no si no no no si no no no no no no no si
+Murciélago no si si si no no no no no si si no si no no no no no no no
+Canguro si si si no no no no no no si no si si no no no no no si si
+Zorro si si si no si si si no no si no si si no no no no no si si
+Rinoceronte si si si no si no si no no si no si no no no no no no si si
+Águila si no si si no si no no no no si no no no no no no no no no
+Búho si no si si no si no no no no si no no no no no no no no no
+Pingüino si no si no si si no no no no si no no no no no si no no no
+Flamenco si no si si si no no no no no si no no no no no no no no no
+Colibrí si no si si no no no no no no si no no no no no no no no no
+Loro si no si si no no no no no si si no no no no no no no no no
+Halcón si no si si no si no no no no si no no no no no no no no no
+Pavo real si no si no no no no no no si si no no no no no no no si no
+Gaviota si no si si si si no no no no si no no no no no no no no no
+Cisne si no si si si no no no no si si no no no no no no no si no
+Cocodrilo si no si no si si si si si no no si no no no si no no si si
+Tortuga si no si no no no no no si si no si no no no no no no si no
+Serpiente no no si no si si no no si no no si no no no no no no no no
+Iguana si no si no si no si no si si no si no no no no no no si no
+Dragón_de_Komodo si no si no si si si no si no no si no no no si no no si si
+Sapo si no si no si no si si no no no no no no no no no no no no
+Axolote si no si no si si si si no no no si no no no no no no no no
+Tiburón_blanco no si si no si si no si no no no si no no no no no no no no
+Atún no no si no si no no si no no no si no no no no si no no no
+Salmón no no si no si no no si no no no si no no no no no no no no
+Anguila no no no no si no no si no no no si no no no no no no no no
+Caballito_de_mar no no si no si no no si no no no si no no no no no no no si
+Piraña no no si no si si no si no no no si no no no no si no no no
+Abeja si no si si no no no no no no si no no si si no si no no no
+Mariposa_monarca si no no si no no no no no no si no no si si no no no no no
+Escarabajo si no no no no no no no si no no no si si no no no no no no
+Mosca si no si si no no no no no si si no no si si no no no no no
+Hormiga si no no no si no no no no si no no no si si no si no si no
+Saltamontes si no si si no no no no no si no no no si si no no no no no
+Libélula si no si si no no no si no no si si no si si no no no no no
+Polilla si no si si no no no no no no si no no si si no no no no no
+Avispa si no si si no no no no no si si no no si si no si no no no
+Cucaracha si no si si si no no no no si no no no si si no no no si no
+Caracol no no si no no no no no no si no no no no no no no no no no
+Pulpo no no si no si si no si no no no no no no no no no no no no
+Almeja no no no no si no no si no no no no no no no no no no no no
+Tarántula si no si no si no no no no si no no si no no no no no si no
+Escorpión si no si no no no no no no no no si no si no no no no si no
+Ácaro si no no no no no no no no no no no no no no no no no no no
+Ciempiés si no no no si si no no no si no no no si no no no no si no

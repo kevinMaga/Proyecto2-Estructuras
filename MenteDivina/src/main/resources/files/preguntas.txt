@@ -1,3 +1,20 @@
-¿Este animal es un mamífero?
-¿Este animal es carnívoro?
-¿Este animal se para en cuatro patas?
+¿Tiene patas?
+¿Es un mamífero?
+¿Tiene ojos?
+¿Puede volar?
+¿Puede nadar?
+¿Es un carnívoro?
+¿Anda en cuatro patas?
+¿Vive en el agua?
+¿Tiene escamas?
+¿Puede comer frutas/plantas?
+¿Tiene alas?
+¿Tiene cola?
+¿Tiene pelaje?
+¿Es un insecto?
+¿Tiene seis patas?
+¿Es de gran tamaño?
+¿Vive en colonia?
+¿Tiene pulgares?
+¿Puede correr?
+¿Tiene hocico?
