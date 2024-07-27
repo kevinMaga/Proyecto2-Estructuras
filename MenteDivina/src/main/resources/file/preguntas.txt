@@ -1,0 +1,25 @@
+¿Es un mamífero?
+¿Es carnívoro?
+¿Tiene melena?
+¿Vive en el agua?
+¿Es de gran tamaño?
+¿Tiene manchas?
+¿Es herbívoro?
+¿Tiene cuernos?
+¿Tiene trompa?
+¿Es omnívoro?
+¿Es un ave?
+¿Puede volar?
+¿Tiene plumaje colorido?
+¿Caza de noche?
+¿Nada?
+¿Es un reptil?
+¿Tiene caparazón?
+¿Es venenoso?
+¿Es un anfibio?
+¿Vive en el agua?
+¿Es un pez?
+¿Vive en agua salada?
+¿Es un insecto?
+¿Vuela?
+¿Es un arácnido?
