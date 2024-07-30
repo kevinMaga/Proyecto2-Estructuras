@@ -13,6 +13,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
 /**
@@ -48,7 +49,8 @@ public class PaginaPrincipalController implements Initializable {
         });
 
         BTNEmpezar.setOnMouseClicked(e -> {
-            boolean numeroPreguntasBien = txtPreguntas.getText() != null && esNumeroEntero(txtPreguntas.getText()) && Integer.valueOf(txtPreguntas.getText())<=20;
+            boolean numeroPreguntasBien = txtPreguntas.getText() != null && esNumeroEntero(txtPreguntas.getText()) && 
+                    Integer.valueOf(txtPreguntas.getText())<=20 && Integer.valueOf(txtPreguntas.getText())>=5;
             boolean modoJuegoSeleccionado = JuegoController.modoJuego != null;
             if (numeroPreguntasBien && modoJuegoSeleccionado) {
                 JuegoController.cantidadPreguntas = Integer.valueOf(txtPreguntas.getText());
@@ -59,10 +61,12 @@ public class PaginaPrincipalController implements Initializable {
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
-            } else{
+            } else {
                 Alert a = new Alert(Alert.AlertType.WARNING);
                 a.setTitle("Llene todos los campos");
-                a.setContentText("Porfavor, llene el número de preguntas con un número entero y seleccione el modo de juego");
+                a.setContentText("Por favor, llene el número de preguntas con un número entero y seleccione el modo de juego. "
+                        + "Recuerde también que el número de preguntas como máximo puede ser 20");
+                a.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
                 a.showAndWait();
             }
 
