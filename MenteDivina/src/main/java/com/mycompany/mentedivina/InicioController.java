@@ -13,9 +13,6 @@ import modelo.BinaryTree;
 import modelo.NodeBinaryTree;
 
 public class InicioController implements Initializable {
-    
-    public static ArrayList<String> preguntas;
-    public static Map<String,ArrayList<String>> respuestas;
 
     @FXML
     private Button BtnJugar;
@@ -25,13 +22,10 @@ public class InicioController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        preguntas=ManejoArchivos.leerArchivoPreguntas();
-        respuestas=ManejoArchivos.leerArchivoRespuestas();
-        System.out.println(buscarAgregarAnimal(1).getRoot().getContent());
         BtnJugar.setOnAction(e -> {
 
             try {
-                App.abrirNuevaVentana("paginaPrincipal", 929, 628);
+                App.abrirNuevaVentana("paginaPrincipal", 424, 465);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -39,7 +33,7 @@ public class InicioController implements Initializable {
         });
     }
     
-    private static BinaryTree<ArrayList<String>> crearArbol(int preguntasUsuario) {
+    private static BinaryTree<ArrayList<String>> crearArbol(int preguntasUsuario,ArrayList<String> preguntas) {
         BinaryTree<ArrayList<String>> arbol = new BinaryTree<>();
         arbol.setRoot(crearNodo(0, preguntasUsuario, preguntas));
         return arbol;
@@ -57,14 +51,14 @@ public class InicioController implements Initializable {
         return nodo;
     }
 
-    public static BinaryTree<ArrayList<String>> buscarAgregarAnimal(int preguntasUsuario) {
-        BinaryTree<ArrayList<String>> arbol = crearArbol(preguntasUsuario);
-        for (String animal : respuestas.keySet()) {
-            ArrayList<String> rAnimal = respuestas.get(animal);
+    public static BinaryTree<ArrayList<String>> buscarAgregarClave(int preguntasUsuario,ArrayList<String> preguntas,Map<String,ArrayList<String>> respuestas) {
+        BinaryTree<ArrayList<String>> arbol = crearArbol(preguntasUsuario,preguntas);
+        for (String clave : respuestas.keySet()) {
+            ArrayList<String> rClave = respuestas.get(clave);
             NodeBinaryTree<ArrayList<String>> nodoActual = arbol.getRoot();
             for (int i = 0; i < preguntasUsuario; i++) {
-                String respuesta = rAnimal.get(i);
-                if (respuesta.equals("SI")) {
+                String respuesta = rClave.get(i);
+                if (respuesta.equals("si")) {
                     if (nodoActual.getLeft() != null) {
                         nodoActual = nodoActual.getLeft().getRoot();
                     }
@@ -74,9 +68,9 @@ public class InicioController implements Initializable {
                     }
                 }
             }
-            ArrayList<String> animales = nodoActual.getContent();
-            animales.add(animal);
-            nodoActual.setContent(animales);
+            ArrayList<String> claves = nodoActual.getContent();
+            claves.add(clave);
+            nodoActual.setContent(claves);
         }
         return arbol;
     }
