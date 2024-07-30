@@ -44,7 +44,7 @@
             <Font name="Bernard MT Condensed" size="19.0" />
          </font>
       </Button>
-      <Button fx:id="btnCosa" layoutX="221.0" layoutY="271.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="120.0" text="Cosa">
+      <Button fx:id="btnCosa" layoutX="221.0" layoutY="271.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="120.0" text="Objeto">
          <font>
             <Font name="Bernard MT Condensed" size="19.0" />
          </font>

@@ -44,11 +44,11 @@ public class PaginaPrincipalController implements Initializable {
             JuegoController.modoJuego = "animal";
         });
         btnCosa.setOnAction(e -> {
-            JuegoController.modoJuego = "cosa";
+            JuegoController.modoJuego = "objeto";
         });
 
         BTNEmpezar.setOnMouseClicked(e -> {
-            boolean numeroPreguntasBien = txtPreguntas.getText() != null && esNumeroEntero(txtPreguntas.getText());
+            boolean numeroPreguntasBien = txtPreguntas.getText() != null && esNumeroEntero(txtPreguntas.getText()) && Integer.valueOf(txtPreguntas.getText())<=20;
             boolean modoJuegoSeleccionado = JuegoController.modoJuego != null;
             if (numeroPreguntasBien && modoJuegoSeleccionado) {
                 JuegoController.cantidadPreguntas = Integer.valueOf(txtPreguntas.getText());
@@ -59,7 +59,7 @@ public class PaginaPrincipalController implements Initializable {
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
-            } else if (!numeroPreguntasBien || !modoJuegoSeleccionado) {
+            } else{
                 Alert a = new Alert(Alert.AlertType.WARNING);
                 a.setTitle("Llene todos los campos");
                 a.setContentText("Porfavor, llene el número de preguntas con un número entero y seleccione el modo de juego");

@@ -24,10 +24,8 @@ public class JuegoController implements Initializable {
     public static Integer cantidadPreguntas;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ArrayList<String> preguntas =ManejoArchivos.leerArchivoPreguntas(modoJuego);
-        Map<String,ArrayList<String>> respuestas= ManejoArchivos.leerArchivoRespuestas(modoJuego);
         if(modoJuego.equals("animal")){
-        }else if(modoJuego.equals("cosa")){
+        }else if(modoJuego.equals("objeto")){
         }
     }    
     

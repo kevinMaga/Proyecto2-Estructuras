@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane id="AnchorPane" prefHeight="245.0" prefWidth="315.0" style="-fx-background-color: linear-gradient(from 0% 50% to 100% 100%, #ff9a9e, #fad0c4, #fad0c4);" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="com.mycompany.mentedivina.VentanaPensarController">
+<AnchorPane id="AnchorPane" prefHeight="245.0" prefWidth="306.0" style="-fx-background-color: linear-gradient(from 0% 50% to 100% 100%, #ff9a9e, #fad0c4, #fad0c4);" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="com.mycompany.mentedivina.VentanaPensarController">
    <children>
       <ImageView fx:id="imgAnimalCosa" fitHeight="125.0" fitWidth="124.0" layoutX="21.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
          <image>

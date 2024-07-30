@@ -14,7 +14,11 @@ import modelo.BinaryTree;
 import modelo.NodeBinaryTree;
 
 public class InicioController implements Initializable {
-
+    
+    public static ArrayList<String> preguntasAnimal = ManejoArchivos.leerArchivoPreguntasAnimal();
+    public static ArrayList<String> preguntasObjeto = ManejoArchivos.leerArchivoPreguntasObjeto();
+    public static Map<String,ArrayList<String>> respuestasAnimal =ManejoArchivos.leerArchivoRespuestasAnimal();
+    public static Map<String,ArrayList<String>> respuestasObjeto =ManejoArchivos.leerArchivoRespuestasObjeto();
     @FXML
     private Button BtnJugar;
 
