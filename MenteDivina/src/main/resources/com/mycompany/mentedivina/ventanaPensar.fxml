@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="245.0" prefWidth="315.0" style="-fx-background-color: linear-gradient(from 0% 50% to 100% 100%, #ff9a9e, #fad0c4, #fad0c4);" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="com.mycompany.mentedivina.VentanaPensarController">
+   <children>
+      <ImageView fx:id="imgAnimalCosa" fitHeight="125.0" fitWidth="124.0" layoutX="21.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/mente.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="14.0" layoutY="27.0" prefHeight="42.0" prefWidth="179.0" text="Piensa en un:" textFill="WHITE">
+         <font>
+            <Font name="Bernard MT Condensed" size="32.0" />
+         </font>
+         <effect>
+            <Glow />
+         </effect>
+      </Label>
+      <Label fx:id="lblAnimalObjeto" layoutX="184.0" layoutY="27.0" prefHeight="42.0" prefWidth="124.0" text="Piensa en un:" textFill="WHITE">
+         <font>
+            <Font name="Bernard MT Condensed" size="32.0" />
+         </font>
+         <effect>
+            <Glow />
+         </effect>
+      </Label>
+      <Label fx:id="secuencia" alignment="CENTER" layoutX="170.0" layoutY="100.0" prefHeight="124.0" prefWidth="132.0" text="1">
+         <font>
+            <Font name="Bernard MT Condensed" size="73.0" />
+         </font>
+         <effect>
+            <Glow />
+         </effect>
+      </Label>
+   </children>
+</AnchorPane>

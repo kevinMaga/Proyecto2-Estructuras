@@ -4,17 +4,16 @@
  */
 package com.mycompany.mentedivina;
 
+import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.Scanner;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import modelo.BinaryTree;
-import modelo.NodeBinaryTree;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -31,35 +30,55 @@ public class PaginaPrincipalController implements Initializable {
 
     @FXML
     private Label BTNEmpezar;
-    
+
     @FXML
-    private ComboBox cmbPreguntas;
+    private TextField txtPreguntas;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        llenarComboBox();
         estilos();
-        btnAnimal.setOnAction(e->{
-            JuegoController.modoJuego="animal";
+        btnAnimal.setOnAction(e -> {
+            JuegoController.modoJuego = "animal";
         });
-        btnCosa.setOnAction(e->{
-            JuegoController.modoJuego="cosa";
+        btnCosa.setOnAction(e -> {
+            JuegoController.modoJuego = "cosa";
         });
-        cmbPreguntas.setOnAction(e->{
-            JuegoController.cantidadPreguntas=(int) cmbPreguntas.getValue();
+
+        BTNEmpezar.setOnMouseClicked(e -> {
+            boolean numeroPreguntasBien = txtPreguntas.getText() != null && esNumeroEntero(txtPreguntas.getText());
+            boolean modoJuegoSeleccionado = JuegoController.modoJuego != null;
+            if (numeroPreguntasBien && modoJuegoSeleccionado) {
+                JuegoController.cantidadPreguntas = Integer.valueOf(txtPreguntas.getText());
+                Stage s =(Stage)txtPreguntas.getScene().getWindow();
+                s.close();
+                try {
+                    App.abrirNuevaVentana("ventanaPensar", 315, 245);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            } else if (!numeroPreguntasBien || !modoJuegoSeleccionado) {
+                Alert a = new Alert(Alert.AlertType.WARNING);
+                a.setTitle("Llene todos los campos");
+                a.setContentText("Porfavor, llene el número de preguntas con un número entero y seleccione el modo de juego");
+                a.showAndWait();
+            }
+
         });
     }
-    
-    private void llenarComboBox(){
-        for(int i=1;i<21;i++){
-            cmbPreguntas.getItems().add(i);
+
+    private boolean esNumeroEntero(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
         }
     }
-    
-    private void estilos(){
+
+    private void estilos() {
         btnAnimal.setStyle(
                 "-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #FFD700, #FFA500);"
                 + "-fx-background-radius: 15; "

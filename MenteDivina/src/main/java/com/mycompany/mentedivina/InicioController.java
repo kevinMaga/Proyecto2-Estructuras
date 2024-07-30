@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 import modelo.BinaryTree;
 import modelo.NodeBinaryTree;
 
@@ -23,7 +24,8 @@ public class InicioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         BtnJugar.setOnAction(e -> {
-
+            Stage s = (Stage) BtnJugar.getScene().getWindow();
+            s.close();
             try {
                 App.abrirNuevaVentana("paginaPrincipal", 424, 465);
             } catch (IOException ex) {

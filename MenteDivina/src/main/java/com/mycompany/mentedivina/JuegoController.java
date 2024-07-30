@@ -21,7 +21,7 @@ public class JuegoController implements Initializable {
      * Initializes the controller class.
      */
     public static String modoJuego;
-    public static int cantidadPreguntas;
+    public static Integer cantidadPreguntas;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ArrayList<String> preguntas =ManejoArchivos.leerArchivoPreguntas(modoJuego);
