@@ -1,14 +1,14 @@
 Teléfono_móvil no si si si si no si si no si si si si no no no si
 Televisor si si si no si no si no si no si si si no no si si
 Laptop no si si si si no si si no si si si si no no no si
-Cargador de teléfono no si si si si no si no no no si si no no no no no
-Cuchillo de cocina no si no si si no no si si no no si no no no no si
+Cargador_de_teléfono no si si si si no si no no no si si no no no no no
+Cuchillo_de_cocina no si no si si no no si si no no si no no no no si
 Taza no si no si si no no si no no no si no no no si si
 Plato no si no si si no no no no no no si no no no si si
 Silla si si no no si si no no si no no si no no no si si
 Mesa si si no no si si no no si no no si no no no si si
-Boligrafo no si no si si no no si no no si si no no no no no
-Lampara_de_mesa no si si no si no si no si no si si si no no si si
+Bolígrafo no si no si si no no si no no si si no no no no no
+Lámpara_de_mesa no si si no si no si no si no si si si no no si si
 Reloj_de_pared no si si no si no si no si no no no si no no si si
 Ventilador si si si no si no si no si si si no si no no si si
 Altavoz_Bluetooth no si si si si no si no si si si si si no no no si
@@ -19,31 +19,31 @@ Secadora si si si no si si si no si no si no si no no no si
 Plancha no si si si si no si no si no si no si no no no no
 Horno si si si no si si si no si no si no si no no no si
 Control_remoto no si si si si no si si no no si si si no no no no
-Audifonos no si si si si no si si no no si si si no no no no
+Audífonos no si si si si no si si no no si si si no no no no
 Impresora si si si no si no si no si no si no si no no no si
 Calculadora no si si si si no si no no no si si si no no no no
 Libreta no si no si si no no no no no no si no no no no no
 Tijeras no si no si si no no si si si no si no no no no si
-Cepillo de dientes no si no si si no no si no no no si no no no no no
+Cepillo_de_dientes no si no si si no no si no no no si no no no no no
 Espejo no si no si si no no si no no no no no no no si si
 Botella_de_agua no si no si si no no no no no si si no no no no si
 Paraguas no si no si si no no si si si si si no no no no no
-Bateria no si no si si no si no si no si no no no no no no
+Batería no si no si si no si no si no si no no no no no no
 Linterna no si si si si no si no si no si si si no no no no
 Llave no si no si si no no no si no no no no no no no no
 Candado no si no si si no no no si si no no no no no no no
-Juguete_de_plastico no si no si si no no si no no si si no no no si si
+Juguete_de_plástico no si no si si no no si no no si si no no no si si
 Camiseta no si no si si no no no no no no si no no no no no
 Gafas_de_sol no si no si si no no si no no no si no no no no no
 Cartera no si no si si no no no no no no si no no no no no
 Bolsa_de_tela no si no si si no no no no no no si no no no no no
 Sombrero no si no si si no no no no no no si no no no no no
 Zapatos no si no si si no no no no no no si no no no no no
-Cinturon no si no si si no no no no no no si no no no no no
+Cinturón no si no si si no no no no no no si no no no no no
 Libro no si no si si no no no no no no no no no no no no
 Revista no si no si si no no no no no no no no no no no no
 Marco_de_fotos no si no si si no no si no no no no no no no si si
-Camara_fotografica no si si si si no si no si si si no si no no no no
+Cámara_fotográfica no si si si si no si no si si si no si no no no no
 Cuchara no si no si si no no no no no no si no no no no no
 Sacapuntas no si no si si no no si no si si si no no no no no
 Goma_de_borrar no si no si si no no no no no no si no no no no no
