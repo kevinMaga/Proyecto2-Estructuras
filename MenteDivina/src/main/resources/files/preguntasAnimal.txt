@@ -1,19 +1,19 @@
-¿Tiene patas?
 ¿Es un mamífero?
+¿Es de gran tamaño?
 ¿Tiene ojos?
 ¿Puede volar?
 ¿Puede nadar?
-¿Es un carnívoro?
-¿Anda en cuatro patas?
 ¿Vive en el agua?
+¿Es un carnívoro?
+¿Tiene patas?
+¿Anda en cuatro patas?
+¿Es un insecto?
 ¿Tiene escamas?
 ¿Puede comer frutas/plantas?
 ¿Tiene alas?
 ¿Tiene cola?
 ¿Tiene pelaje?
-¿Es un insecto?
-¿Tiene seis patas?
-¿Es de gran tamaño?
+¿Tiene mas de seis patas?
 ¿Vive en colonia?
 ¿Tiene pulgares?
 ¿Puede correr?
