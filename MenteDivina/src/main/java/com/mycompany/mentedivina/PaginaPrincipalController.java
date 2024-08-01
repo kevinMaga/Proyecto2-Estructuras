@@ -43,34 +43,84 @@ public class PaginaPrincipalController implements Initializable {
         estilos();
         btnAnimal.setOnAction(e -> {
             JuegoController.modoJuego = "animal";
+            efectoSeleccionButton(btnAnimal, btnCosa, "#f7405c", "#f5687d");
+            try {
+                App.abrirNuevaVentana("maxPreguntas", 239, 257);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }       
         });
         btnCosa.setOnAction(e -> {
             JuegoController.modoJuego = "objeto";
+            efectoSeleccionButton(btnCosa, btnAnimal, "#f7405c", "#f5687d");
+            try {
+                App.abrirNuevaVentana("maxPreguntas", 239, 257);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }     
         });
 
         BTNEmpezar.setOnMouseClicked(e -> {
-            boolean numeroPreguntasBien = txtPreguntas.getText() != null && esNumeroEntero(txtPreguntas.getText()) && 
-                    Integer.valueOf(txtPreguntas.getText())<=20 && Integer.valueOf(txtPreguntas.getText())>=5;
+            String textoPreguntas = txtPreguntas.getText();
+            boolean esNumeroValido = textoPreguntas != null && esNumeroEntero(textoPreguntas);
             boolean modoJuegoSeleccionado = JuegoController.modoJuego != null;
-            if (numeroPreguntasBien && modoJuegoSeleccionado) {
-                JuegoController.cantidadPreguntas = Integer.valueOf(txtPreguntas.getText());
-                Stage s =(Stage)txtPreguntas.getScene().getWindow();
-                s.close();
-                try {
-                    App.abrirNuevaVentana("ventanaPensar", 315, 245);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+            if (!modoJuegoSeleccionado && !esNumeroValido) {
+                mostrarAlerta("Llene todos los campos", "Por favor, seleccione el modo de juego, y llene el campo de número de preguntas con un número válido");
+            } else if (!modoJuegoSeleccionado) {
+                mostrarAlerta("Llene todos los campos", "Por favor, seleccione el modo de juego");
+            } else if (!esNumeroValido) {
+                mostrarAlerta("Número de preguntas", "Por favor, ingrese un número entero válido en el campo de número de preguntas");
             } else {
-                Alert a = new Alert(Alert.AlertType.WARNING);
-                a.setTitle("Llene todos los campos");
-                a.setContentText("Por favor, llene el número de preguntas con un número entero y seleccione el modo de juego. "
-                        + "Recuerde también que el número de preguntas como máximo puede ser 20");
-                a.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
-                a.showAndWait();
-            }
+                int numeroPreguntas = Integer.valueOf(textoPreguntas);
+                boolean numeroPreguntasAdecuado = false;
+                int maximoPreguntas =0;
+                if (JuegoController.modoJuego.equals("animal")) {
+                    numeroPreguntasAdecuado = numeroPreguntas >= 2 && numeroPreguntas < InicioController.preguntasAnimal.size();
+                    maximoPreguntas=InicioController.preguntasAnimal.size();
+                } else if (JuegoController.modoJuego.equals("objeto")) {
+                    numeroPreguntasAdecuado = numeroPreguntas >= 2 && numeroPreguntas < InicioController.preguntasObjeto.size();
+                    maximoPreguntas=InicioController.preguntasObjeto.size();
+                }
 
+                if (!numeroPreguntasAdecuado) {
+                    mostrarAlerta("Número de preguntas", "Por favor, ingrese un número de preguntas adecuado. Recuerde que el máximo de preguntas es "+maximoPreguntas);
+                } else {
+                    JuegoController.cantidadPreguntas = numeroPreguntas;
+                    Stage s = (Stage) txtPreguntas.getScene().getWindow();
+                    s.close();
+                    try {
+                        App.abrirNuevaVentana("ventanaPensar", 315, 245);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
         });
+
+    }
+
+    private void efectoSeleccionButton(Button btn1, Button btn2, String color1, String color2) {
+        btn2.setStyle(
+                "-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #FFD700, #FFA500);"
+                + "-fx-background-radius: 15; "
+                + "-fx-background-insets: 0,1,2,3,0;"
+                + "-fx-text-fill: white;"
+                + "-fx-font-size: 16px;"
+                + "-fx-padding: 10 20 10 20;"
+                + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 5);"
+                + "-fx-font-family: 'Bernard MT Condensed';"
+        );
+
+        btn1.setStyle(
+                "-fx-background-color: linear-gradient(from 0% 0% to 100% 100%," + color1 + "," + color2 + ");"
+                + "-fx-background-radius: 15; "
+                + "-fx-background-insets: 0,1,2,3,0;"
+                + "-fx-text-fill: white;"
+                + "-fx-font-size: 16px;"
+                + "-fx-padding: 10 20 10 20;"
+                + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 5);"
+                + "-fx-font-family: 'Bernard MT Condensed';"
+        );
     }
 
     private boolean esNumeroEntero(String str) {
@@ -80,6 +130,14 @@ public class PaginaPrincipalController implements Initializable {
         } catch (NumberFormatException e) {
             return false;
         }
+    }
+
+    private void mostrarAlerta(String titulo, String mensaje) {
+        Alert a = new Alert(Alert.AlertType.WARNING);
+        a.setTitle(titulo);
+        a.setContentText(mensaje);
+        a.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+        a.showAndWait();
     }
 
     private void estilos() {

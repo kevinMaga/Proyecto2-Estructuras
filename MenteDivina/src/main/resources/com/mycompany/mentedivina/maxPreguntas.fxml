@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="257.0" prefWidth="239.0" style="-fx-background-color: #8e3ee8;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="com.mycompany.mentedivina.MaxPreguntasController">
+   <children>
+      <Label layoutX="15.0" layoutY="14.0" prefHeight="42.0" prefWidth="202.0" text="Tienes un máximo de" textFill="#db60e1">
+         <font>
+            <Font name="Bernard MT Condensed" size="24.0" />
+         </font>
+         <effect>
+            <Glow />
+         </effect>
+      </Label>
+      <Label fx:id="secuencia" alignment="CENTER" layoutX="14.0" layoutY="194.0" prefHeight="30.0" prefWidth="44.0" text="1" textFill="WHITE">
+         <font>
+            <Font name="Bernard MT Condensed" size="33.0" />
+         </font>
+         <effect>
+            <Glow />
+         </effect>
+      </Label>
+      <Label fx:id="lblAnimalObjeto" layoutX="123.0" layoutY="55.0" prefHeight="42.0" prefWidth="93.0" text="preguntas" textFill="WHITE">
+         <font>
+            <Font name="Bernard MT Condensed" size="24.0" />
+         </font>
+         <effect>
+            <Glow />
+         </effect>
+      </Label>
+      <ImageView fx:id="imgAnimalCosa" fitHeight="125.0" fitWidth="124.0" layoutX="101.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/pregunta.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="lblPreguntasMax" layoutX="36.0" layoutY="42.0" prefHeight="42.0" prefWidth="81.0" text="20" textFill="WHITE">
+         <font>
+            <Font name="Bernard MT Condensed" size="54.0" />
+         </font>
+         <effect>
+            <Glow />
+         </effect>
+      </Label>
+   </children>
+</AnchorPane>
