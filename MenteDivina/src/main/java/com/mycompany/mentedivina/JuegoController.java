@@ -8,7 +8,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 
 /**
  * FXML Controller class
@@ -22,6 +26,14 @@ public class JuegoController implements Initializable {
      */
     public static String modoJuego;
     public static Integer cantidadPreguntas;
+    @FXML
+    private ImageView BTNInicio;
+    @FXML
+    private Label LBLPreguntas;
+    @FXML
+    private Button BTNSi;
+    @FXML
+    private Button BTNNo;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         if(modoJuego.equals("animal")){
