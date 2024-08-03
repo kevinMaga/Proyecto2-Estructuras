@@ -26,8 +26,6 @@ public class VentanaPensarController implements Initializable {
 
     @FXML
     private Label lblAnimalObjeto;
-    
-    private static boolean validacion=false;
     @FXML
     private ImageView imgAnimalCosa;
 
@@ -37,30 +35,26 @@ public class VentanaPensarController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         lblAnimalObjeto.setText(JuegoController.modoJuego);
-        if(!validacion){
-            validacion = true;
-            Thread t = new Thread(() -> {
-                for (int i = 10; i >= 0; i--) {
-                    final int count = i;
-                    Platform.runLater(() -> secuencia.setText(String.valueOf(count)));
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+        Thread t = new Thread(() -> {
+            for (int i = 5; i >= 1; i--) {
+                final int count = i;
+                Platform.runLater(() -> secuencia.setText(String.valueOf(count)));
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-                Platform.runLater(()->{
-                    Stage s = (Stage) secuencia.getScene().getWindow();
-                    s.close();
-                    try {
-                        App.abrirNuevaVentana("juego", 483, 296);
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
-                });
+            }
+            Platform.runLater(() -> {
+                Stage s = (Stage) secuencia.getScene().getWindow();
+                s.close();
+                try {
+                    App.abrirNuevaVentana("juego", 483, 296);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             });
-            t.start();
-        }
+        });
+        t.start();
     }
 }
-

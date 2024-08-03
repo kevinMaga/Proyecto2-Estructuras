@@ -24,46 +24,41 @@ public class MaxPreguntasController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    
     @FXML
     private Label lblPreguntasMax;
-    
+
     @FXML
     private Label secuencia;
-    
-    private boolean validacion=false;
+
+    private boolean validacion = false;
     @FXML
     private Label lblAnimalObjeto;
     @FXML
     private ImageView imgAnimalCosa;
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        if(JuegoController.modoJuego.equals("animal")){
+        if (JuegoController.modoJuego.equals("animal")) {
             lblPreguntasMax.setText(String.valueOf(InicioController.preguntasAnimal.size()));
-        }else{
+        } else {
             lblPreguntasMax.setText(String.valueOf(InicioController.preguntasObjeto.size()));
         }
-        
-        if(!validacion){
-            validacion = true;
-            Thread t = new Thread(() -> {
-                for (int i = 5; i >= 0; i--) {
-                    final int count = i;
-                    Platform.runLater(() -> secuencia.setText(String.valueOf(count)));
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+
+        Thread t = new Thread(() -> {
+            for (int i = 3; i >= 1; i--) {
+                final int count = i;
+                Platform.runLater(() -> secuencia.setText(String.valueOf(count)));
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-                Platform.runLater(()->{
-                    Stage s = (Stage) secuencia.getScene().getWindow();
-                    s.close();         
-                });
+            }
+            Platform.runLater(() -> {
+                Stage s = (Stage) secuencia.getScene().getWindow();
+                s.close();
             });
-            t.start();
-        }
-    }    
-    
+        });
+        t.start();
+    }
 }
