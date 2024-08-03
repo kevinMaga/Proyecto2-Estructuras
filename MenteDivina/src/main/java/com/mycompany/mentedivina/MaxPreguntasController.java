@@ -11,6 +11,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 /**
@@ -31,6 +32,10 @@ public class MaxPreguntasController implements Initializable {
     private Label secuencia;
     
     private boolean validacion=false;
+    @FXML
+    private Label lblAnimalObjeto;
+    @FXML
+    private ImageView imgAnimalCosa;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {

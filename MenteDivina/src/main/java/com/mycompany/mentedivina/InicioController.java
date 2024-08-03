@@ -12,6 +12,11 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import modelo.BinaryTree;
 import modelo.NodeBinaryTree;
+/**
+ * FXML Controller class
+ *
+ * @author Kevin Magallanes
+ */
 
 public class InicioController implements Initializable {
     

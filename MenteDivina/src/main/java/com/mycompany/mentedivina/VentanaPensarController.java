@@ -11,6 +11,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 /**
@@ -27,6 +28,8 @@ public class VentanaPensarController implements Initializable {
     private Label lblAnimalObjeto;
     
     private static boolean validacion=false;
+    @FXML
+    private ImageView imgAnimalCosa;
 
     /**
      * Initializes the controller class.
@@ -50,7 +53,7 @@ public class VentanaPensarController implements Initializable {
                     Stage s = (Stage) secuencia.getScene().getWindow();
                     s.close();
                     try {
-                        App.abrirNuevaVentana("juego", 110, 110);
+                        App.abrirNuevaVentana("juego", 483, 296);
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
