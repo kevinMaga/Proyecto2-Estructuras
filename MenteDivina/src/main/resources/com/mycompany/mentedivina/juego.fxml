@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="296.0" prefWidth="483.0" style="-fx-background-color: #f8c657;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mentedivina.JuegoController">
+<AnchorPane id="AnchorPane" prefHeight="296.0" prefWidth="483.0" style="-fx-background-color: linear-gradient(from 0% 0% to 0% 100%, #FF4500, #FFA500, #FFD700);" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mentedivina.JuegoController">
    <children>
       <Label layoutX="163.0" layoutY="27.0" prefHeight="46.0" prefWidth="182.0" text="Mente Divina" textFill="WHITE">
          <font>
@@ -29,17 +29,17 @@
             <Font name="Bernard MT Condensed" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="LBLPreguntas" alignment="CENTER" layoutX="54.0" layoutY="132.0" prefHeight="46.0" prefWidth="376.0" style="-fx-background-color: #013063; -fx-background-radius: 15;" text="Preguntas" textFill="WHITE">
+      <Label fx:id="LBLPreguntas" alignment="CENTER" layoutX="54.0" layoutY="132.0" prefHeight="46.0" prefWidth="376.0" style="-fx-background-color: #f86056; -fx-background-radius: 15;" text="Preguntas" textFill="WHITE">
          <font>
             <Font name="Arial" size="24.0" />
          </font>
       </Label>
-      <Button fx:id="BTNSi" layoutX="125.0" layoutY="222.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="76.0" style="-fx-background-color: #036dc6;" text="SI" textFill="WHITE">
+      <Button fx:id="BTNSi" layoutX="125.0" layoutY="222.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="76.0" style="-fx-background-color: #b15e30;" text="SI" textFill="WHITE">
          <font>
             <Font name="Arial" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="BTNNo" layoutX="291.0" layoutY="222.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="76.0" style="-fx-background-color: #036dc6;" text="NO" textFill="WHITE">
+      <Button fx:id="BTNNo" layoutX="291.0" layoutY="222.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="76.0" style="-fx-background-color: #b15e30;" text="NO" textFill="WHITE">
          <font>
             <Font name="Arial" size="18.0" />
          </font>
