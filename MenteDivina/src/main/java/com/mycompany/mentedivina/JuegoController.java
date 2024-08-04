@@ -23,7 +23,8 @@ public class JuegoController implements Initializable {
     public static Integer cantidadPreguntas;
     public static BinaryTree<ArrayList<String>> arbol = null;
     private NodeBinaryTree<ArrayList<String>> nodoActual;
-
+    
+    
     @FXML
     private Label LBLPreguntas;
     @FXML
@@ -35,14 +36,15 @@ public class JuegoController implements Initializable {
     @FXML
     private ImageView imagenPensando;
     
-    private int iterador=cantidadPreguntas;
-    private Stack<String> imgs = new Stack<>();
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        imgs.push("pensando2.jpg");
-        imgs.push("pensando3.jpg");
+        Image img = null;
+        try(FileInputStream f = new FileInputStream(App.pathImages+ "lluvia-de-ideas.gif")){
+            img = new Image(f);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        imagenPensando.setImage(img);
         if (modoJuego.equals("animal")) {
             arbol = InicioController.buscarAgregarClave(cantidadPreguntas, InicioController.preguntasAnimal, InicioController.respuestasAnimal);
         } else if (modoJuego.equals("objeto")) {
@@ -59,9 +61,27 @@ public class JuegoController implements Initializable {
                 ex.printStackTrace();
             }
         });
-        if(cantidadPreguntas>6){
-            cantidadPreguntas/=3;
-        }
+        BTNSi.setStyle(
+                "-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #FFD700, #FFA500);"
+                + "-fx-background-radius: 15; "
+                + "-fx-background-insets: 0,1,2,3,0;"
+                + "-fx-text-fill: white;"
+                + "-fx-font-size: 19px;"
+                + "-fx-padding: 10 20 10 20;"
+                + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 5);"
+                + "-fx-font-family: 'Bernard MT Condensed';"
+        );
+
+        BTNNo.setStyle(
+                "-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #FFD700, #FFA500);"
+                + "-fx-background-radius: 15; "
+                + "-fx-background-insets: 0,1,2,3,0;"
+                + "-fx-text-fill: white;"
+                + "-fx-font-size: 19px;"
+                + "-fx-padding: 10 20 10 20;"
+                + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 5);"
+                + "-fx-font-family: 'Bernard MT Condensed';"
+        );
         BTNSi.setOnAction(e -> manejarRespuesta("si"));
         BTNNo.setOnAction(e -> manejarRespuesta("no"));
     }
@@ -71,44 +91,26 @@ public class JuegoController implements Initializable {
     }
 
     private void manejarRespuesta(String respuesta){
-        
-        if (iterador%cantidadPreguntas==0 && !imgs.empty()){
-            cambioImagen(imgs.pop());
-        }
         nodoActual = respuesta.equals("si") ? nodoActual.getLeft().getRoot() : nodoActual.getRight().getRoot();
         if (nodoActual.getLeft() == null && nodoActual.getRight() == null) {
-            ArrayList<String> listaAnimales =nodoActual.getContent();
-            if (!listaAnimales.isEmpty()) { 
-                if(listaAnimales.size()==1){
-                    LBLPreguntas.setText("El animal es: " + nodoActual.getContent().get(0));
-                }else{
-                    ListaAnimalesPosiblesController.animales=listaAnimales;
-                    LBLPreguntas.setText("Hay varios animales posibles");
+            ArrayList<String> lista =nodoActual.getContent();
+            if (!lista.isEmpty()) { 
+                if (lista.size() == 1) {
+                    LBLPreguntas.setText("El "+ modoJuego+" es: " + nodoActual.getContent().get(0));
+                } else{
+                    ListaPosiblesController.lista=lista;
+                    LBLPreguntas.setText("Hay varios " + modoJuego + "s posibles");
                     try {
-                        App.abrirNuevaVentana("listaAnimalesPosibles", 370, 469);
+                        App.abrirNuevaVentana("listaPosibles", 370, 469);
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
                 }
             } else {
-                if(modoJuego.equals("objeto")){
-                    LBLPreguntas.setText("No se encontró un objeto con esas características.");
-                }
-                LBLPreguntas.setText("No se encontró un animal con esas características.");
+                LBLPreguntas.setText("No se encontró un "+modoJuego+" así.");
             }
         } else {
             mostrarPreguntaActual();
         }
-        iterador--;
     }
-    private void cambioImagen(String nombre) {
-        try{
-            FileInputStream f = new FileInputStream("src/main/resources/images/"+nombre);
-            Image img =new Image(f,150,120,true,true);
-            imagenPensando.setImage(img);
-        }catch (FileNotFoundException ex) {
-                ex.printStackTrace();
-            }
-    }
-
 }

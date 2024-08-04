@@ -49,7 +49,7 @@ public class VentanaPensarController implements Initializable {
                 Stage s = (Stage) secuencia.getScene().getWindow();
                 s.close();
                 try {
-                    App.abrirNuevaVentana("juego", 483, 296);
+                    App.abrirNuevaVentana("juego", 806, 439);
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }

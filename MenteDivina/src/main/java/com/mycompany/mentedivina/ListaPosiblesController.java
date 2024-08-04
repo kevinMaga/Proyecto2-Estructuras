@@ -21,23 +21,26 @@ import javafx.scene.layout.VBox;
  * @author Justin Roldan
  */
 
-public class ListaAnimalesPosiblesController implements Initializable {
+public class ListaPosiblesController implements Initializable {
 
     /**
      * Initializes the controller class.
      */
-    public static ArrayList<String> animales;
+    public static ArrayList<String> lista;
     @FXML
-    private VBox posiblesAnimales;
+    private VBox posibles;
+    @FXML
+    private Label labelAnimalObjeto;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        for (String animal : animales) {
-            Label label = new Label(animal);
+        labelAnimalObjeto.setText("Posibles "+JuegoController.modoJuego+"s");
+        for (String animalOObjeto : lista) {
+            Label label = new Label(animalOObjeto);
             HBox hBox = new HBox(label);
             hBox.setAlignment(Pos.CENTER);
             hBox.setPadding(new Insets(10, 10, 10, 10));
             hBox.setSpacing(10);
-            posiblesAnimales.getChildren().add(hBox);
+            posibles.getChildren().add(hBox);
         }
     }    
     

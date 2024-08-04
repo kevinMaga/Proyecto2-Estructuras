@@ -1,20 +1,20 @@
 ¿Es un mamífero?
-¿Es de gran tamaño?
-¿Tiene ojos?
-¿Puede volar?
-¿Puede nadar?
-¿Vive en el agua?
-¿Es un carnívoro?
-¿Tiene patas?
-¿Anda en cuatro patas?
-¿Es un insecto?
-¿Tiene escamas?
-¿Puede comer frutas/plantas?
-¿Tiene alas?
+¿Vive en la tierra?
+¿Es doméstico?
+¿Es más grande que un gato?
+¿Tiene cuatro patas?
 ¿Tiene cola?
-¿Tiene pelaje?
-¿Tiene mas de seis patas?
-¿Vive en colonia?
-¿Tiene pulgares?
-¿Puede correr?
-¿Tiene hocico?
+¿Tiene pelo?
+¿Puede nadar?
+¿Es carnívoro?
+¿Puede volar?
+¿Es un animal salvaje?
+¿Tiene orejas?
+¿Es herbívoro?
+¿Es una mascota?
+¿Tiene garras?
+¿Es conocido por su velocidad?
+¿Es un animal nocturno?
+¿Tiene colmillos?
+¿Es un animal social?
+¿Es un animal común en los zoológicos?

@@ -16,6 +16,7 @@ public class App extends Application {
     private static Scene scene;
     public static String pathFiles = "src/main/resources/files/";
     public static String pathImages = "src/main/resources/images/";
+    public static String pathMusic ="src/main/resources/sonido";
 
     @Override
     public void start(Stage stage) throws IOException {
