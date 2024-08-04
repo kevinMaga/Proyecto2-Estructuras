@@ -1,13 +1,17 @@
 package com.mycompany.mentedivina;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.Stack;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import modelo.BinaryTree;
@@ -28,9 +32,17 @@ public class JuegoController implements Initializable {
     private Button BTNNo;
     @FXML
     private ImageView IVInicio;
-
+    @FXML
+    private ImageView imagenPensando;
+    
+    private int iterador=cantidadPreguntas;
+    private Stack<String> imgs = new Stack<>();
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        imgs.push("pensando2.jpg");
+        imgs.push("pensando3.jpg");
         if (modoJuego.equals("animal")) {
             arbol = InicioController.buscarAgregarClave(cantidadPreguntas, InicioController.preguntasAnimal, InicioController.respuestasAnimal);
         } else if (modoJuego.equals("objeto")) {
@@ -47,6 +59,9 @@ public class JuegoController implements Initializable {
                 ex.printStackTrace();
             }
         });
+        if(cantidadPreguntas>6){
+            cantidadPreguntas/=3;
+        }
         BTNSi.setOnAction(e -> manejarRespuesta("si"));
         BTNNo.setOnAction(e -> manejarRespuesta("no"));
     }
@@ -56,6 +71,10 @@ public class JuegoController implements Initializable {
     }
 
     private void manejarRespuesta(String respuesta){
+        
+        if (iterador%cantidadPreguntas==0 && !imgs.empty()){
+            cambioImagen(imgs.pop());
+        }
         nodoActual = respuesta.equals("si") ? nodoActual.getLeft().getRoot() : nodoActual.getRight().getRoot();
         if (nodoActual.getLeft() == null && nodoActual.getRight() == null) {
             ArrayList<String> listaAnimales =nodoActual.getContent();
@@ -72,11 +91,24 @@ public class JuegoController implements Initializable {
                     }
                 }
             } else {
+                if(modoJuego.equals("objeto")){
+                    LBLPreguntas.setText("No se encontró un objeto con esas características.");
+                }
                 LBLPreguntas.setText("No se encontró un animal con esas características.");
             }
         } else {
             mostrarPreguntaActual();
         }
+        iterador--;
+    }
+    private void cambioImagen(String nombre) {
+        try{
+            FileInputStream f = new FileInputStream("src/main/resources/images/"+nombre);
+            Image img =new Image(f,150,120,true,true);
+            imagenPensando.setImage(img);
+        }catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            }
     }
 
 }
