@@ -28,7 +28,7 @@
             <Font name="Bernard MT Condensed" size="18.0" />
          </font>
       </Label>
-      <ImageView fitHeight="324.0" fitWidth="338.0" layoutX="14.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imagenMago" fitHeight="324.0" fitWidth="338.0" layoutX="14.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../images/mago.png" />
          </image>

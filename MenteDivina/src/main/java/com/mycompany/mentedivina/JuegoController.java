@@ -35,9 +35,14 @@ public class JuegoController implements Initializable {
     private ImageView IVInicio;
     @FXML
     private ImageView imagenPensando;
+    @FXML
+    private ImageView imagenMago;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        InicioController.mediaPlayer.stop();
+        InicioController.reproducirSonido("pensando.mp3");
+        
         Image img = null;
         try(FileInputStream f = new FileInputStream(App.pathImages+ "lluvia-de-ideas.gif")){
             img = new Image(f);
@@ -94,7 +99,16 @@ public class JuegoController implements Initializable {
         nodoActual = respuesta.equals("si") ? nodoActual.getLeft().getRoot() : nodoActual.getRight().getRoot();
         if (nodoActual.getLeft() == null && nodoActual.getRight() == null) {
             ArrayList<String> lista =nodoActual.getContent();
+            Image imga = null;
             if (!lista.isEmpty()) { 
+                try(FileInputStream f = new FileInputStream(App.pathImages+ "hechicero.png")){
+                    imga = new Image(f);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                imagenMago.setImage(imga);
+                InicioController.mediaPlayer.stop();
+                InicioController.reproducirSonido("victoria.mp3");
                 if (lista.size() == 1) {
                     LBLPreguntas.setText("El "+ modoJuego+" es: " + nodoActual.getContent().get(0));
                 } else{
@@ -107,6 +121,9 @@ public class JuegoController implements Initializable {
                     }
                 }
             } else {
+                
+                InicioController.mediaPlayer.stop();
+                InicioController.reproducirSonido("derrota.mp3");
                 LBLPreguntas.setText("No se encontró un "+modoJuego+" así.");
             }
         } else {

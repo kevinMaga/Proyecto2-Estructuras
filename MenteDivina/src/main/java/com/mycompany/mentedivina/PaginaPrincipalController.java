@@ -40,6 +40,8 @@ public class PaginaPrincipalController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        InicioController.mediaPlayer.stop();
+        InicioController.reproducirSonido("menu2.mp3");
         estilos();
         btnAnimal.setOnAction(e -> {
             JuegoController.modoJuego = "animal";
