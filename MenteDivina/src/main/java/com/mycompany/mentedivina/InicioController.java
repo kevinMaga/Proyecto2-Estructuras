@@ -13,8 +13,8 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import modelo.BinaryTree;
 import modelo.NodeBinaryTree;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+//import javafx.scene.media.Media;
+//import javafx.scene.media.MediaPlayer;
 /**
  * FXML Controller class
  *
@@ -23,11 +23,11 @@ import javafx.scene.media.MediaPlayer;
 
 public class InicioController implements Initializable {
     
-    public static ArrayList<String> preguntasAnimal = ManejoArchivos.leerArchivoPreguntasAnimal();
-    public static ArrayList<String> preguntasObjeto = ManejoArchivos.leerArchivoPreguntasObjeto();
-    public static Map<String,ArrayList<String>> respuestasAnimal =ManejoArchivos.leerArchivoRespuestasAnimal();
-    public static Map<String,ArrayList<String>> respuestasObjeto =ManejoArchivos.leerArchivoRespuestasObjeto();
-    public static MediaPlayer mediaPlayer;
+    public static ArrayList<String> preguntasAnimal = ManejoArchivos.leerArchivoPreguntas("preguntasAnimal.txt");
+    public static ArrayList<String> preguntasObjeto = ManejoArchivos.leerArchivoPreguntas("preguntasObjeto.txt");
+    public static Map<String,ArrayList<String>> respuestasAnimal =ManejoArchivos.leerArchivoRespuestas("respuestasAnimal.txt");
+    public static Map<String,ArrayList<String>> respuestasObjeto =ManejoArchivos.leerArchivoRespuestas("respuestasObjeto.txt");
+//    public static MediaPlayer mediaPlayer;
     
     @FXML
     private Button BtnJugar;
@@ -37,7 +37,7 @@ public class InicioController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        InicioController.reproducirSonido("menu1.mp3");
+        //InicioController.reproducirSonido("menu1.mp3");
         
         BtnJugar.setOnAction(e -> {
             Stage s = (Stage) BtnJugar.getScene().getWindow();
@@ -93,11 +93,12 @@ public class InicioController implements Initializable {
         return arbol;
     }
 
-    public static MediaPlayer reproducirSonido(String nombre){
+    /*public static MediaPlayer reproducirSonido(String nombre){
         String ubicacion = "src/main/resources/sonidos/"+nombre;
         Media media = new Media(new File(ubicacion).toURI().toString());
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
         return mediaPlayer;
     }
+    **/
 }

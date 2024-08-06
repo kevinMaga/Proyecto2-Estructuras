@@ -16,9 +16,9 @@ import java.util.Map;
  * @author Justin Roldan
  */
 public class ManejoArchivos {
-    public static ArrayList<String> leerArchivoPreguntasAnimal() {
+    public static ArrayList<String> leerArchivoPreguntas(String nombreArchivo) {
         ArrayList<String> resultado = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(App.pathFiles + "preguntasAnimal.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(App.pathFiles +nombreArchivo))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 resultado.add(linea.trim());
@@ -29,22 +29,10 @@ public class ManejoArchivos {
         return resultado;
     }
     
-    public static ArrayList<String> leerArchivoPreguntasObjeto() {
-        ArrayList<String> resultado2 = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(App.pathFiles + "preguntasObjeto.txt"))) {
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                resultado2.add(linea.trim());
-            }
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        return resultado2;
-    }
-
-    public static Map<String, ArrayList<String>> leerArchivoRespuestasAnimal() {
+   
+    public static Map<String, ArrayList<String>> leerArchivoRespuestas(String nombreArchivo) {
         Map<String, ArrayList<String>> resultado = new HashMap<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(App.pathFiles + "respuestasAnimal.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(App.pathFiles + nombreArchivo))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] lista = linea.split("\\s+");
@@ -60,21 +48,4 @@ public class ManejoArchivos {
         return resultado;
     }
     
-    public static Map<String, ArrayList<String>> leerArchivoRespuestasObjeto() {
-        Map<String, ArrayList<String>> resultado1 = new HashMap<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(App.pathFiles + "respuestasObjeto.txt"))) {
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                String[] lista = linea.split("\\s+");
-                ArrayList<String> respuestas = new ArrayList<>();
-                for (int i = 1; i < lista.length; i++) {
-                    respuestas.add(lista[i]);
-                }
-                resultado1.put(lista[0], respuestas);
-            }
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        return resultado1;
-    }
 }

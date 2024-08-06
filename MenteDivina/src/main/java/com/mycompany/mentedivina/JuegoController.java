@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import modelo.BinaryTree;
 import modelo.NodeBinaryTree;
@@ -36,12 +37,12 @@ public class JuegoController implements Initializable {
     @FXML
     private ImageView imagenPensando;
     @FXML
-    private ImageView imagenMago;
+    private VBox contenedor;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        InicioController.mediaPlayer.stop();
-        InicioController.reproducirSonido("pensando.mp3");
+        //InicioController.mediaPlayer.stop();
+        //InicioController.reproducirSonido("pensando.mp3");
         
         Image img = null;
         try(FileInputStream f = new FileInputStream(App.pathImages+ "lluvia-de-ideas.gif")){
@@ -99,18 +100,21 @@ public class JuegoController implements Initializable {
         nodoActual = respuesta.equals("si") ? nodoActual.getLeft().getRoot() : nodoActual.getRight().getRoot();
         if (nodoActual.getLeft() == null && nodoActual.getRight() == null) {
             ArrayList<String> lista =nodoActual.getContent();
-            Image imga = null;
-            if (!lista.isEmpty()) { 
-                try(FileInputStream f = new FileInputStream(App.pathImages+ "hechicero.png")){
-                    imga = new Image(f);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-                imagenMago.setImage(imga);
-                InicioController.mediaPlayer.stop();
-                InicioController.reproducirSonido("victoria.mp3");
+            ImageView imageView = null;
+            if (!lista.isEmpty()) {  
+                //InicioController.mediaPlayer.stop();
+                //InicioController.reproducirSonido("victoria.mp3");
                 if (lista.size() == 1) {
-                    LBLPreguntas.setText("El "+ modoJuego+" es: " + nodoActual.getContent().get(0));
+                    contenedor.getChildren().clear();
+                    String[] animalObjetoInfo = lista.get(0).split(",");
+                    try (FileInputStream fis = new FileInputStream(App.pathImages+animalObjetoInfo[1])) {
+                        Image image = new Image(fis,250,250,true,true);
+                        imageView = new ImageView(image);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    contenedor.getChildren().add(imageView);
+                    LBLPreguntas.setText("El "+ modoJuego+" es: " + animalObjetoInfo[0]);
                 } else{
                     ListaPosiblesController.lista=lista;
                     LBLPreguntas.setText("Hay varios " + modoJuego + "s posibles");
@@ -122,8 +126,8 @@ public class JuegoController implements Initializable {
                 }
             } else {
                 
-                InicioController.mediaPlayer.stop();
-                InicioController.reproducirSonido("derrota.mp3");
+                //InicioController.mediaPlayer.stop();
+                //InicioController.reproducirSonido("derrota.mp3");
                 LBLPreguntas.setText("No se encontró un "+modoJuego+" así.");
             }
         } else {
