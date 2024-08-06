@@ -9,46 +9,46 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="486.0" prefWidth="419.0" style="-fx-background-color: linear-gradient(from 0% 0% to 0% 100%, #0884b3,#036dc6, #013063);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mentedivina.PaginaPrincipalController">
+<AnchorPane id="AnchorPane" prefHeight="486.0" prefWidth="419.0" style="-fx-background-color: linear-gradient(from 0% 0% to 0% 100%, #0884b3,#036dc6, #013063);" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mentedivina.PaginaPrincipalController">
    <children>
       <ImageView fitHeight="144.0" fitWidth="155.0" layoutX="139.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../images/cerebro.png" />
          </image>
       </ImageView>
-      <Label alignment="CENTER" layoutX="-1.0" layoutY="-3.0" prefHeight="63.0" prefWidth="424.0" style="-fx-background-color: black;" text="Mente Divina" textFill="WHITE">
+      <Label fx:id="LBL1" alignment="CENTER" layoutX="-1.0" layoutY="-3.0" prefHeight="63.0" prefWidth="424.0" style="-fx-background-color: black;" text="Mente Divina" textFill="WHITE">
          <font>
-            <Font name="Bernard MT Condensed" size="36.0" />
+            <Font name="Luckiest Guy Regular" size="36.0" />
          </font>
          <effect>
             <Glow />
          </effect>
       </Label>
-      <Label alignment="CENTER" layoutY="226.0" prefHeight="34.0" prefWidth="424.0" text="Elije un modo de juego" textFill="WHITE">
+      <Label fx:id="LBL2" alignment="CENTER" layoutY="226.0" prefHeight="34.0" prefWidth="424.0" text="Elije un modo de juego" textFill="WHITE">
          <font>
-            <Font name="Bernard MT Condensed" size="18.0" />
+            <Font name="Baloo 2 Regular" size="22.0" />
          </font>
       </Label>
-      <Label layoutX="14.0" layoutY="360.0" text="Escribe la cantidad de preguntas" textFill="WHITE">
+      <Label fx:id="LBL3" layoutX="12.0" layoutY="356.0" prefHeight="31.0" prefWidth="286.0" text="Escribe la cantidad de preguntas" textFill="WHITE">
          <font>
-            <Font name="Bernard MT Condensed" size="18.0" />
+            <Font name="Baloo 2 Regular" size="19.0" />
          </font>
       </Label>
       <Label fx:id="BTNEmpezar" alignment="CENTER" layoutX="144.0" layoutY="414.0" prefHeight="42.0" prefWidth="153.0" style="-fx-background-color: #03cd9e; -fx-background-radius: 10;" text="Empezar">
          <font>
-            <Font name="Arial" size="24.0" />
+            <Font name="Luckiest Guy Regular" size="24.0" />
          </font>
       </Label>
       <Button fx:id="btnAnimal" layoutX="77.0" layoutY="271.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="120.0" text="Animal">
          <font>
-            <Font name="Bernard MT Condensed" size="19.0" />
+            <Font name="Luckiest Guy Regular" size="19.0" />
          </font>
       </Button>
       <Button fx:id="btnCosa" layoutX="221.0" layoutY="271.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="120.0" text="Objeto">
          <font>
-            <Font name="Bernard MT Condensed" size="19.0" />
+            <Font name="Luckiest Guy Regular" size="19.0" />
          </font>
       </Button>
-      <TextField fx:id="txtPreguntas" layoutX="248.0" layoutY="354.0" prefHeight="36.0" prefWidth="154.0" />
+      <TextField fx:id="txtPreguntas" layoutX="282.0" layoutY="354.0" prefHeight="36.0" prefWidth="120.0" />
    </children>
 </AnchorPane>

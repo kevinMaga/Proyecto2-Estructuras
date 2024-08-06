@@ -10,6 +10,8 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import modelo.BinaryTree;
 import modelo.NodeBinaryTree;
@@ -20,10 +22,9 @@ import modelo.Tipo;
 
 /**
  * FXML Controller class
- *
+ * 
  * @author Kevin Magallanes
  */
-
 public class InicioController implements Initializable {
 
     public static ArrayList<String> preguntasAnimal = ManejoArchivos.leerArchivoPreguntas("preguntasAnimal.txt");
@@ -34,13 +35,32 @@ public class InicioController implements Initializable {
 
     @FXML
     private Button BtnJugar;
+    @FXML
+    private Label LBL1;
+    @FXML
+    private Label LBL2;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        // Reproducir sonido de fondo
         InicioController.reproducirSonido("menu1.mp3");
+
+        // Cargar y aplicar la fuente personalizada al botón
+        Font font = Font.loadFont(getClass().getResourceAsStream("/fonts/LuckiestGuy-Regular.ttf"), 24);
+        Font font2 = Font.loadFont(getClass().getResourceAsStream("/fonts/Baloo2-VariableFont_wght.ttf"),18);
+        Font font3 = Font.loadFont(getClass().getResourceAsStream("/fonts/Baloo2-VariableFont_wght.ttf"),16);
+        
+        LBL1.setFont(font2);
+        LBL2.setFont(font3);
+        
+        if (font != null) {
+            BtnJugar.setFont(font);
+        } else {
+            System.out.println("No se pudo cargar la fuente.");
+        }
 
         BtnJugar.setOnAction(e -> {
             Stage s = (Stage) BtnJugar.getScene().getWindow();
@@ -50,7 +70,6 @@ public class InicioController implements Initializable {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-
         });
     }
 
@@ -70,7 +89,7 @@ public class InicioController implements Initializable {
     }
 
     public static BinaryTree<Object> buscarAgregarClave(int preguntasUsuario, ArrayList<String> preguntas, Map<Juego, ArrayList<String>> respuestas) {
-        BinaryTree<Object> arbol = crearArbol(0,preguntasUsuario, preguntas);
+        BinaryTree<Object> arbol = crearArbol(0, preguntasUsuario, preguntas);
         for (Juego juego : respuestas.keySet()) {
             ArrayList<String> rJuego = respuestas.get(juego);
             NodeBinaryTree<Object> nodoActual = arbol.getRoot();
@@ -99,5 +118,4 @@ public class InicioController implements Initializable {
         mediaPlayer.play();
         return mediaPlayer;
     }
-
 }

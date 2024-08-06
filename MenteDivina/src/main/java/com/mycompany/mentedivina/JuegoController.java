@@ -39,6 +39,8 @@ public class JuegoController implements Initializable {
     private ImageView imagenPensando;
     @FXML
     private VBox contenedor;
+    @FXML
+    private ImageView imagenMago;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
