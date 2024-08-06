@@ -54,26 +54,23 @@ public class InicioController implements Initializable {
         });
     }
 
-    private static BinaryTree<Object> crearArbol(int preguntasUsuario, ArrayList<String> preguntas) {
+    public static BinaryTree<Object> crearArbol(int nivelActual, int preguntasUsuario, List<String> listaPreguntas) {
         BinaryTree<Object> arbol = new BinaryTree<>();
-        arbol.setRoot(crearNodo(0, preguntasUsuario, preguntas));
+
+        if (nivelActual >= preguntasUsuario) {
+            arbol.setRoot(new NodeBinaryTree<>(new ArrayList<Juego>()));
+        } else {
+            NodeBinaryTree<Object> nodo = new NodeBinaryTree<>(listaPreguntas.get(nivelActual));
+            nodo.setLeft(crearArbol(nivelActual + 1, preguntasUsuario, listaPreguntas));
+            nodo.setRight(crearArbol(nivelActual + 1, preguntasUsuario, listaPreguntas));
+            arbol.setRoot(nodo);
+        }
+
         return arbol;
     }
 
-    private static NodeBinaryTree<Object> crearNodo(int nivelActual, int preguntasUsuario, List<String> listaPreguntas) {
-        if (nivelActual >= preguntasUsuario) {
-            return new NodeBinaryTree<>(new ArrayList<Juego>());
-        }
-        ArrayList<String> contenidoNodo = new ArrayList<>();
-        contenidoNodo.add(listaPreguntas.get(nivelActual));
-        NodeBinaryTree<Object> nodo = new NodeBinaryTree<>(contenidoNodo);
-        nodo.setLeft(new BinaryTree<>(crearNodo(nivelActual + 1, preguntasUsuario, listaPreguntas)));
-        nodo.setRight(new BinaryTree<>(crearNodo(nivelActual + 1, preguntasUsuario, listaPreguntas)));
-        return nodo;
-    }
-
     public static BinaryTree<Object> buscarAgregarClave(int preguntasUsuario, ArrayList<String> preguntas, Map<Juego, ArrayList<String>> respuestas) {
-        BinaryTree<Object> arbol = crearArbol(preguntasUsuario, preguntas);
+        BinaryTree<Object> arbol = crearArbol(0,preguntasUsuario, preguntas);
         for (Juego juego : respuestas.keySet()) {
             ArrayList<String> rJuego = respuestas.get(juego);
             NodeBinaryTree<Object> nodoActual = arbol.getRoot();

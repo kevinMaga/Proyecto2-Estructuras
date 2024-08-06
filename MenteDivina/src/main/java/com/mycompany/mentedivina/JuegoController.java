@@ -94,19 +94,13 @@ public class JuegoController implements Initializable {
     }
 
     private void mostrarPreguntaActual() {
-        ArrayList<Object> contenido = (ArrayList<Object>) nodoActual.getContent();
-        if (contenido != null && !contenido.isEmpty()) {
-            LBLPreguntas.setText((String) contenido.get(0));
-        } else {
-            LBLPreguntas.setText("");
-        }
+        LBLPreguntas.setText((String) (nodoActual.getContent()));
     }
 
     private void manejarRespuesta(String respuesta){
         nodoActual = respuesta.equals("si") ? nodoActual.getLeft().getRoot() : nodoActual.getRight().getRoot();
         if (nodoActual.getLeft() == null && nodoActual.getRight() == null) {
             ArrayList<Juego> lista =(ArrayList<Juego>) nodoActual.getContent();
-            
             ImageView imageView = null;
             if (!lista.isEmpty()) {  
                 InicioController.mediaPlayer.stop();
