@@ -20,6 +20,12 @@
             <artifactId>javafx-fxml</artifactId>
             <version>20</version>
         </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-media</artifactId>
+            <version>16</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

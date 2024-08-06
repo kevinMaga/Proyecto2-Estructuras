@@ -41,8 +41,8 @@ public class JuegoController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //InicioController.mediaPlayer.stop();
-        //InicioController.reproducirSonido("pensando.mp3");
+        InicioController.mediaPlayer.stop();
+        InicioController.reproducirSonido("pensando.mp3");
         
         Image img = null;
         try(FileInputStream f = new FileInputStream(App.pathImages+ "lluvia-de-ideas.gif")){
@@ -102,8 +102,8 @@ public class JuegoController implements Initializable {
             ArrayList<String> lista =nodoActual.getContent();
             ImageView imageView = null;
             if (!lista.isEmpty()) {  
-                //InicioController.mediaPlayer.stop();
-                //InicioController.reproducirSonido("victoria.mp3");
+                InicioController.mediaPlayer.stop();
+                InicioController.reproducirSonido("victoria.mp3");
                 if (lista.size() == 1) {
                     contenedor.getChildren().clear();
                     String[] animalObjetoInfo = lista.get(0).split(",");
@@ -126,8 +126,8 @@ public class JuegoController implements Initializable {
                 }
             } else {
                 
-                //InicioController.mediaPlayer.stop();
-                //InicioController.reproducirSonido("derrota.mp3");
+                InicioController.mediaPlayer.stop();
+                InicioController.reproducirSonido("derrota.mp3");
                 LBLPreguntas.setText("No se encontró un "+modoJuego+" así.");
             }
         } else {
