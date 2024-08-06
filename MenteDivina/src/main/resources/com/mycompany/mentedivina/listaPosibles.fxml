@@ -14,13 +14,23 @@
    <top>
       <Pane prefHeight="100.0" prefWidth="370.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="labelAnimalObjeto" alignment="CENTER" layoutX="51.0" layoutY="33.0" prefHeight="17.0" prefWidth="269.0" text="Posibles animales" textFill="WHITE">
+            <Label fx:id="labelAnimalObjeto" alignment="CENTER" layoutX="51.0" layoutY="33.0" prefHeight="34.0" prefWidth="245.0" text="Posibles animales" textFill="WHITE">
                <font>
                   <Font name="Bernard MT Condensed" size="27.0" />
                </font>
                <effect>
                   <DropShadow height="0.0" radius="0.0" width="1.0" />
                </effect>
+            </Label>
+            <ImageView fx:id="inicio" fitHeight="37.0" fitWidth="37.0" layoutX="319.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/iniciar-sesion.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="319.0" layoutY="56.0" text="Inicio" textFill="WHITE">
+               <font>
+                  <Font name="Bernard MT Condensed" size="17.0" />
+               </font>
             </Label>
          </children>
       </Pane>

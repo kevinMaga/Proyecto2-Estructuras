@@ -15,6 +15,9 @@ import modelo.BinaryTree;
 import modelo.NodeBinaryTree;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import modelo.Juego;
+import modelo.Tipo;
+
 /**
  * FXML Controller class
  *
@@ -22,13 +25,13 @@ import javafx.scene.media.MediaPlayer;
  */
 
 public class InicioController implements Initializable {
-    
+
     public static ArrayList<String> preguntasAnimal = ManejoArchivos.leerArchivoPreguntas("preguntasAnimal.txt");
     public static ArrayList<String> preguntasObjeto = ManejoArchivos.leerArchivoPreguntas("preguntasObjeto.txt");
-    public static Map<String,ArrayList<String>> respuestasAnimal =ManejoArchivos.leerArchivoRespuestas("respuestasAnimal.txt");
-    public static Map<String,ArrayList<String>> respuestasObjeto =ManejoArchivos.leerArchivoRespuestas("respuestasObjeto.txt");
+    public static Map<Juego, ArrayList<String>> respuestasAnimal = ManejoArchivos.leerArchivoRespuestas("respuestasAnimal.txt", Tipo.ANIMAL);
+//    public static Map<Juego, ArrayList<String>> respuestasObjeto = ManejoArchivos.leerArchivoRespuestas("respuestasObjeto.txt", Tipo.OBJETO);
     public static MediaPlayer mediaPlayer;
-    
+
     @FXML
     private Button BtnJugar;
 
@@ -38,7 +41,7 @@ public class InicioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         InicioController.reproducirSonido("menu1.mp3");
-        
+
         BtnJugar.setOnAction(e -> {
             Stage s = (Stage) BtnJugar.getScene().getWindow();
             s.close();
@@ -50,32 +53,32 @@ public class InicioController implements Initializable {
 
         });
     }
-    
-    private static BinaryTree<ArrayList<String>> crearArbol(int preguntasUsuario,ArrayList<String> preguntas) {
-        BinaryTree<ArrayList<String>> arbol = new BinaryTree<>();
+
+    private static BinaryTree<Object> crearArbol(int preguntasUsuario, ArrayList<String> preguntas) {
+        BinaryTree<Object> arbol = new BinaryTree<>();
         arbol.setRoot(crearNodo(0, preguntasUsuario, preguntas));
         return arbol;
     }
 
-    private static NodeBinaryTree<ArrayList<String>> crearNodo(int nivelActual, int preguntasUsuario, List<String> listaPreguntas) {
+    private static NodeBinaryTree<Object> crearNodo(int nivelActual, int preguntasUsuario, List<String> listaPreguntas) {
         if (nivelActual >= preguntasUsuario) {
-            return new NodeBinaryTree<>(new ArrayList<>());
+            return new NodeBinaryTree<>(new ArrayList<Juego>());
         }
         ArrayList<String> contenidoNodo = new ArrayList<>();
         contenidoNodo.add(listaPreguntas.get(nivelActual));
-        NodeBinaryTree<ArrayList<String>> nodo = new NodeBinaryTree<>(contenidoNodo);
+        NodeBinaryTree<Object> nodo = new NodeBinaryTree<>(contenidoNodo);
         nodo.setLeft(new BinaryTree<>(crearNodo(nivelActual + 1, preguntasUsuario, listaPreguntas)));
         nodo.setRight(new BinaryTree<>(crearNodo(nivelActual + 1, preguntasUsuario, listaPreguntas)));
         return nodo;
     }
 
-    public static BinaryTree<ArrayList<String>> buscarAgregarClave(int preguntasUsuario,ArrayList<String> preguntas,Map<String,ArrayList<String>> respuestas) {
-        BinaryTree<ArrayList<String>> arbol = crearArbol(preguntasUsuario,preguntas);
-        for (String clave : respuestas.keySet()) {
-            ArrayList<String> rClave = respuestas.get(clave);
-            NodeBinaryTree<ArrayList<String>> nodoActual = arbol.getRoot();
+    public static BinaryTree<Object> buscarAgregarClave(int preguntasUsuario, ArrayList<String> preguntas, Map<Juego, ArrayList<String>> respuestas) {
+        BinaryTree<Object> arbol = crearArbol(preguntasUsuario, preguntas);
+        for (Juego juego : respuestas.keySet()) {
+            ArrayList<String> rJuego = respuestas.get(juego);
+            NodeBinaryTree<Object> nodoActual = arbol.getRoot();
             for (int i = 0; i < preguntasUsuario; i++) {
-                String respuesta = rClave.get(i);
+                String respuesta = rJuego.get(i);
                 if (respuesta.equals("si")) {
                     if (nodoActual.getLeft() != null) {
                         nodoActual = nodoActual.getLeft().getRoot();
@@ -86,19 +89,18 @@ public class InicioController implements Initializable {
                     }
                 }
             }
-            ArrayList<String> claves = nodoActual.getContent();
-            claves.add(clave);
-            nodoActual.setContent(claves);
+            ArrayList<Juego> juegosEnHoja = (ArrayList<Juego>) nodoActual.getContent();
+            juegosEnHoja.add(juego);
         }
         return arbol;
     }
 
-    public static MediaPlayer reproducirSonido(String nombre){
-        String ubicacion = "src/main/resources/sonidos/"+nombre;
+    public static MediaPlayer reproducirSonido(String nombre) {
+        String ubicacion = App.pathMusic + nombre;
         Media media = new Media(new File(ubicacion).toURI().toString());
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
         return mediaPlayer;
     }
-    
+
 }

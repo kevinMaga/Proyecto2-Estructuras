@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import modelo.Juego;
+import modelo.Tipo;
 
 /**
  *
@@ -30,17 +32,19 @@ public class ManejoArchivos {
     }
     
    
-    public static Map<String, ArrayList<String>> leerArchivoRespuestas(String nombreArchivo) {
-        Map<String, ArrayList<String>> resultado = new HashMap<>();
+    public static Map<Juego, ArrayList<String>> leerArchivoRespuestas(String nombreArchivo,Tipo t) {
+        Map<Juego, ArrayList<String>> resultado = new HashMap<>();
         try (BufferedReader br = new BufferedReader(new FileReader(App.pathFiles + nombreArchivo))) {
             String linea;
             while ((linea = br.readLine()) != null) {
-                String[] lista = linea.split("\\s+");
+                String[] lista = linea.split("-");
+                String[] info = lista[0].split(",");
                 ArrayList<String> respuestas = new ArrayList<>();
                 for (int i = 1; i < lista.length; i++) {
                     respuestas.add(lista[i]);
                 }
-                resultado.put(lista[0], respuestas);
+                Juego j = new Juego(info[0],App.pathImages+info[1],t);
+                resultado.put(j, respuestas);
             }
         } catch (IOException ex) {
             ex.printStackTrace();

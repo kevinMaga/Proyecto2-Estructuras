@@ -16,14 +16,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import modelo.BinaryTree;
+import modelo.Juego;
 import modelo.NodeBinaryTree;
 
 public class JuegoController implements Initializable {
 
     public static String modoJuego;
     public static Integer cantidadPreguntas;
-    public static BinaryTree<ArrayList<String>> arbol = null;
-    private NodeBinaryTree<ArrayList<String>> nodoActual;
+    public static BinaryTree<Object> arbol = null;
+    private NodeBinaryTree<Object> nodoActual;
     
     
     @FXML
@@ -54,7 +55,7 @@ public class JuegoController implements Initializable {
         if (modoJuego.equals("animal")) {
             arbol = InicioController.buscarAgregarClave(cantidadPreguntas, InicioController.preguntasAnimal, InicioController.respuestasAnimal);
         } else if (modoJuego.equals("objeto")) {
-            arbol = InicioController.buscarAgregarClave(cantidadPreguntas, InicioController.preguntasObjeto, InicioController.respuestasObjeto);
+//            arbol = InicioController.buscarAgregarClave(cantidadPreguntas, InicioController.preguntasObjeto, InicioController.respuestasObjeto);
         }
         nodoActual = arbol.getRoot();
         mostrarPreguntaActual();
@@ -93,31 +94,38 @@ public class JuegoController implements Initializable {
     }
 
     private void mostrarPreguntaActual() {
-        LBLPreguntas.setText(nodoActual.getContent().get(0));
+        ArrayList<Object> contenido = (ArrayList<Object>) nodoActual.getContent();
+        if (contenido != null && !contenido.isEmpty()) {
+            LBLPreguntas.setText((String) contenido.get(0));
+        } else {
+            LBLPreguntas.setText("");
+        }
     }
 
     private void manejarRespuesta(String respuesta){
         nodoActual = respuesta.equals("si") ? nodoActual.getLeft().getRoot() : nodoActual.getRight().getRoot();
         if (nodoActual.getLeft() == null && nodoActual.getRight() == null) {
-            ArrayList<String> lista =nodoActual.getContent();
+            ArrayList<Juego> lista =(ArrayList<Juego>) nodoActual.getContent();
+            
             ImageView imageView = null;
             if (!lista.isEmpty()) {  
                 InicioController.mediaPlayer.stop();
                 InicioController.reproducirSonido("victoria.mp3");
                 if (lista.size() == 1) {
-                    contenedor.getChildren().clear();
-                    String[] animalObjetoInfo = lista.get(0).split(",");
-                    try (FileInputStream fis = new FileInputStream(App.pathImages+animalObjetoInfo[1])) {
+                    Juego juego = lista.get(0);
+                    contenedor.getChildren().clear();   
+                    try (FileInputStream fis = new FileInputStream(juego.getRutaImagen())) {
                         Image image = new Image(fis,250,250,true,true);
                         imageView = new ImageView(image);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                     contenedor.getChildren().add(imageView);
-                    LBLPreguntas.setText("El "+ modoJuego+" es: " + animalObjetoInfo[0]);
+                    LBLPreguntas.setText("El "+ modoJuego+" es: " + juego.getNombre());
                 } else{
                     ListaPosiblesController.lista=lista;
-                    LBLPreguntas.setText("Hay varios " + modoJuego + "s posibles");
+                    Stage s =(Stage)contenedor.getScene().getWindow();
+                    s.close();
                     try {
                         App.abrirNuevaVentana("listaPosibles", 370, 469);
                     } catch (IOException ex) {
@@ -125,10 +133,27 @@ public class JuegoController implements Initializable {
                     }
                 }
             } else {
-                
                 InicioController.mediaPlayer.stop();
                 InicioController.reproducirSonido("derrota.mp3");
                 LBLPreguntas.setText("No se encontró un "+modoJuego+" así.");
+                contenedor.getChildren().clear();
+                ImageView imageView1 = null;
+                if(modoJuego.equals("animal")){
+                    try (FileInputStream fis = new FileInputStream(App.pathImages+"noAnimal")) {
+                        Image image = new Image(fis,250,250,true,true);
+                        imageView1 = new ImageView(image);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }   
+                }else{
+                    try (FileInputStream fis = new FileInputStream(App.pathImages+"noObjeto")) {
+                        Image image = new Image(fis,250,250,true,true);
+                        imageView1 = new ImageView(image);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }   
+                }
+                contenedor.getChildren().add(imageView1);
             }
         } else {
             mostrarPreguntaActual();
