@@ -10,13 +10,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="469.0" prefWidth="370.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mentedivina.ListaPosiblesController">
+<BorderPane prefHeight="469.0" prefWidth="370.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mentedivina.ListaPosiblesController">
    <top>
       <Pane prefHeight="100.0" prefWidth="370.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="labelAnimalObjeto" alignment="CENTER" layoutX="51.0" layoutY="33.0" prefHeight="34.0" prefWidth="245.0" text="Posibles animales" textFill="WHITE">
                <font>
-                  <Font name="Bernard MT Condensed" size="27.0" />
+                  <Font name="Luckiest Guy Regular" size="27.0" />
                </font>
                <effect>
                   <DropShadow height="0.0" radius="0.0" width="1.0" />

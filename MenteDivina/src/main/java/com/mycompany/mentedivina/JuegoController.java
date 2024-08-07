@@ -41,6 +41,8 @@ public class JuegoController implements Initializable {
     private ImageView imagenPensando;
     @FXML
     private VBox contenedor;
+    @FXML
+    private ImageView imagenMago;
     
     public static MediaPlayer musicaJuego=InicioController.reproducirSonido("pensando.mp3");
     public static String[] caras = {"preocupado.gif","secreto.gif","neutral.gif","cinico.gif"};

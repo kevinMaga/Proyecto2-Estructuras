@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
@@ -37,6 +38,12 @@ public class PaginaPrincipalController implements Initializable {
     private TextField txtPreguntas;
     
     public static MediaPlayer musicaPaginaPrincipal;
+    @FXML
+    private Label LBL1;
+    @FXML
+    private Label LBL2;
+    @FXML
+    private Label LBL3;
 
     /**
      * Initializes the controller class.
@@ -46,6 +53,18 @@ public class PaginaPrincipalController implements Initializable {
         JuegoController.musicaJuego.stop();
         InicioController.musicaInicio.stop();
         musicaPaginaPrincipal =InicioController.reproducirSonido("menu2.mp3");
+        Font font = Font.loadFont(getClass().getResourceAsStream("/fonts/LuckiestGuy-Regular.ttf"), 36);
+        Font font2 = Font.loadFont(getClass().getResourceAsStream("/fonts/Baloo2-VariableFont_wght.ttf"),22);
+        Font font3 = Font.loadFont(getClass().getResourceAsStream("/fonts/LuckiestGuy-Regular.ttf"), 19);
+        Font font4 = Font.loadFont(getClass().getResourceAsStream("/fonts/Baloo2-VariableFont_wght.ttf"),19);
+        Font font5 = Font.loadFont(getClass().getResourceAsStream("/fonts/LuckiestGuy-Regular.ttf"), 24);
+        
+        LBL1.setFont(font);
+        LBL2.setFont(font2);
+        btnAnimal.setFont(font3);
+        btnCosa.setFont(font3);
+        LBL3.setFont(font4);
+        BTNEmpezar.setFont(font5);
         estilos();
         btnAnimal.setOnAction(e -> {
             JuegoController.modoJuego = "animal";
@@ -114,7 +133,7 @@ public class PaginaPrincipalController implements Initializable {
                 + "-fx-font-size: 16px;"
                 + "-fx-padding: 10 20 10 20;"
                 + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 5);"
-                + "-fx-font-family: 'Bernard MT Condensed';"
+                + "-fx-font-family: 'Luckiest Guy';"
         );
 
         btn1.setStyle(
@@ -125,7 +144,7 @@ public class PaginaPrincipalController implements Initializable {
                 + "-fx-font-size: 16px;"
                 + "-fx-padding: 10 20 10 20;"
                 + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 5);"
-                + "-fx-font-family: 'Bernard MT Condensed';"
+                + "-fx-font-family: 'Luckiest Guy';"
         );
     }
 
@@ -155,7 +174,7 @@ public class PaginaPrincipalController implements Initializable {
                 + "-fx-font-size: 16px;"
                 + "-fx-padding: 10 20 10 20;"
                 + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 5);"
-                + "-fx-font-family: 'Bernard MT Condensed';"
+                + "-fx-font-family: 'Luckiest Guy';"
         );
 
         btnCosa.setStyle(
@@ -166,7 +185,7 @@ public class PaginaPrincipalController implements Initializable {
                 + "-fx-font-size: 16px;"
                 + "-fx-padding: 10 20 10 20;"
                 + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 5);"
-                + "-fx-font-family: 'Bernard MT Condensed';"
+                + "-fx-font-family: 'Luckiest Guy';"
         );
 
         BTNEmpezar.setStyle(
@@ -178,7 +197,7 @@ public class PaginaPrincipalController implements Initializable {
                 + "-fx-padding: 12 25 12 25;"
                 + "-fx-font-weight: bold;"
                 + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 15, 0, 0, 7);"
-                + "-fx-font-family: 'Bernard MT Condensed';"
+                + "-fx-font-family: 'Luckiest Guy';"
         );
     }
 }
