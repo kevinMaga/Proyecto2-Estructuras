@@ -1,17 +1,17 @@
-¿Es un objeto grande?
-¿Es de uso cotidiano?
-¿Utiliza electricidad?
-¿Es portatil?
-¿Es un objeto común en el hogar?
-¿Es pesado?
-¿Tiene partes electronicas?
-¿Es frágil?
-¿Es un objeto de metal?
-¿Tiene partes móviles?
-¿Es de plástico?
-¿Tiene una superficie suave?
-¿Tiene algún tipo de botón?
-¿Es de color rojo?
-¿Es colorido?
-¿Es un objeto decorativo?
-¿Lo pueden usar mas de una persona a la vez?
+¿Es un objeto electrónico?
+¿Se utiliza en la cocina?
+¿Es más grande que una caja de zapatos?
+¿Se puede llevar en la mano?
+¿Es un objeto que se encuentra en la oficina?
+¿Se usa para el entretenimiento?
+¿Está hecho principalmente de metal?
+¿Está hecho principalmente de plástico?
+¿Es algo que usas todos los días?
+¿Tiene ruedas?
+¿Es un objeto que se usa al aire libre?
+¿Es algo que se encuentra en el baño?
+¿Tiene una pantalla?
+¿Se puede comer?
+¿Es algo que se usa para limpiar?
+¿Es algo que se usa para escribir?
+¿Es un juguete?

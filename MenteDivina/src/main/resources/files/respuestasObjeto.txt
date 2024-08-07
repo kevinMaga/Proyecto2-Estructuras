@@ -1,49 +1,49 @@
-Teléfono_móvil no si si si si no si si no si si si si no no no si
-Televisor si si si no si no si no si no si si si no no si si
-Laptop no si si si si no si si no si si si si no no no si
-Cuchillo_de_cocina no si no si si no no si si no no si no no no no si
-Taza no si no si si no no si no no no si no no no si si
-Plato no si no si si no no no no no no si no no no si si
-Silla si si no no si si no no si no no si no no no si si
-Mesa si si no no si si no no si no no si no no no si si
-Bolígrafo no si no si si no no si no no si si no no no no no
-Lámpara_de_mesa no si si no si no si no si no si si si no no si si
-Reloj_de_pared no si si no si no si no si no no no si no no si si
-Ventilador si si si no si no si no si si si no si no no si si
-Altavoz_Bluetooth no si si si si no si no si si si si si no no no si
-Microondas si si si no si si si no si no si no si no no no si
-Refrigerador si si si no si si si no si no si no si no no no si
-Lavadora si si si no si si si no si no si no si no no no si
-Secadora si si si no si si si no si no si no si no no no si
-Plancha no si si si si no si no si no si no si no no no no
-Horno si si si no si si si no si no si no si no no no si
-Control_remoto no si si si si no si si no no si si si no no no no
-Audífonos no si si si si no si si no no si si si no no no no
-Impresora si si si no si no si no si no si no si no no no si
-Calculadora no si si si si no si no no no si si si no no no no
-Libreta no si no si si no no no no no no si no no no no no
-Tijeras no si no si si no no si si si no si no no no no si
-Cepillo_de_dientes no si no si si no no si no no no si no no no no no
-Espejo no si no si si no no si no no no no no no no si si
-Botella_de_agua no si no si si no no no no no si si no no no no si
-Paraguas no si no si si no no si si si si si no no no no no
-Batería no si no si si no si no si no si no no no no no no
-Linterna no si si si si no si no si no si si si no no no no
-Llave no si no si si no no no si no no no no no no no no
-Candado no si no si si no no no si si no no no no no no no
-Juguete_de_plástico no si no si si no no si no no si si no no no si si
-Camiseta no si no si si no no no no no no si no no no no no
-Gafas_de_sol no si no si si no no si no no no si no no no no no
-Cartera no si no si si no no no no no no si no no no no no
-Bolsa_de_tela no si no si si no no no no no no si no no no no no
-Sombrero no si no si si no no no no no no si no no no no no
-Zapatos no si no si si no no no no no no si no no no no no
-Cinturón no si no si si no no no no no no si no no no no no
-Libro no si no si si no no no no no no no no no no no no
-Revista no si no si si no no no no no no no no no no no no
-Marco_de_fotos no si no si si no no si no no no no no no no si si
-Cámara_fotográfica no si si si si no si no si si si no si no no no no
-Cuchara no si no si si no no no no no no si no no no no no
-Sacapuntas no si no si si no no si no si si si no no no no no
-Goma_de_borrar no si no si si no no no no no no si no no no no no
-Marcador no si no si si no no no no no si si no no no no no
+Teléfono,telefono.png-si-no-no-si-si-no-si-si-no-no-no-si-no-no-no-no-no
+Televisor,televisor.png-si-no-si-no-si-si-no-si-si-no-no-no-si-no-no-no-no
+Laptop,laptop.png-si-no-no-si-si-si-no-si-si-no-no-no-si-no-no-no-no
+Cuchillo,cuchillo.png-no-si-no-si-no-no-si-no-si-no-no-no-no-no-no-no-no
+Taza,taza.png-no-si-no-si-no-no-no-no-si-no-no-no-no-no-no-no-no
+Plato,plato.png-no-si-no-si-no-no-no-no-si-no-no-no-no-no-no-no-no
+Silla,silla.png-no-no-si-no-si-no-no-no-si-no-no-no-no-no-no-no-no
+Mesa,mesa.png-no-no-si-no-si-no-no-no-si-no-no-no-no-no-no-no-no
+Bolígrafo,boligrafo.png-no-no-no-si-si-no-no-no-si-no-no-no-no-no-no-si-no
+Lámpara,lampara.png-no-no-no-si-si-no-no-no-no-no-no-no-no-no-no-no-no
+Reloj,reloj.png-no-no-no-si-no-no-si-no-si-no-no-no-no-no-no-no-no
+Ventilador,ventilador.png-si-no-si-si-no-no-no-si-si-no-no-no-no-no-no-no-no
+Altavoz,altavoz.png-si-no-no-si-no-si-no-si-si-no-no-no-no-no-no-no-no
+Microondas,microondas.png-si-si-no-no-si-no-no-si-si-no-no-no-si-no-no-no-no
+Refrigerador,refrigerador.png-si-si-si-no-si-no-no-si-si-no-no-no-no-no-no-no-no
+Lavadora,lavadora.png-si-no-si-no-no-no-no-si-si-si-no-no-no-no-si-no-no
+Secadora,secadora.png-si-no-si-no-no-no-no-si-si-si-no-no-no-no-si-no-no
+Plancha,plancha.png-si-no-no-si-no-no-no-si-si-no-no-no-no-no-no-no-no
+Horno,horno.png-si-si-si-no-si-no-no-si-si-no-no-no-no-no-no-no-no
+Control,control.png-si-no-no-si-si-no-no-si-si-no-no-no-si-no-no-no-no
+Audífonos,audifonos.png-si-no-no-si-no-si-no-si-si-no-no-no-no-no-no-no-no
+Impresora,impresora.png-si-no-no-no-si-no-no-si-si-no-no-no-no-no-no-no-no
+Calculadora,calculadora.png-si-no-no-si-si-no-no-si-si-no-no-no-si-no-no-no-no
+Libreta,libreta.png-no-no-no-si-si-no-no-no-si-no-no-no-no-no-no-si-no
+Tijeras,tijeras.png-no-no-no-si-si-no-si-no-si-no-no-no-no-no-no-no-no
+Cepillo,cepillo.png-no-no-no-si-no-no-no-no-si-no-no-si-no-no-si-no-no
+Espejo,espejo.png-no-no-no-no-no-no-no-no-no-no-no-si-no-no-no-no-no
+Botella,botella.png-no-no-no-si-no-no-no-no-si-no-si-no-no-no-no-no-no
+Paraguas,paraguas.png-no-no-no-si-no-no-no-no-no-no-si-no-no-no-no-no-no
+Batería,bateria.png-si-no-no-si-no-no-si-no-si-no-no-no-no-no-no-no-no
+Linterna,linterna.png-si-no-no-si-no-no-no-si-si-no-si-no-no-no-no-no-no
+Llave,llave.png-no-no-no-si-no-no-si-no-no-no-no-no-no-no-no-no-no
+Candado,candado.png-no-no-no-si-no-no-si-no-no-no-no-no-no-no-no-no-no
+Juguete,juguete.png-no-no-no-si-no-si-no-no-si-no-si-no-no-no-no-no-si
+Camiseta,camiseta.png-no-no-no-no-no-no-no-no-si-no-no-no-no-no-no-no-no
+Gafas,gafas.png-no-no-no-si-no-no-no-no-si-no-no-no-no-no-no-no-no
+Cartera,cartera.png-no-no-no-no-no-no-no-no-si-no-no-no-no-no-no-no-no
+Bolsa,bolsa.png-no-no-no-no-no-no-no-no-si-no-si-no-no-no-no-no-no
+Sombrero,sombrero.png-no-no-no-no-no-no-no-no-si-no-si-no-no-no-no-no-no
+Zapatos,zapatos.png-no-no-no-no-no-no-no-no-si-no-no-no-no-no-no-no-no
+Cinturón,cinturon.png-no-no-no-no-no-no-no-no-si-no-no-no-no-no-no-no-no
+Libro,libro.png-no-no-no-no-si-no-no-no-si-no-no-no-no-no-no-no-no
+Revista,revista.png-no-no-no-no-si-no-no-no-si-no-no-no-no-no-no-no-no
+Marco,marco.png-no-no-no-no-no-no-no-no-no-no-no-no-no-no-no-no-no
+Cámara,camara.png-si-no-no-si-si-si-no-si-si-no-no-no-si-no-no-no-no
+Cuchara,cuchara.png-no-si-no-si-no-no-si-no-si-no-no-no-no-no-no-no-no
+Sacapuntas,sacapuntas.png-no-no-no-si-si-no-no-no-si-no-no-no-no-no-no-si-no
+Goma,goma.png-no-no-no-si-si-no-no-no-si-no-no-no-no-no-no-si-no
+Marcador,marcador.png-no-no-no-si-si-no-no-si-si-no-no-no-no-no-no-si-no

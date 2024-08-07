@@ -100,10 +100,10 @@ public class PaginaPrincipalController implements Initializable {
                 boolean numeroPreguntasAdecuado = false;
                 int maximoPreguntas =0;
                 if (JuegoController.modoJuego.equals("animal")) {
-                    numeroPreguntasAdecuado = numeroPreguntas >= 2 && numeroPreguntas <= InicioController.preguntasAnimal.size();
+                    numeroPreguntasAdecuado = numeroPreguntas >= 1 && numeroPreguntas <= InicioController.preguntasAnimal.size();
                     maximoPreguntas=InicioController.preguntasAnimal.size();
                 } else if (JuegoController.modoJuego.equals("objeto")) {
-                    numeroPreguntasAdecuado = numeroPreguntas >= 2 && numeroPreguntas <= InicioController.preguntasObjeto.size();
+                    numeroPreguntasAdecuado = numeroPreguntas >= 1 && numeroPreguntas <= InicioController.preguntasObjeto.size();
                     maximoPreguntas=InicioController.preguntasObjeto.size();
                 }
 

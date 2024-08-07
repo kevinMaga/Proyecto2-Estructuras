@@ -30,7 +30,7 @@ public class InicioController implements Initializable {
     public static ArrayList<String> preguntasAnimal = ManejoArchivos.leerArchivoPreguntas("preguntasAnimal.txt");
     public static ArrayList<String> preguntasObjeto = ManejoArchivos.leerArchivoPreguntas("preguntasObjeto.txt");
     public static Map<Juego, ArrayList<String>> respuestasAnimal = ManejoArchivos.leerArchivoRespuestas("respuestasAnimal.txt", Tipo.ANIMAL);
-//    public static Map<Juego, ArrayList<String>> respuestasObjeto = ManejoArchivos.leerArchivoRespuestas("respuestasObjeto.txt", Tipo.OBJETO);
+    public static Map<Juego, ArrayList<String>> respuestasObjeto = ManejoArchivos.leerArchivoRespuestas("respuestasObjeto.txt", Tipo.OBJETO);
     public static MediaPlayer musicaInicio;
     @FXML
     private Button BtnJugar;
@@ -45,10 +45,8 @@ public class InicioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         musicaInicio=reproducirSonido("menu1.mp3");
-        // Reproducir sonido de fondo
         InicioController.reproducirSonido("menu1.mp3");
 
-        // Cargar y aplicar la fuente personalizada al botón
         Font font = Font.loadFont(getClass().getResourceAsStream("/fonts/LuckiestGuy-Regular.ttf"), 24);
         Font font2 = Font.loadFont(getClass().getResourceAsStream("/fonts/Baloo2-VariableFont_wght.ttf"),18);
         Font font3 = Font.loadFont(getClass().getResourceAsStream("/fonts/Baloo2-VariableFont_wght.ttf"),16);

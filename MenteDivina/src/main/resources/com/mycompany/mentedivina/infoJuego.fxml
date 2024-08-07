@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mentedivina.InfoJuegoController">
+<VBox alignment="CENTER" prefHeight="360.0" prefWidth="466.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mentedivina.InfoJuegoController">
    <children>
       <Label fx:id="nombreJuego" alignment="CENTER" prefHeight="58.0" prefWidth="466.0" style="-fx-background-color: #042f7a;" text="Preguntas" textFill="WHITE">
          <font>

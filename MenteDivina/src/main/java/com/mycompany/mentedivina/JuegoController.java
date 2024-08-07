@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import java.util.Stack;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -41,20 +42,20 @@ public class JuegoController implements Initializable {
     private ImageView imagenPensando;
     @FXML
     private VBox contenedor;
-    @FXML
-    private ImageView imagenMago;
     
     public static MediaPlayer musicaJuego=InicioController.reproducirSonido("pensando.mp3");
     public static String[] caras = {"preocupado.gif","secreto.gif","neutral.gif","cinico.gif"};
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        BTNSi.setCursor(Cursor.HAND);
+        BTNNo.setCursor(Cursor.HAND);
         PaginaPrincipalController.musicaPaginaPrincipal.stop();
         musicaJuego =InicioController.reproducirSonido("pensando.mp3");
         actualizarImagen();
         if (modoJuego.equals("animal")) {
             arbol = InicioController.buscarAgregarClave(cantidadPreguntas, InicioController.preguntasAnimal, InicioController.respuestasAnimal);
         } else if (modoJuego.equals("objeto")) {
-//            arbol = InicioController.buscarAgregarClave(cantidadPreguntas, InicioController.preguntasObjeto, InicioController.respuestasObjeto);
+            arbol = InicioController.buscarAgregarClave(cantidadPreguntas, InicioController.preguntasObjeto, InicioController.respuestasObjeto);
         }
         nodoActual = arbol.getRoot();
         mostrarPreguntaActual();
@@ -106,7 +107,7 @@ public class JuegoController implements Initializable {
     
     private void actualizarImagen() {
         int intervalo = cantidadPreguntas / caras.length;
-        int index = (preguntasRespondidas / intervalo) % caras.length;
+        int index = intervalo>0 ? (preguntasRespondidas / intervalo) % caras.length:1;
         if (index == ultimoIndice) {
             return; 
         }
@@ -131,14 +132,20 @@ public class JuegoController implements Initializable {
                 musicaJuego=InicioController.reproducirSonido("victoria.mp3");
                 if (lista.size() == 1) {
                     Juego juego = lista.get(0);
+                    InfoJuegoController.juego=juego;
                     contenedor.getChildren().clear();   
-                    try (FileInputStream fis = new FileInputStream(juego.getRutaImagen())) {
+                    try (FileInputStream fis = new FileInputStream(App.pathImages+"feliz.gif")) {
                         Image image = new Image(fis,250,250,true,true);
                         imageView = new ImageView(image);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                     contenedor.getChildren().add(imageView);
+                    try {
+                        App.abrirNuevaVentana("infoJuego", 466, 360);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
                     LBLPreguntas.setText("El "+ modoJuego+" es: " + juego.getNombre());
                 } else{
                     ListaPosiblesController.lista=lista;
