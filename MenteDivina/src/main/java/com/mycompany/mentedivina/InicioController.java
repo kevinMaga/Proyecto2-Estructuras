@@ -30,8 +30,7 @@ public class InicioController implements Initializable {
     public static ArrayList<String> preguntasObjeto = ManejoArchivos.leerArchivoPreguntas("preguntasObjeto.txt");
     public static Map<Juego, ArrayList<String>> respuestasAnimal = ManejoArchivos.leerArchivoRespuestas("respuestasAnimal.txt", Tipo.ANIMAL);
 //    public static Map<Juego, ArrayList<String>> respuestasObjeto = ManejoArchivos.leerArchivoRespuestas("respuestasObjeto.txt", Tipo.OBJETO);
-    public static MediaPlayer mediaPlayer;
-
+    public static MediaPlayer musicaInicio;
     @FXML
     private Button BtnJugar;
 
@@ -40,8 +39,7 @@ public class InicioController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        InicioController.reproducirSonido("menu1.mp3");
-
+        musicaInicio=reproducirSonido("menu1.mp3");
         BtnJugar.setOnAction(e -> {
             Stage s = (Stage) BtnJugar.getScene().getWindow();
             s.close();
@@ -95,7 +93,7 @@ public class InicioController implements Initializable {
     public static MediaPlayer reproducirSonido(String nombre) {
         String ubicacion = App.pathMusic + nombre;
         Media media = new Media(new File(ubicacion).toURI().toString());
-        mediaPlayer = new MediaPlayer(media);
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
         return mediaPlayer;
     }

@@ -1,5 +1,4 @@
 package com.mycompany.mentedivina;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -14,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import modelo.BinaryTree;
 import modelo.Juego;
@@ -24,6 +24,8 @@ public class JuegoController implements Initializable {
     public static String modoJuego;
     public static Integer cantidadPreguntas;
     public static BinaryTree<Object> arbol = null;
+    private int preguntasRespondidas=0;
+    private int ultimoIndice=-1;
     private NodeBinaryTree<Object> nodoActual;
     
     
@@ -40,18 +42,13 @@ public class JuegoController implements Initializable {
     @FXML
     private VBox contenedor;
     
+    public static MediaPlayer musicaJuego=InicioController.reproducirSonido("pensando.mp3");
+    public static String[] caras = {"preocupado.gif","secreto.gif","neutral.gif","cinico.gif"};
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        InicioController.mediaPlayer.stop();
-        InicioController.reproducirSonido("pensando.mp3");
-        
-        Image img = null;
-        try(FileInputStream f = new FileInputStream(App.pathImages+ "lluvia-de-ideas.gif")){
-            img = new Image(f);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        imagenPensando.setImage(img);
+        PaginaPrincipalController.musicaPaginaPrincipal.stop();
+        musicaJuego =InicioController.reproducirSonido("pensando.mp3");
+        actualizarImagen();
         if (modoJuego.equals("animal")) {
             arbol = InicioController.buscarAgregarClave(cantidadPreguntas, InicioController.preguntasAnimal, InicioController.respuestasAnimal);
         } else if (modoJuego.equals("objeto")) {
@@ -89,12 +86,37 @@ public class JuegoController implements Initializable {
                 + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 5);"
                 + "-fx-font-family: 'Bernard MT Condensed';"
         );
-        BTNSi.setOnAction(e -> manejarRespuesta("si"));
-        BTNNo.setOnAction(e -> manejarRespuesta("no"));
+        BTNSi.setOnAction(e -> {
+            preguntasRespondidas += 1;
+            actualizarImagen();
+            manejarRespuesta("si");
+        });
+        BTNNo.setOnAction(e -> {
+            preguntasRespondidas += 1;
+            actualizarImagen();
+            manejarRespuesta("no");
+        });
     }
 
     private void mostrarPreguntaActual() {
         LBLPreguntas.setText((String) (nodoActual.getContent()));
+    }
+    
+    private void actualizarImagen() {
+        int intervalo = cantidadPreguntas / caras.length;
+        int index = (preguntasRespondidas / intervalo) % caras.length;
+        if (index == ultimoIndice) {
+            return; 
+        }
+        ultimoIndice = index;
+        String nombreImagen = caras[index];
+        Image img = null;
+        try (FileInputStream f = new FileInputStream(App.pathImages + nombreImagen)) {
+            img = new Image(f);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        imagenPensando.setImage(img);
     }
 
     private void manejarRespuesta(String respuesta){
@@ -103,8 +125,8 @@ public class JuegoController implements Initializable {
             ArrayList<Juego> lista =(ArrayList<Juego>) nodoActual.getContent();
             ImageView imageView = null;
             if (!lista.isEmpty()) {  
-                InicioController.mediaPlayer.stop();
-                InicioController.reproducirSonido("victoria.mp3");
+                musicaJuego.stop();
+                musicaJuego=InicioController.reproducirSonido("victoria.mp3");
                 if (lista.size() == 1) {
                     Juego juego = lista.get(0);
                     contenedor.getChildren().clear();   
@@ -127,25 +149,16 @@ public class JuegoController implements Initializable {
                     }
                 }
             } else {
-                InicioController.mediaPlayer.stop();
-                InicioController.reproducirSonido("derrota.mp3");
+                musicaJuego.stop();
+                musicaJuego =InicioController.reproducirSonido("derrota.mp3");
                 LBLPreguntas.setText("No se encontró un "+modoJuego+" así.");
                 contenedor.getChildren().clear();
                 ImageView imageView1 = null;
-                if(modoJuego.equals("animal")){
-                    try (FileInputStream fis = new FileInputStream(App.pathImages+"noAnimal")) {
-                        Image image = new Image(fis,250,250,true,true);
-                        imageView1 = new ImageView(image);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }   
-                }else{
-                    try (FileInputStream fis = new FileInputStream(App.pathImages+"noObjeto")) {
-                        Image image = new Image(fis,250,250,true,true);
-                        imageView1 = new ImageView(image);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }   
+                try (FileInputStream fis = new FileInputStream(App.pathImages + "triste.gif")) {
+                    Image image = new Image(fis, 250, 250, true, true);
+                    imageView1 = new ImageView(image);
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
                 contenedor.getChildren().add(imageView1);
             }

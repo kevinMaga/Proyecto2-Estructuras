@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 /**
@@ -34,14 +35,17 @@ public class PaginaPrincipalController implements Initializable {
 
     @FXML
     private TextField txtPreguntas;
+    
+    public static MediaPlayer musicaPaginaPrincipal;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        InicioController.mediaPlayer.stop();
-        InicioController.reproducirSonido("menu2.mp3");
+        JuegoController.musicaJuego.stop();
+        InicioController.musicaInicio.stop();
+        musicaPaginaPrincipal =InicioController.reproducirSonido("menu2.mp3");
         estilos();
         btnAnimal.setOnAction(e -> {
             JuegoController.modoJuego = "animal";

@@ -50,7 +50,8 @@ public class ListaPosiblesController implements Initializable {
                 ex.printStackTrace();
             }
         });
-        labelAnimalObjeto.setText("Posibles " + JuegoController.modoJuego + "s");
+        String text = JuegoController.modoJuego.equals("animal") ? "e":"";
+        labelAnimalObjeto.setText("Posibles " + JuegoController.modoJuego + text+"s");
         for (Juego juego : lista) { 
             Label label = new Label(juego.getNombre());
             HBox hBox = new HBox(label);

@@ -1,5 +1,5 @@
 Perro,perro.png-si-si-si-si-si-si-si-si-si-no-no-si-no-si-si-no-no-si-si-no
-Gato,gato.png-si-si-si-no-si-si-si-si-si-no-no-si-no-si-si-si-si-no-si-no
+Gato,gato.png-si-si-si-no-si-si-si-si-si-no-no-si-no-si-si-si-si-si-si-no
 Elefante,elefante.png-si-si-no-si-si-si-si-si-no-no-si-si-si-no-si-no-si-si-si-si
 Águila,aguila.png-no-no-no-no-no-no-no-si-si-si-si-no-no-no-si-si-no-si-no-si
 Delfín,delfin.png-no-no-no-si-no-no-no-si-si-no-no-no-no-no-no-no-si-si-si-si
