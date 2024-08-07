@@ -18,7 +18,7 @@
                <children>
                   <Pane layoutX="5.0" layoutY="6.0" prefHeight="83.0" prefWidth="395.0" style="-fx-border-color: #05f57c; -fx-border-radius: 15; -fx-border-width: 5; -fx-background-color: black; -fx-background-radius: 19;">
                      <children>
-                        <Label layoutX="82.0" layoutY="24.0" text="POSIBLES" textFill="WHITE">
+                        <Label fx:id="LBL1" layoutX="82.0" layoutY="24.0" text="POSIBLES" textFill="WHITE">
                            <font>
                               <Font name="Luckiest Guy Regular" size="28.0" />
                            </font>

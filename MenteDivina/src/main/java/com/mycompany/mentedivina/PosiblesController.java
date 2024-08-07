@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
 
 /**
  * FXML Controller class
@@ -25,6 +26,8 @@ public class PosiblesController implements Initializable {
     private AnchorPane APLista;
     @FXML
     private Button BTNInicio;
+    @FXML
+    private Label LBL1;
 
     /**
      * Initializes the controller class.
@@ -32,6 +35,12 @@ public class PosiblesController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
+        Font font = Font.loadFont(getClass().getResourceAsStream("/fonts/LuckiestGuy-Regular.ttf"), 28);
+        Font font2 = Font.loadFont(getClass().getResourceAsStream("/fonts/LuckiestGuy-Regular.ttf"), 18);
+        BTNInicio.setFont(font2);
+        LBL1.setFont(font);
+        LBLPosibles.setFont(font);
     }    
     
 }
