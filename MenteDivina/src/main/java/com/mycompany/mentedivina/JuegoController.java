@@ -148,11 +148,11 @@ public class JuegoController implements Initializable {
                     }
                     LBLPreguntas.setText("El "+ modoJuego+" es: " + juego.getNombre());
                 } else{
-                    ListaPosiblesController.lista=lista;
+                    PosiblesController.lista=lista;
                     Stage s =(Stage)contenedor.getScene().getWindow();
                     s.close();
                     try {
-                        App.abrirNuevaVentana("listaPosibles", 370, 469);
+                        App.abrirNuevaVentana("posibles", 424, 448);
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
