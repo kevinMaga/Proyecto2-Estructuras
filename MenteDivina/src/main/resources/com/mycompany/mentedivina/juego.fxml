@@ -14,7 +14,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="439.0" prefWidth="806.0" style="-fx-background-color: #fbce85;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mentedivina.JuegoController">
    <children>
-      <Label alignment="CENTER" prefHeight="92.0" prefWidth="823.0" style="-fx-background-color: black;" text="Mente Divina" textFill="WHITE">
+      <Label fx:id="LBL1" alignment="CENTER" prefHeight="92.0" prefWidth="823.0" style="-fx-background-color: black;" text="Mente Divina" textFill="WHITE">
          <font>
             <Font name="Luckiest Guy Regular" size="36.0" />
          </font>
@@ -30,7 +30,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Label layoutX="755.0" layoutY="60.0" prefHeight="26.0" prefWidth="53.0" text="Inicio" textFill="WHITE">
+      <Label fx:id="LBL2" layoutX="755.0" layoutY="60.0" prefHeight="26.0" prefWidth="53.0" text="Inicio" textFill="WHITE">
          <font>
             <Font name="Luckiest Guy Regular" size="18.0" />
          </font>

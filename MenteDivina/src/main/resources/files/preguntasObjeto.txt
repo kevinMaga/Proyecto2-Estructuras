@@ -7,11 +7,11 @@
 ¿Está hecho principalmente de metal?
 ¿Está hecho principalmente de plástico?
 ¿Es algo que usas todos los días?
-¿Tiene ruedas?
+¿El objeto tiene ruedas?
 ¿Es un objeto que se usa al aire libre?
 ¿Es algo que se encuentra en el baño?
-¿Tiene una pantalla?
-¿Se puede comer?
+¿Es un objeto con pantalla?
+¿Se puede comer el objeto?
 ¿Es algo que se usa para limpiar?
 ¿Es algo que se usa para escribir?
-¿Es un juguete?
+¿El obejto es un juguete?

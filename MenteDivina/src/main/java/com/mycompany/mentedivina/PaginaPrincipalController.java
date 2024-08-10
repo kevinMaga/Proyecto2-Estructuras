@@ -4,6 +4,7 @@
  */
 package com.mycompany.mentedivina;
 
+import com.goxr3plus.speech.translator.GoogleTranslate;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -53,6 +54,18 @@ public class PaginaPrincipalController implements Initializable {
         JuegoController.musicaJuego.stop();
         InicioController.musicaInicio.stop();
         musicaPaginaPrincipal =InicioController.reproducirSonido("menu2.mp3");
+        if(InicioController.idioma!="es"){
+            try {
+                btnAnimal.setText(GoogleTranslate.translate("es",InicioController.idioma,btnAnimal.getText()));
+                btnCosa.setText(GoogleTranslate.translate("es",InicioController.idioma,btnCosa.getText()));
+                BTNEmpezar.setText(GoogleTranslate.translate("es",InicioController.idioma,BTNEmpezar.getText()));
+                LBL1.setText(GoogleTranslate.translate("es",InicioController.idioma,LBL1.getText()));
+                LBL2.setText(GoogleTranslate.translate("es",InicioController.idioma,LBL2.getText()));
+                LBL3.setText(GoogleTranslate.translate("es",InicioController.idioma,LBL3.getText()));
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
         Font font = Font.loadFont(getClass().getResourceAsStream("/fonts/LuckiestGuy-Regular.ttf"), 36);
         Font font2 = Font.loadFont(getClass().getResourceAsStream("/fonts/Baloo2-VariableFont_wght.ttf"),22);
         Font font3 = Font.loadFont(getClass().getResourceAsStream("/fonts/LuckiestGuy-Regular.ttf"), 19);

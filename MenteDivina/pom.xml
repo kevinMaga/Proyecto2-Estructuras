@@ -26,6 +26,12 @@
             <version>16</version>
             <type>jar</type>
         </dependency>
+        <dependency>
+            <groupId>org.eclipse.scout.rt</groupId>
+            <artifactId>org.eclipse.scout.json</artifactId>
+            <version>24.1.15</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

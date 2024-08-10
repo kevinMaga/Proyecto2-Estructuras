@@ -1,20 +1,20 @@
-¿Es un mamífero?
-¿Vive en la tierra?
-¿Es doméstico?
-¿Es más grande que un gato?
-¿Tiene cuatro patas?
-¿Tiene cola?
-¿Tiene pelo?
-¿Puede nadar?
-¿Es carnívoro?
-¿Puede volar?
+¿Es un animal mamífero?
+¿Es un animal que vive en la tierra?
+¿Es un animal doméstico?
+¿El animal es más grande que un gato?
+¿El animal tiene cuatro patas?
+¿El animal tiene cola?
+¿El animal tiene pelo?
+¿El animal puede nadar?
+¿El animal es carnívoro?
+¿El animal puede volar?
 ¿Es un animal salvaje?
-¿Tiene orejas?
-¿Es herbívoro?
-¿Es una mascota?
-¿Tiene garras?
-¿Es conocido por su velocidad?
+¿El animal tiene orejas?
+¿Es un animal herbívoro?
+¿El animal es una mascota?
+¿Es un animal con garras?
+¿El animal es conocido por su velocidad?
 ¿Es un animal nocturno?
-¿Tiene colmillos?
+¿Es un anumal con colmillos?
 ¿Es un animal social?
 ¿Es un animal común en los zoológicos?

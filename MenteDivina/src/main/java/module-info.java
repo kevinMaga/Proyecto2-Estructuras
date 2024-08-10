@@ -3,6 +3,7 @@ module com.mycompany.mentedivina {
     requires javafx.fxml;
     requires java.base;
     requires javafx.media;
+    requires org.eclipse.scout.json;
 
     opens com.mycompany.mentedivina to javafx.fxml;
     exports com.mycompany.mentedivina;

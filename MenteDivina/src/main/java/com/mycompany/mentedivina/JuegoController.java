@@ -1,4 +1,5 @@
 package com.mycompany.mentedivina;
+import com.goxr3plus.speech.translator.GoogleTranslate;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -33,6 +34,10 @@ public class JuegoController implements Initializable {
     @FXML
     private Label LBLPreguntas;
     @FXML
+    private Label LBL1;
+    @FXML
+    private Label LBL2;
+    @FXML
     private Button BTNSi;
     @FXML
     private Button BTNNo;
@@ -47,6 +52,16 @@ public class JuegoController implements Initializable {
     public static String[] caras = {"preocupado.gif","secreto.gif","neutral.gif","cinico.gif"};
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        if(InicioController.idioma!="es"){
+            try {
+                LBL1.setText(GoogleTranslate.translate("es",InicioController.idioma,LBL1.getText()));
+                LBL2.setText(GoogleTranslate.translate("es",InicioController.idioma,LBL2.getText()));
+                BTNSi.setText(GoogleTranslate.translate("es",InicioController.idioma,BTNSi.getText()));
+                BTNNo.setText(GoogleTranslate.translate("es",InicioController.idioma,BTNNo.getText()));
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
         BTNSi.setCursor(Cursor.HAND);
         BTNNo.setCursor(Cursor.HAND);
         PaginaPrincipalController.musicaPaginaPrincipal.stop();

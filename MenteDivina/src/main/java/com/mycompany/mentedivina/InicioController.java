@@ -1,7 +1,14 @@
 package com.mycompany.mentedivina;
 
+import com.goxr3plus.speech.translator.GoogleTranslate;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +17,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -32,18 +40,24 @@ public class InicioController implements Initializable {
     public static Map<Juego, ArrayList<String>> respuestasAnimal = ManejoArchivos.leerArchivoRespuestas("respuestasAnimal.txt", Tipo.ANIMAL);
     public static Map<Juego, ArrayList<String>> respuestasObjeto = ManejoArchivos.leerArchivoRespuestas("respuestasObjeto.txt", Tipo.OBJETO);
     public static MediaPlayer musicaInicio;
+    public static String idioma;
     @FXML
     private Button BtnJugar;
     @FXML
     private Label LBL1;
     @FXML
     private Label LBL2;
+    @FXML
+    private Label LBL3;
+    @FXML
+    private ComboBox comboBoxIdioma;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        comboBoxIdioma.getItems().addAll("Español", "English", "Français","Português");
         musicaInicio=reproducirSonido("menu1.mp3");
         InicioController.reproducirSonido("menu1.mp3");
 
@@ -60,11 +74,32 @@ public class InicioController implements Initializable {
             System.out.println("No se pudo cargar la fuente.");
         }
         BtnJugar.setOnAction(e -> {
+            if(comboBoxIdioma.getValue()==null){
+                idioma="es";
+            }
+            else{
+                try{
+                    idioma=GoogleTranslate.detectLanguage(comboBoxIdioma.getValue().toString());
+                }catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            traducirArchivos();
             Stage s = (Stage) BtnJugar.getScene().getWindow();
             s.close();
             try {
                 App.abrirNuevaVentana("paginaPrincipal", 416, 486);
             } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+        comboBoxIdioma.setOnAction(e -> {
+            try{
+                LBL1.setText(GoogleTranslate.translate(GoogleTranslate.detectLanguage(comboBoxIdioma.getValue().toString()), LBL1.getText())); 
+                LBL2.setText(GoogleTranslate.translate(GoogleTranslate.detectLanguage(comboBoxIdioma.getValue().toString()), LBL2.getText()));
+                LBL3.setText(GoogleTranslate.translate(GoogleTranslate.detectLanguage(comboBoxIdioma.getValue().toString()), LBL3.getText()));
+                BtnJugar.setText(GoogleTranslate.translate(GoogleTranslate.detectLanguage(comboBoxIdioma.getValue().toString()), BtnJugar.getText()));
+            }catch (IOException ex) {
                 ex.printStackTrace();
             }
         });
@@ -114,5 +149,104 @@ public class InicioController implements Initializable {
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
         return mediaPlayer;
+    }
+    private void traducirArchivos(){
+        //respuesta Animales
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(App.pathFiles+"respuestasAnimal.txt"), "UTF-8"));
+             BufferedWriter bw = new BufferedWriter(new FileWriter(App.pathFiles+"respuestasAnimalTraducido.txt"))) {
+
+            String line;
+            while ((line = br.readLine()) != null) {
+                // Separar la línea en partes: nombre del animal, nombre de la imagen, y texto a traducir
+                String[] parts = line.split(",");
+                String animal = parts[0];
+                String datos = parts[1];
+                
+                // Traducir solo la parte del texto
+                String translatedText = GoogleTranslate.translate("es",idioma, animal);
+
+                // Volver a ensamblar la línea traducida
+                String translatedLine = translatedText + "," + datos;
+
+                // Escribir la línea traducida en el nuevo archivo
+                bw.write(translatedLine);
+                bw.newLine();
+            }
+            br.close();
+            bw.close();
+        } catch (IOException exo) {
+            exo.printStackTrace();
+            System.out.println("Problema en traducir preguntas Animal.");
+        }
+        
+        //respuestas Objeto
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(App.pathFiles+"respuestasObjeto.txt"), "UTF-8"));
+             BufferedWriter bw = new BufferedWriter(new FileWriter(App.pathFiles+"respuestasObjetoTraducido.txt"))) {
+
+            String line;
+            while ((line = br.readLine()) != null) {
+                // Separar la línea en partes: nombre del animal, nombre de la imagen, y texto a traducir
+                String[] parts = line.split(",");
+                String cosa = parts[0];
+                String datos = parts[1];
+                
+                // Traducir solo la parte del texto
+                String translatedText = GoogleTranslate.translate("es",idioma, cosa);
+
+                // Volver a ensamblar la línea traducida
+                String translatedLine = translatedText + "," + datos;
+
+                // Escribir la línea traducida en el nuevo archivo
+                bw.write(translatedLine);
+                bw.newLine();
+            }
+            br.close();
+            bw.close();
+        } catch (IOException exo) {
+            exo.printStackTrace();
+            System.out.println("Problema en traducir preguntas Objeto.");
+        }
+        
+        //preguntas Animales
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(App.pathFiles+"preguntasAnimal.txt"), "UTF-8"));
+             BufferedWriter bw = new BufferedWriter(new FileWriter(App.pathFiles+"preguntasAnimalTraducido.txt"))) {
+
+            String line;
+            while ((line = br.readLine()) != null) {
+                
+                // Traducir solo la parte del texto
+                String translatedText = GoogleTranslate.translate("es",idioma, line);
+
+                // Escribir la línea traducida en el nuevo archivo
+                bw.write(translatedText);
+                bw.newLine();
+            }
+            br.close();
+            bw.close();
+        } catch (IOException exo) {
+            exo.printStackTrace();
+            System.out.println("Problema en traducir preguntas Animal.");
+        }
+    
+        //preguntas Animales
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(App.pathFiles+"preguntasObjeto.txt"), "UTF-8"));
+             BufferedWriter bw = new BufferedWriter(new FileWriter(App.pathFiles+"preguntasObjetoTraducido.txt"))) {
+
+            String line;
+            while ((line = br.readLine()) != null) {
+                
+                // Traducir solo la parte del texto
+                String translatedText = GoogleTranslate.translate("es",idioma, line);
+
+                // Escribir la línea traducida en el nuevo archivo
+                bw.write(translatedText);
+                bw.newLine();
+            }
+            br.close();
+            bw.close();
+        } catch (IOException exo) {
+            exo.printStackTrace();
+            System.out.println("Problema en traducir preguntas Objeto.");
+        }
     }
 }
