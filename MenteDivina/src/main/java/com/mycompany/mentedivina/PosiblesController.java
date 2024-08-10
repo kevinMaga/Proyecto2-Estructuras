@@ -24,6 +24,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import modelo.Juego;
 
 public class PosiblesController implements Initializable {
@@ -46,6 +47,17 @@ public class PosiblesController implements Initializable {
         BTNInicio.setFont(font2);
         LBL1.setFont(font);
         LBLPosibles.setFont(font);
+        
+        BTNInicio.setOnMouseClicked(e -> {
+            Stage s = (Stage) BTNInicio.getScene().getWindow();
+            s.close();
+            try {
+                App.abrirNuevaVentana("paginaPrincipal", 416, 486);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+        
         
         String text = JuegoController.modoJuego.equals("animal") ? "e":"";
         LBLPosibles.setText(JuegoController.modoJuego + text + "s");
@@ -92,6 +104,15 @@ public class PosiblesController implements Initializable {
             contenedor.setStyle("-fx-background-color: white;"
             + "-fx-background-radius: 15;");
             contenedor.getChildren().addAll(contenedorNombre,contenedorImagen);
+            
+            contenedor.setOnMouseClicked(e ->{
+                InfoJuegoController.juego=juego;
+                try {
+                    App.abrirNuevaVentana("infoJuego", 466, 494);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            });
             
             APLista.getChildren().add(contenedor);   
         }
