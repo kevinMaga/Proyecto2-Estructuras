@@ -44,7 +44,7 @@
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
                   <ComboBox fx:id="comboBoxIdioma" layoutX="197.0" layoutY="8.0" prefWidth="150.0" promptText="Español" />
-                  <Label fx:id="LBL3" layoutX="131.0" layoutY="6.0" text="Idioma:">
+                  <Label fx:id="LBL3" layoutX="95.0" layoutY="5.0" text="Idioma:">
                      <font>
                         <Font size="20.0" />
                      </font>

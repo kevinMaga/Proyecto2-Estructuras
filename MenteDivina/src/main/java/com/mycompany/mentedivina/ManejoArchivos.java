@@ -37,7 +37,7 @@ public class ManejoArchivos {
         try (BufferedReader br = new BufferedReader(new FileReader(App.pathFiles + nombreArchivo))) {
             String linea;
             while ((linea = br.readLine()) != null) {
-                String[] lista = linea.split("-");
+                String[] lista = linea.split(";");
                 String[] info = lista[0].split(",");
                 ArrayList<String> respuestas = new ArrayList<>();
                 for (int i = 1; i < lista.length; i++) {
