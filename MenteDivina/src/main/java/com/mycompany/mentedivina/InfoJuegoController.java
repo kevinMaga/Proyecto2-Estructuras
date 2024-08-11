@@ -9,6 +9,7 @@ import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -59,29 +60,23 @@ public class InfoJuegoController implements Initializable {
         // Construir la ruta del archivo
         String tipo = JuegoController.modoJuego; // "Animal" o "Objeto"
         String nombreArchivo = "descripcion" + tipo + ".txt";
-        String rutaArchivo = "/files/" + nombreArchivo;
 
         // Leer la descripción del archivo
-        String descripcion = getDescripcionFromFile(rutaArchivo, juego.getNombre());
+        String descripcion = getDescripcionFromFile(nombreArchivo, juego.getNombre());
+        LBLDescripcion.setWrapText(true);
         LBLDescripcion.setText(descripcion);
     }
     
-    private String getDescripcionFromFile(String rutaArchivo, String nombre) {
-        String descripcion = "Descripción no encontrada";
-        
-        try (BufferedReader reader = new BufferedReader(new FileReader(getClass().getResource(rutaArchivo).getFile()))) {
-            String linea;
-            while ((linea = reader.readLine()) != null) {
-                String[] partes = linea.split(",", 2);
-                if (partes.length == 2 && partes[0].trim().equalsIgnoreCase(nombre)) {
-                    descripcion = partes[1].trim();
-                    break;
-                }
+    private String getDescripcionFromFile(String nombreArchivo, String nombreJuego) {
+        ArrayList<String> lineas = ManejoArchivos.leerArchivo(nombreArchivo);
+        String descripcion="";
+        for (String linea : lineas) {
+            String[] partes = linea.split(",");
+            if (partes[0].trim().equals(nombreJuego)) {
+                descripcion = partes[1].trim();
+                break;
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-        
         return descripcion;
     }
 }

@@ -57,20 +57,8 @@ public class PosiblesController implements Initializable {
                 ex.printStackTrace();
             }
         });
-        
-        
         String text = JuegoController.modoJuego.equals("animal") ? "e":"";
         LBLPosibles.setText(JuegoController.modoJuego + text + "s");
-
-        // Crear un GridPane para organizar los AnchorPanes
-        GridPane gridPane = new GridPane();
-        gridPane.setPadding(new Insets(10));
-        gridPane.setHgap(20);
-        gridPane.setVgap(20);
-
-        int column = 0;
-        int row = 0;
-
         for (Juego juego : lista) { 
             // Crear el Label para el nombre del animal
             Label nombre = new Label(juego.getNombre());

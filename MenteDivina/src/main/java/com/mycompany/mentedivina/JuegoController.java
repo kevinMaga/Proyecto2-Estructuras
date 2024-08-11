@@ -1,4 +1,5 @@
 package com.mycompany.mentedivina;
+
 import com.goxr3plus.speech.translator.GoogleTranslate;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -26,11 +27,10 @@ public class JuegoController implements Initializable {
     public static String modoJuego;
     public static Integer cantidadPreguntas;
     public static BinaryTree<Object> arbol = null;
-    private int preguntasRespondidas=0;
-    private int ultimoIndice=-1;
+    private int preguntasRespondidas = 0;
+    private int ultimoIndice = -1;
     private NodeBinaryTree<Object> nodoActual;
-    
-    
+
     @FXML
     private Label LBLPreguntas;
     @FXML
@@ -47,17 +47,18 @@ public class JuegoController implements Initializable {
     private ImageView imagenPensando;
     @FXML
     private VBox contenedor;
-    
-    public static MediaPlayer musicaJuego=InicioController.reproducirSonido("pensando.mp3");
-    public static String[] caras = {"preocupado.gif","secreto.gif","neutral.gif","cinico.gif"};
+
+    public static MediaPlayer musicaJuego = InicioController.reproducirSonido("pensando.mp3");
+    public static String[] caras = {"preocupado.gif", "secreto.gif", "neutral.gif", "cinico.gif"};
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        if(InicioController.idioma!="es"){
+        if (InicioController.idioma != "es") {
             try {
-                LBL1.setText(GoogleTranslate.translate("es",InicioController.idioma,LBL1.getText()));
-                LBL2.setText(GoogleTranslate.translate("es",InicioController.idioma,LBL2.getText()));
-                BTNSi.setText(GoogleTranslate.translate("es",InicioController.idioma,BTNSi.getText()));
-                BTNNo.setText(GoogleTranslate.translate("es",InicioController.idioma,BTNNo.getText()));
+                LBL1.setText(GoogleTranslate.translate("es", InicioController.idioma, LBL1.getText()));
+                LBL2.setText(GoogleTranslate.translate("es", InicioController.idioma, LBL2.getText()));
+                BTNSi.setText(GoogleTranslate.translate("es", InicioController.idioma, BTNSi.getText()));
+                BTNNo.setText(GoogleTranslate.translate("es", InicioController.idioma, BTNNo.getText()));
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -65,7 +66,7 @@ public class JuegoController implements Initializable {
         BTNSi.setCursor(Cursor.HAND);
         BTNNo.setCursor(Cursor.HAND);
         PaginaPrincipalController.musicaPaginaPrincipal.stop();
-        musicaJuego =InicioController.reproducirSonido("pensando.mp3");
+        musicaJuego = InicioController.reproducirSonido("pensando.mp3");
         actualizarImagen();
         if (modoJuego.equals("animal")) {
             arbol = InicioController.buscarAgregarClave(cantidadPreguntas, InicioController.preguntasAnimal, InicioController.respuestasAnimal);
@@ -107,24 +108,32 @@ public class JuegoController implements Initializable {
         BTNSi.setOnAction(e -> {
             preguntasRespondidas += 1;
             actualizarImagen();
-            manejarRespuesta("si");
+            try {
+                manejarRespuesta("si");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         });
         BTNNo.setOnAction(e -> {
             preguntasRespondidas += 1;
             actualizarImagen();
-            manejarRespuesta("no");
+            try {
+                manejarRespuesta("no");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         });
     }
 
     private void mostrarPreguntaActual() {
         LBLPreguntas.setText((String) (nodoActual.getContent()));
     }
-    
+
     private void actualizarImagen() {
         int intervalo = cantidadPreguntas / caras.length;
-        int index = intervalo>0 ? (preguntasRespondidas / intervalo) % caras.length:1;
+        int index = intervalo > 0 ? (preguntasRespondidas / intervalo) % caras.length : 1;
         if (index == ultimoIndice) {
-            return; 
+            return;
         }
         ultimoIndice = index;
         String nombreImagen = caras[index];
@@ -137,53 +146,39 @@ public class JuegoController implements Initializable {
         imagenPensando.setImage(img);
     }
 
-    private void manejarRespuesta(String respuesta){
+    private void manejarRespuesta(String respuesta) throws IOException {
         nodoActual = respuesta.equals("si") ? nodoActual.getLeft().getRoot() : nodoActual.getRight().getRoot();
         if (nodoActual.getLeft() == null && nodoActual.getRight() == null) {
-            ArrayList<Juego> lista =(ArrayList<Juego>) nodoActual.getContent();
+            ArrayList<Juego> lista = (ArrayList<Juego>) nodoActual.getContent();
             ImageView imageView = null;
-            if (!lista.isEmpty()) {  
+            if (!lista.isEmpty()) {
                 musicaJuego.stop();
-                musicaJuego=InicioController.reproducirSonido("victoria.mp3");
+                musicaJuego = InicioController.reproducirSonido("victoria.mp3");
                 if (lista.size() == 1) {
                     Juego juego = lista.get(0);
-                    InfoJuegoController.juego=juego;
-                    contenedor.getChildren().clear();   
-                    try (FileInputStream fis = new FileInputStream(App.pathImages+"feliz.gif")) {
-                        Image image = new Image(fis,250,250,true,true);
-                        imageView = new ImageView(image);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    InfoJuegoController.juego = juego;
+                    contenedor.getChildren().clear();
+                    FileInputStream fis = new FileInputStream(App.pathImages + "feliz.gif");
+                    Image image = new Image(fis, 250, 250, true, true);
+                    imageView = new ImageView(image);
                     contenedor.getChildren().add(imageView);
-                    try {
-                        App.abrirNuevaVentana("infoJuego", 466, 360);
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
-                    LBLPreguntas.setText("El "+ modoJuego+" es: " + juego.getNombre());
-                } else{
-                    PosiblesController.lista=lista;
-                    Stage s =(Stage)contenedor.getScene().getWindow();
+                    App.abrirNuevaVentana("infoJuego", 466, 494);
+                    LBLPreguntas.setText("El " + modoJuego + " es: " + juego.getNombre());
+                } else {
+                    PosiblesController.lista = lista;
+                    Stage s = (Stage) contenedor.getScene().getWindow();
                     s.close();
-                    try {
-                        App.abrirNuevaVentana("posibles", 424, 448);
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
+                    App.abrirNuevaVentana("posibles", 424, 448);
                 }
             } else {
                 musicaJuego.stop();
-                musicaJuego =InicioController.reproducirSonido("derrota.mp3");
-                LBLPreguntas.setText("No se encontró un "+modoJuego+" así.");
+                musicaJuego = InicioController.reproducirSonido("derrota.mp3");
+                LBLPreguntas.setText("No se encontró un " + modoJuego + " así.");
                 contenedor.getChildren().clear();
                 ImageView imageView1 = null;
-                try (FileInputStream fis = new FileInputStream(App.pathImages + "triste.gif")) {
-                    Image image = new Image(fis, 250, 250, true, true);
-                    imageView1 = new ImageView(image);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                FileInputStream fis = new FileInputStream(App.pathImages + "triste.gif");
+                Image image = new Image(fis, 250, 250, true, true);
+                imageView1 = new ImageView(image);
                 contenedor.getChildren().add(imageView1);
             }
         } else {

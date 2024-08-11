@@ -5,7 +5,9 @@
 package com.mycompany.mentedivina;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,9 +20,9 @@ import modelo.Tipo;
  * @author Justin Roldan
  */
 public class ManejoArchivos {
-    public static ArrayList<String> leerArchivoPreguntas(String nombreArchivo) {
+    public static ArrayList<String> leerArchivo(String nombreArchivo){
         ArrayList<String> resultado = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(App.pathFiles +nombreArchivo))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(App.pathFiles+nombreArchivo))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 resultado.add(linea.trim());
@@ -31,25 +33,20 @@ public class ManejoArchivos {
         return resultado;
     }
     
-   
-    public static Map<Juego, ArrayList<String>> leerArchivoRespuestas(String nombreArchivo,Tipo t) {
-        Map<Juego, ArrayList<String>> resultado = new HashMap<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(App.pathFiles + nombreArchivo))) {
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                String[] lista = linea.split(";");
-                String[] info = lista[0].split(",");
-                ArrayList<String> respuestas = new ArrayList<>();
-                for (int i = 1; i < lista.length; i++) {
-                    respuestas.add(lista[i]);
-                }
-                Juego j = new Juego(info[0],App.pathImages+info[1],t);
-                resultado.put(j, respuestas);
-            }
-        } catch (IOException ex) {
-            ex.printStackTrace();
+    public static void escribirEnArchivo(String nombreArchivo, String contenido) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(App.pathFiles+nombreArchivo, true))) {
+            writer.write(contenido);
+            writer.newLine();
+        } catch (IOException e) {
+            System.err.println("Error al escribir en el archivo: " + e.getMessage());
         }
-        return resultado;
     }
     
+    public static void borrarContenidoArchivo(String nombreArchivo) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(App.pathFiles + nombreArchivo, false))) {
+        } catch (IOException e) {
+            System.err.println("Error al borrar el contenido del archivo: " + e.getMessage());
+        }
+    }
+
 }
