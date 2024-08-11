@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="486.0" prefWidth="394.0" style="-fx-background-color: cyan;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mentedivina.InicioController">
+<AnchorPane prefHeight="486.0" prefWidth="394.0" style="-fx-background-color: #31b2f1;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mentedivina.InicioController">
    <children>
       <VBox prefHeight="486.0" prefWidth="394.0">
          <children>
@@ -33,6 +33,16 @@
                   </Label>
                </children>
             </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <ComboBox fx:id="comboBoxIdioma" layoutX="229.0" layoutY="8.0" prefWidth="150.0" promptText="Español" />
+                  <Label fx:id="LBL3" layoutX="14.0" layoutY="5.0" text="Seleccione un idioma:">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
             <Button fx:id="BtnJugar" mnemonicParsing="false" prefHeight="72.0" prefWidth="394.0" style="-fx-background-color: #FFCC00;" text="~ ~     JUGAR     ~ ~">
                <font>
                   <Font name="Luckiest Guy Regular" size="24.0" />
@@ -41,16 +51,6 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <ComboBox fx:id="comboBoxIdioma" layoutX="197.0" layoutY="8.0" prefWidth="150.0" promptText="Español" />
-                  <Label fx:id="LBL3" layoutX="95.0" layoutY="5.0" text="Idioma:">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-               </children>
-            </AnchorPane>
          </children>
       </VBox>
    </children>

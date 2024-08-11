@@ -72,6 +72,7 @@ public class InicioController implements Initializable {
         
         LBL1.setFont(font2);
         LBL2.setFont(font3);
+        LBL3.setFont(font2);
         
         if (font != null) {
             BtnJugar.setFont(font);
