@@ -4,7 +4,7 @@
  */
 package com.mycompany.mentedivina;
 
-import static com.mycompany.mentedivina.ListaPosiblesController.lista;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
@@ -14,22 +14,22 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import modelo.Juego;
+import modelo.ListaCircularDoble;
 
 public class PosiblesController implements Initializable {
 
     public static ArrayList<Juego> lista;
+    private ListaCircularDoble listaJuegos;
+
     @FXML
     private Label LBLPosibles;
     @FXML
@@ -41,13 +41,12 @@ public class PosiblesController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Cargar las fuentes personalizadas
         Font font = Font.loadFont(getClass().getResourceAsStream("/fonts/LuckiestGuy-Regular.ttf"), 28);
         Font font2 = Font.loadFont(getClass().getResourceAsStream("/fonts/LuckiestGuy-Regular.ttf"), 18);
         BTNInicio.setFont(font2);
         LBL1.setFont(font);
         LBLPosibles.setFont(font);
-        
+
         BTNInicio.setOnMouseClicked(e -> {
             Stage s = (Stage) BTNInicio.getScene().getWindow();
             s.close();
@@ -57,9 +56,14 @@ public class PosiblesController implements Initializable {
                 ex.printStackTrace();
             }
         });
-        String text = JuegoController.modoJuego.equals("animal") ? "e":"";
+
+        String text = JuegoController.modoJuego.equals("animal") ? "e" : "";
         LBLPosibles.setText(JuegoController.modoJuego + text + "s");
-        for (Juego juego : lista) { 
+
+        // Crear la lista circular doblemente enlazada
+        listaJuegos = new ListaCircularDoble(lista);
+
+        for (Juego juego : lista) {
             // Crear el Label para el nombre del animal
             Label nombre = new Label(juego.getNombre());
             nombre.setFont(font2);
@@ -67,44 +71,44 @@ public class PosiblesController implements Initializable {
 
             // Cargar la imagen correspondiente
             ImageView imageView = new ImageView();
-            
+
             try (FileInputStream imageStream = new FileInputStream(juego.getRutaImagen())) {
-                Image image = new Image(imageStream, 80,80,true,true);
+                Image image = new Image(imageStream, 80, 80, true, true);
                 imageView.setImage(image);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            
-            
+
             VBox contenedor = new VBox();
-            
             VBox contenedorImagen = new VBox();
-            VBox contenedorNombre= new VBox();
-            
-            contenedorImagen.setPadding(new Insets(15,15,15,15));
-            contenedorNombre.setPadding(new Insets(15,15,15,15));
+            VBox contenedorNombre = new VBox();
+
+            contenedorImagen.setPadding(new Insets(15, 15, 15, 15));
+            contenedorNombre.setPadding(new Insets(15, 15, 15, 15));
             contenedorNombre.setAlignment(Pos.CENTER);
             contenedorImagen.setAlignment(Pos.CENTER);
-            
-            
+
             contenedorNombre.getChildren().add(nombre);
             contenedorImagen.getChildren().add(imageView);
             contenedor.setStyle("-fx-background-color: white;"
-            + "-fx-background-radius: 15;");
-            contenedor.getChildren().addAll(contenedorNombre,contenedorImagen);
-            
-            contenedor.setOnMouseClicked(e ->{
-                InfoJuegoController.juego=juego;
+                    + "-fx-background-radius: 15;");
+            contenedor.getChildren().addAll(contenedorNombre, contenedorImagen);
+
+            contenedor.setOnMouseClicked(e -> {
+                // Establecer el juego actual en la lista circular
+                listaJuegos.setActual(juego);
+
+                // Abrir la ventana de información del juego
+                InfoJuegoController.listaJuegos = listaJuegos;
                 try {
                     App.abrirNuevaVentana("infoJuego", 466, 494);
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
             });
-            
-            APLista.getChildren().add(contenedor);   
-        }
 
-        
+            APLista.getChildren().add(contenedor);
+        }
     }
 }
+
