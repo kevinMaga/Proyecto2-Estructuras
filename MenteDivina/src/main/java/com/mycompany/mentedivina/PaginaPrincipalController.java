@@ -45,6 +45,8 @@ public class PaginaPrincipalController implements Initializable {
     private Label LBL2;
     @FXML
     private Label LBL3;
+    @FXML
+    private Button BTNAgregar;
 
     /**
      * Initializes the controller class.
@@ -74,6 +76,7 @@ public class PaginaPrincipalController implements Initializable {
         
         LBL1.setFont(font);
         LBL2.setFont(font2);
+        BTNAgregar.setFont(font3);
         btnAnimal.setFont(font3);
         btnCosa.setFont(font3);
         LBL3.setFont(font4);

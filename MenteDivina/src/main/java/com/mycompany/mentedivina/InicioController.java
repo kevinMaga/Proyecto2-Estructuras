@@ -85,7 +85,7 @@ public class InicioController implements Initializable {
             Stage s = (Stage) BtnJugar.getScene().getWindow();
             s.close();
             try {
-                App.abrirNuevaVentana("paginaPrincipal", 416, 486);
+                App.abrirNuevaVentana("paginaPrincipal", 416, 520);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
