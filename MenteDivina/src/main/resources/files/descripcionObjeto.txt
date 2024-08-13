@@ -47,3 +47,8 @@ Cuchara,"Utensilio de cocina utilizado para comer o servir alimentos líquidos o
 Sacapuntas,"Herramienta utilizada para afilar lápices."
 Goma,"Herramienta que se utiliza para borrar marcas de lápiz."
 Marcador,"Instrumento de escritura utilizado para hacer trazos gruesos y permanentes."
+Llavero,"El llavero es un pequeño accesorio utilizado para llevar y organizar llaves."
+Alfombra,"La alfombra es un tejido que se coloca en el suelo para decoración o comodidad."
+Maceta,"La maceta es un recipiente utilizado para plantar y cultivar plantas."
+Bicicleta,"La bicicleta es un vehículo de dos ruedas impulsado por pedales."
+Termo,"El termo es un recipiente aislado que mantiene líquidos calientes o fríos por más tiempo."

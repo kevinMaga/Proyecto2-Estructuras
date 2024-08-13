@@ -1,17 +1,17 @@
-Is it an electronic object?
-Is it used in the kitchen?
-Is it larger than a shoe box?
-Can you carry in your hand?
-Is it an object that is in the office?
-Is it used for entertainment?
-Is it mainly made of metal?
-Is it mainly made of plastic?
-Is it something you use every day?
-Does the object have wheels?
-Is it an object that is used outdoors?
-Is it something in the bathroom?
-Is it an object with a screen?
-Can you eat the object?
-Is it something used to clean?
-Is it something used to write?
-Is the obejto a toy?
+Est-ce un objet électronique?
+Est-il utilisé dans la cuisine?
+Est-ce plus grand qu'une boîte à chaussures?
+Pouvez-vous porter dans votre main?
+Est-ce un objet qui est au bureau?
+Est-il utilisé pour le divertissement?
+Est-il principalement fait de métal?
+Est-il principalement en plastique?
+Est-ce quelque chose que vous utilisez tous les jours?
+L'objet a-t-il des roues?
+Est-ce un objet qui est utilisé à l'extérieur?
+Est-ce quelque chose dans la salle de bain?
+Est-ce un objet avec un écran?
+Pouvez-vous manger l'objet?
+Est-ce quelque chose utilisé pour nettoyer?
+Est-ce quelque chose utilisé pour écrire?
+L'obejto est-il un jouet?

@@ -1,0 +1,5 @@
+Llavero,llavero.png;no;no;no;si;no;no;si;no;si;no;no;no;no;no;no;no;no
+Alfombra,alfombra.png;no;no;si;no;no;no;no;no;si;no;no;no;no;no;no;no;no
+Maceta,maceta.png;no;no;no;si;no;no;no;no;si;no;si;no;no;no;no;no;no
+Bicicleta,bicicleta.png;si;no;si;no;no;si;si;si;no;si;si;no;no;no;no;no;no
+Termo,termo.png;no;no;no;si;no;no;no;si;si;no;no;no;no;no;no;no;no
