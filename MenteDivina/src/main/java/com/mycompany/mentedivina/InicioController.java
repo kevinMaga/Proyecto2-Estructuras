@@ -199,7 +199,7 @@ public class InicioController implements Initializable {
         traducirArchivo("preguntasObjeto.txt", "preguntasObjetoTraducido.txt", false);
     }
 
-    private static Map<Juego, ArrayList<String>> formarMapaRespuestas(String nombreArchivo, Tipo t) {
+    public static Map<Juego, ArrayList<String>> formarMapaRespuestas(String nombreArchivo, Tipo t) {
         Map<Juego, ArrayList<String>> resultado = new HashMap<>();
         ArrayList<String> lineas = ManejoArchivos.leerArchivo(nombreArchivo);
         for (String linea : lineas) {
@@ -209,7 +209,7 @@ public class InicioController implements Initializable {
             for (int i = 1; i < lista.length; i++) {
                 respuestas.add(lista[i]);
             }
-            Juego j = new Juego(info[0], App.pathImages + info[1], t);
+            Juego j = new Juego(info[0], info[1], t);
             resultado.put(j, respuestas);
         }
         return resultado;

@@ -62,38 +62,8 @@ public class PosiblesController implements Initializable {
 
         // Crear la lista circular doblemente enlazada
         listaJuegos = new ListaCircularDoble(lista);
-
         for (Juego juego : lista) {
-            // Crear el Label para el nombre del animal
-            Label nombre = new Label(juego.getNombre());
-            nombre.setFont(font2);
-            nombre.setAlignment(Pos.CENTER);
-
-            // Cargar la imagen correspondiente
-            ImageView imageView = new ImageView();
-
-            try (FileInputStream imageStream = new FileInputStream(juego.getRutaImagen())) {
-                Image image = new Image(imageStream, 80, 80, true, true);
-                imageView.setImage(image);
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-
-            VBox contenedor = new VBox();
-            VBox contenedorImagen = new VBox();
-            VBox contenedorNombre = new VBox();
-
-            contenedorImagen.setPadding(new Insets(15, 15, 15, 15));
-            contenedorNombre.setPadding(new Insets(15, 15, 15, 15));
-            contenedorNombre.setAlignment(Pos.CENTER);
-            contenedorImagen.setAlignment(Pos.CENTER);
-
-            contenedorNombre.getChildren().add(nombre);
-            contenedorImagen.getChildren().add(imageView);
-            contenedor.setStyle("-fx-background-color: white;"
-                    + "-fx-background-radius: 15;");
-            contenedor.getChildren().addAll(contenedorNombre, contenedorImagen);
-
+            VBox contenedor = crearContenedorParaJuego(font2, juego);
             contenedor.setOnMouseClicked(e -> {
                 // Establecer el juego actual en la lista circular
                 listaJuegos.setActual(juego);
@@ -106,9 +76,40 @@ public class PosiblesController implements Initializable {
                     ex.printStackTrace();
                 }
             });
-
             APLista.getChildren().add(contenedor);
         }
+    }
+    
+    public static VBox crearContenedorParaJuego(Font font2,Juego juego) {
+        Label nombre = new Label(juego.getNombre());
+        nombre.setFont(font2);
+        nombre.setAlignment(Pos.CENTER);
+
+        // Cargar la imagen correspondiente
+        ImageView imageView = new ImageView();
+
+        try (FileInputStream imageStream = new FileInputStream(App.pathImages+juego.getNombreImagen())) {
+            Image image = new Image(imageStream, 80, 80, true, true);
+            imageView.setImage(image);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        VBox contenedor = new VBox();
+        VBox contenedorImagen = new VBox();
+        VBox contenedorNombre = new VBox();
+
+        contenedorImagen.setPadding(new Insets(15, 15, 15, 15));
+        contenedorNombre.setPadding(new Insets(15, 15, 15, 15));
+        contenedorNombre.setAlignment(Pos.CENTER);
+        contenedorImagen.setAlignment(Pos.CENTER);
+
+        contenedorNombre.getChildren().add(nombre);
+        contenedorImagen.getChildren().add(imageView);
+        contenedor.setStyle("-fx-background-color: white;"
+                + "-fx-background-radius: 15;");
+        contenedor.getChildren().addAll(contenedorNombre, contenedorImagen);
+        return contenedor;
     }
 }
 

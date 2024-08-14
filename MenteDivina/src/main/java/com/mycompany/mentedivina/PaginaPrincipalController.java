@@ -18,6 +18,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import modelo.Tipo;
 
 /**
  * FXML Controller class
@@ -137,7 +138,22 @@ public class PaginaPrincipalController implements Initializable {
                 }
             }
         });
-
+        BTNAgregar.setOnMouseClicked(e -> {
+            if (JuegoController.modoJuego == null) {
+                mostrarAlerta("Llene todos los campos", "Por favor, seleccione el modo de juego");
+            } else {
+                if(JuegoController.modoJuego.equals("animal")){
+                    AgregarJuegoController.mapa=InicioController.formarMapaRespuestas("agregarAnimal.txt", Tipo.ANIMAL);
+                }else{
+                    AgregarJuegoController.mapa=InicioController.formarMapaRespuestas("agregarObjeto.txt", Tipo.OBJETO);
+                }
+                try {
+                    App.abrirNuevaVentana("agregarJuego", 424, 448);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
     }
 
     private void efectoSeleccionButton(Button btn1, Button btn2, String color1, String color2) {
@@ -173,7 +189,7 @@ public class PaginaPrincipalController implements Initializable {
         }
     }
 
-    private void mostrarAlerta(String titulo, String mensaje) {
+    public static void mostrarAlerta(String titulo, String mensaje) {
         Alert a = new Alert(Alert.AlertType.WARNING);
         a.setTitle(titulo);
         a.setContentText(mensaje);

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="520.0" prefWidth="424.0" style="-fx-background-color: linear-gradient(from 0% 0% to 0% 100%, #0884b3,#036dc6, #013063);" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mentedivina.PaginaPrincipalController">
+<AnchorPane id="AnchorPane" prefHeight="520.0" prefWidth="424.0" style="-fx-background-color: linear-gradient(from 0% 0% to 0% 100%, #0884b3,#036dc6, #013063);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mentedivina.PaginaPrincipalController">
    <children>
       <ImageView fitHeight="144.0" fitWidth="155.0" layoutX="139.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -60,6 +60,9 @@
          </cursor>
       </Button>
       <TextField fx:id="txtPreguntas" layoutX="282.0" layoutY="392.0" prefHeight="36.0" prefWidth="120.0" />
-      <Button fx:id="BTNAgregar" layoutX="103.0" layoutY="336.0" mnemonicParsing="false" style="-fx-background-color: #03cd9e; -fx-background-radius: 15;" text=" + AGREGAR ELEMENTO" textFill="WHITE" />
+      <Button fx:id="BTNAgregar" layoutX="103.0" layoutY="336.0" mnemonicParsing="false" style="-fx-background-color: #03cd9e; -fx-background-radius: 15;" text=" + AGREGAR ELEMENTO" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
    </children>
 </AnchorPane>

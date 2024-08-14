@@ -57,7 +57,7 @@ public class InfoJuegoController implements Initializable {
 
     private void actualizarVista() {
         Juego juego = listaJuegos.getActual();
-        try (FileInputStream fis = new FileInputStream(juego.getRutaImagen())) {
+        try (FileInputStream fis = new FileInputStream(App.pathImages+juego.getNombreImagen())) {
             Image image = new Image(fis, 250, 250, true, true);
             imagenJuego.setImage(image);
         } catch (IOException e) {

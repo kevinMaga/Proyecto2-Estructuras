@@ -10,12 +10,12 @@ package modelo;
  */
 public class Juego {
     private String nombre;
-    private String rutaImagen;
+    private String nombreImagen;
     private Tipo tipo;
 
     public Juego(String nombre, String rutaImagen, Tipo tipo) {
         this.nombre = nombre;
-        this.rutaImagen = rutaImagen;
+        this.nombreImagen = rutaImagen;
         this.tipo = tipo;
     }
 
@@ -27,12 +27,12 @@ public class Juego {
         this.nombre = nombre;
     }
 
-    public String getRutaImagen() {
-        return rutaImagen;
+    public String getNombreImagen() {
+        return nombreImagen;
     }
 
-    public void setRutaImagen(String rutaImagen) {
-        this.rutaImagen = rutaImagen;
+    public void setNombreImagen(String nombreImagen) {
+        this.nombreImagen = nombreImagen;
     }
 
     public Tipo getTipo() {
