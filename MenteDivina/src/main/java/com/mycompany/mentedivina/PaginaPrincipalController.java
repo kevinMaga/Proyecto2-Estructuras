@@ -54,6 +54,7 @@ public class PaginaPrincipalController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        JuegoController.modoJuego=null;
         JuegoController.musicaJuego.stop();
         InicioController.musicaInicio.stop();
         musicaPaginaPrincipal =InicioController.reproducirSonido("menu2.mp3");
@@ -142,10 +143,12 @@ public class PaginaPrincipalController implements Initializable {
             if (JuegoController.modoJuego == null) {
                 mostrarAlerta("Llene todos los campos", "Por favor, seleccione el modo de juego");
             } else {
-                if(JuegoController.modoJuego.equals("animal")){
-                    AgregarJuegoController.mapa=InicioController.formarMapaRespuestas("agregarAnimal.txt", Tipo.ANIMAL);
-                }else{
-                    AgregarJuegoController.mapa=InicioController.formarMapaRespuestas("agregarObjeto.txt", Tipo.OBJETO);
+                String nombreArchivo = InicioController.idioma.equals("es") ? "agregarAnimal.txt" : "agregarAnimalTraducido.txt";
+                if (JuegoController.modoJuego.equals("animal")) {
+                    AgregarJuegoController.mapa = InicioController.formarMapaRespuestas(nombreArchivo, Tipo.ANIMAL);
+                } else {
+                    nombreArchivo = InicioController.idioma.equals("es") ? "agregarObjeto.txt" : "agregarObjetoTraducido.txt";
+                    AgregarJuegoController.mapa = InicioController.formarMapaRespuestas(nombreArchivo, Tipo.OBJETO);
                 }
                 try {
                     App.abrirNuevaVentana("agregarJuego", 424, 448);

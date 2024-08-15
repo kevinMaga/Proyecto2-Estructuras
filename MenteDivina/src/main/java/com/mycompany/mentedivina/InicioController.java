@@ -58,6 +58,7 @@ public class InicioController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        ManejoArchivos.borrarContenidoArchivo("juegosAnadidos.txt");
         idioma = "es";
         preguntasAnimal = ManejoArchivos.leerArchivo("preguntasAnimal.txt");
         preguntasObjeto = ManejoArchivos.leerArchivo("preguntasObjeto.txt");
@@ -162,18 +163,28 @@ public class InicioController implements Initializable {
         return mediaPlayer;
     }
 
-    private void traducirArchivo(String archivoEntrada, String archivoSalida, boolean esRespuesta) throws IOException {
+    private void traducirArchivo(String archivoEntrada, String archivoSalida, String esRespuesta) throws IOException {
         ArrayList<String> lineas = ManejoArchivos.leerArchivo(archivoEntrada);
         for (String linea : lineas) {
-            String translatedLine;
-            if (esRespuesta) {
-                String[] parts = linea.split(",");
-                String entidad = parts[0];
-                String datos = parts[1];
-                String translatedText = GoogleTranslate.translate("es", idioma, entidad);
-                translatedLine = translatedText + "," + datos;
-            } else {
-                translatedLine = GoogleTranslate.translate("es", idioma, linea);
+            String translatedLine="";
+            switch (esRespuesta) {
+                case "respuesta":
+                    String[] parts = linea.split(",");
+                    String entidad = parts[0];
+                    String datos = parts[1];
+                    String translatedText = GoogleTranslate.translate("es", idioma, entidad);
+                    translatedLine = translatedText + "," + datos;
+                    break;
+                case "descripcion":
+                    String nombre = linea.split(",")[0];
+                    String descripcion = linea.split(",")[1];
+                    translatedLine = GoogleTranslate.translate("es", idioma, nombre)+","+GoogleTranslate.translate("es", idioma, descripcion);
+                    break;
+                case "pregunta":
+                    translatedLine = GoogleTranslate.translate("es", idioma, linea);
+                    break;
+                default:
+                    break;
             }
             ManejoArchivos.escribirEnArchivo(archivoSalida, translatedLine);
         }
@@ -185,18 +196,34 @@ public class InicioController implements Initializable {
         ManejoArchivos.borrarContenidoArchivo("respuestasObjetoTraducido.txt");
         ManejoArchivos.borrarContenidoArchivo("preguntasAnimalTraducido.txt");
         ManejoArchivos.borrarContenidoArchivo("preguntasObjetoTraducido.txt");
+        ManejoArchivos.borrarContenidoArchivo("descripcionObjetoTraducido.txt");
+        ManejoArchivos.borrarContenidoArchivo("descripcionAnimalTraducido.txt");
+        ManejoArchivos.borrarContenidoArchivo("agregarAnimalTraducido.txt");
+        ManejoArchivos.borrarContenidoArchivo("agregarObjetoTraducido.txt");
 
         // Traducción de respuestas de animales
-        traducirArchivo("respuestasAnimal.txt", "respuestasAnimalTraducido.txt", true);
+        traducirArchivo("respuestasAnimal.txt", "respuestasAnimalTraducido.txt","respuesta");
 
         // Traducción de respuestas de objetos
-        traducirArchivo("respuestasObjeto.txt", "respuestasObjetoTraducido.txt", true);
+        traducirArchivo("respuestasObjeto.txt", "respuestasObjetoTraducido.txt", "respuesta");
 
         // Traducción de preguntas de animales
-        traducirArchivo("preguntasAnimal.txt", "preguntasAnimalTraducido.txt", false);
+        traducirArchivo("preguntasAnimal.txt", "preguntasAnimalTraducido.txt", "pregunta");
 
         // Traducción de preguntas de objetos
-        traducirArchivo("preguntasObjeto.txt", "preguntasObjetoTraducido.txt", false);
+        traducirArchivo("preguntasObjeto.txt", "preguntasObjetoTraducido.txt", "pregunta");
+        
+        //Traducción de descripción de animales
+        traducirArchivo("descripcionAnimal.txt","descripcionAnimalTraducido.txt","descripcion");
+        
+        //Traducción de descripción de objetos
+        traducirArchivo("descripcionObjeto.txt","descripcionObjetoTraducido.txt","descripcion");
+        
+        //Traducción de agregarAnimal
+        traducirArchivo("agregarAnimal.txt","agregarAnimalTraducido.txt","respuesta");
+        
+        //Traducción de agregarObjeto
+        traducirArchivo("agregarObjeto.txt","agregarObjetoTraducido.txt","respuesta");
     }
 
     public static Map<Juego, ArrayList<String>> formarMapaRespuestas(String nombreArchivo, Tipo t) {

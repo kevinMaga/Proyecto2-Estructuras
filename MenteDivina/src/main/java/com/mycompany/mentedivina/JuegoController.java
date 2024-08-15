@@ -148,59 +148,59 @@ public class JuegoController implements Initializable {
     }
 
     private void manejarRespuesta(String respuesta) throws IOException {
-    nodoActual = respuesta.equals("si") ? nodoActual.getLeft().getRoot() : nodoActual.getRight().getRoot();
-    
-    if (nodoActual.getLeft() == null && nodoActual.getRight() == null) {
-        ArrayList<Juego> lista = (ArrayList<Juego>) nodoActual.getContent();
-        ImageView imageView = null;
+        nodoActual = respuesta.equals("si") ? nodoActual.getLeft().getRoot() : nodoActual.getRight().getRoot();
 
-        if (!lista.isEmpty()) {
-            musicaJuego.stop();
-            musicaJuego = InicioController.reproducirSonido("victoria.mp3");
+        if (nodoActual.getLeft() == null && nodoActual.getRight() == null) {
+            ArrayList<Juego> lista = (ArrayList<Juego>) nodoActual.getContent();
+            ImageView imageView = null;
 
-            if (lista.size() == 1) {
-                Juego juego = lista.get(0);
+            if (!lista.isEmpty()) {
+                musicaJuego.stop();
+                musicaJuego = InicioController.reproducirSonido("victoria.mp3");
 
-                // Crear la lista circular con un solo elemento
-                ArrayList<Juego> unicaLista = new ArrayList<>();
-                unicaLista.add(juego);
-                ListaCircularDoble listaJuegos = new ListaCircularDoble(unicaLista);
+                if (lista.size() == 1) {
+                    Juego juego = lista.get(0);
 
-                // Asignar la lista a InfoJuegoController
-                InfoJuegoController.listaJuegos = listaJuegos;
+                    // Crear la lista circular con un solo elemento
+                    ArrayList<Juego> unicaLista = new ArrayList<>();
+                    unicaLista.add(juego);
+                    ListaCircularDoble listaJuegos = new ListaCircularDoble(unicaLista);
 
-                // Mostrar imagen de victoria
+                    // Asignar la lista a InfoJuegoController
+                    InfoJuegoController.listaJuegos = listaJuegos;
+
+                    // Mostrar imagen de victoria
+                    contenedor.getChildren().clear();
+                    FileInputStream fis = new FileInputStream(App.pathImages + "feliz.gif");
+                    Image image = new Image(fis, 250, 250, true, true);
+                    imageView = new ImageView(image);
+                    contenedor.getChildren().add(imageView);
+
+                    // Abrir la ventana de información del juego
+                    App.abrirNuevaVentana("infoJuego", 466, 494);
+                    LBLPreguntas.setText("El " + modoJuego + " es: " + juego.getNombre());
+                } else {
+                    // Si hay más de un juego en la lista, abrir la ventana de posibles juegos
+                    PosiblesController.lista = lista;
+                    Stage s = (Stage) contenedor.getScene().getWindow();
+                    s.close();
+                    App.abrirNuevaVentana("posibles", 424, 448);
+                }
+            } else {
+                // Si no se encontró ningún juego
+                musicaJuego.stop();
+                musicaJuego = InicioController.reproducirSonido("derrota.mp3");
+                LBLPreguntas.setText("No se encontró un " + modoJuego + " así.");
                 contenedor.getChildren().clear();
-                FileInputStream fis = new FileInputStream(App.pathImages + "feliz.gif");
+                FileInputStream fis = new FileInputStream(App.pathImages + "triste.gif");
                 Image image = new Image(fis, 250, 250, true, true);
                 imageView = new ImageView(image);
                 contenedor.getChildren().add(imageView);
-
-                // Abrir la ventana de información del juego
-                App.abrirNuevaVentana("infoJuego", 466, 494);
-                LBLPreguntas.setText("El " + modoJuego + " es: " + juego.getNombre());
-            } else {
-                // Si hay más de un juego en la lista, abrir la ventana de posibles juegos
-                PosiblesController.lista = lista;
-                Stage s = (Stage) contenedor.getScene().getWindow();
-                s.close();
-                App.abrirNuevaVentana("posibles", 424, 448);
             }
         } else {
-            // Si no se encontró ningún juego
-            musicaJuego.stop();
-            musicaJuego = InicioController.reproducirSonido("derrota.mp3");
-            LBLPreguntas.setText("No se encontró un " + modoJuego + " así.");
-            contenedor.getChildren().clear();
-            FileInputStream fis = new FileInputStream(App.pathImages + "triste.gif");
-            Image image = new Image(fis, 250, 250, true, true);
-            imageView = new ImageView(image);
-            contenedor.getChildren().add(imageView);
+            // Continuar mostrando preguntas si aún no se ha llegado a una hoja
+            mostrarPreguntaActual();
         }
-    } else {
-        // Continuar mostrando preguntas si aún no se ha llegado a una hoja
-        mostrarPreguntaActual();
     }
-}
 
 }

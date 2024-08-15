@@ -1,0 +1,10 @@
+Rhinoceros,rinoceronte.png;si;si;no;si;si;si;si;si;no;no;si;si;no;no;si;no;si;no;si;si
+Hippo,hipopotamo.png;si;si;no;si;si;si;si;si;no;no;si;si;no;no;no;no;si;si;si;si
+Camel,camello.png;si;si;no;si;si;si;si;si;no;no;si;si;si;no;si;no;no;no;si;si
+Panda,panda.png;si;si;no;si;si;si;si;si;no;no;si;si;si;no;si;si;si;si;si;si
+Calls,llama.png;si;si;no;si;si;si;si;si;no;no;si;si;si;no;no;no;no;no;si;si
+Polar bear,osopolar.png;si;si;no;si;si;si;si;si;si;no;si;si;si;no;si;si;si;si;si;si
+Crab,cangrejo.png;no;no;no;no;no;no;no;si;si;no;si;no;no;no;si;si;no;no;no;si
+Gorilla,gorila.png;si;si;no;si;si;si;si;si;no;no;si;si;no;no;si;no;si;si;si;si
+Orangutan,orangutan.png;si;si;no;no;si;si;si;si;no;no;si;si;si;no;si;no;si;si;si;si
+Coyote,coyote.png;si;si;no;si;si;si;si;si;si;no;si;si;no;no;si;si;si;si;si;si

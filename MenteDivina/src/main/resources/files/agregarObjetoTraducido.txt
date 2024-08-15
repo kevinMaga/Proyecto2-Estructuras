@@ -1,0 +1,5 @@
+Key ring,llavero.png;no;no;no;si;no;no;si;no;si;no;no;no;no;no;no;no;no
+Rug,alfombra.png;no;no;si;no;no;no;no;no;si;no;no;no;no;no;no;no;no
+Flowerpot,maceta.png;no;no;no;si;no;no;no;no;si;no;si;no;no;no;no;no;no
+Bicycle,bicicleta.png;si;no;si;no;no;si;si;si;no;si;si;no;no;no;no;no;no
+Thermos,termo.png;no;no;no;si;no;no;no;si;si;no;no;no;no;no;no;no;no

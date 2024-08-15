@@ -41,6 +41,8 @@ public class AgregarJuegoController implements Initializable {
 
     public static Map<Juego, ArrayList<String>> mapa;
     private VBox contenedorSeleccionado;
+    private Juego j;
+    private ArrayList<String> respuestasJuego;
 
     /**
      * Initializes the controller class.
@@ -52,20 +54,20 @@ public class AgregarJuegoController implements Initializable {
         BTNAgregar.setFont(font2);
         LBL1.setFont(font);
         LBLPosibles.setFont(font);
-        Map<Juego, ArrayList<String>> mapaJuego =inicializarListaDeJuegos(mapa,APLista,font2);
         contenedorSeleccionado=null;
+        inicializarListaDeJuegos(mapa,APLista,font2);
         BTNAgregar.setOnMouseClicked(e -> {
-            Juego j = mapaJuego.keySet().iterator().hasNext() ? mapaJuego.keySet().iterator().next() : null;
             if (j==null){
                 PaginaPrincipalController.mostrarAlerta("Seleccionar conetenedor", "Porfavor seleccione un Juego para añadir");
-            }else if(InicioController.respuestasAnimal.keySet().contains(j) || InicioController.respuestasObjeto.keySet().contains(j)){
+            }else if(verificarSiJuegoEstaAnadido(j)){
                 PaginaPrincipalController.mostrarAlerta("Juego encontrado", "Juego dentro de la lista de juegos del sistema, escoja otro juego");
             }else{
                 if(j.getTipo().equals(Tipo.ANIMAL)){
-                    InicioController.respuestasAnimal.put(j, mapaJuego.get(j));
+                    InicioController.respuestasAnimal.put(j, respuestasJuego);          
                 }else{
-                    InicioController.respuestasObjeto.put(j, mapaJuego.get(j));
+                    InicioController.respuestasObjeto.put(j,respuestasJuego);
                 }
+                ManejoArchivos.escribirEnArchivo("juegosAnadidos.txt", j.getNombre());
                 Stage s =(Stage)BTNAgregar.getScene().getWindow();
                 s.close();
             }
@@ -74,42 +76,36 @@ public class AgregarJuegoController implements Initializable {
         
     }
     
-    public Map<Juego, ArrayList<String>> inicializarListaDeJuegos(Map<Juego, ArrayList<String>> mapa, FlowPane APLista, Font font2) {
-        Map<Juego, ArrayList<String>> juegoMapa = new HashMap<>();
-
+    public void inicializarListaDeJuegos(Map<Juego, ArrayList<String>> mapa, FlowPane APLista, Font font2) {
         for (Juego juego : mapa.keySet()) {
             VBox contenedor = PosiblesController.crearContenedorParaJuego(font2, juego);
             contenedor.setOnMouseClicked(e -> {
-                juegoMapa.put(juego, mapa.get(juego));
-                seleccionarContenedor(contenedor, juego, mapa.get(juego));
+                seleccionarContenedor(contenedor);
+                j=juego;
+                respuestasJuego =mapa.get(juego);
             });
             APLista.getChildren().add(contenedor);
         }
 
-        return juegoMapa;
+    }
+    
+    private boolean verificarSiJuegoEstaAnadido(Juego j){
+        ArrayList<String> juegosAnadidos = ManejoArchivos.leerArchivo("juegosAnadidos.txt");
+        for(String juegoAnadido:juegosAnadidos){
+            if(juegoAnadido.equals(j.getNombre())){
+                return true;
+            }
+        }
+        return false;
     }
 
 
-    private Map<Juego, ArrayList<String>> seleccionarContenedor(VBox contenedor, Juego juego, ArrayList<String> respuestasJuego) {
-        Map<Juego, ArrayList<String>> juegoMapa = new HashMap<>();
+    private void seleccionarContenedor(VBox contenedor) {
         if (contenedorSeleccionado != null) {
             contenedorSeleccionado.setStyle("-fx-background-color: White;");
         }
         contenedor.setStyle("-fx-background-color: #ADD8E6;"); 
         contenedorSeleccionado = contenedor;
-        juegoMapa.put(juego, respuestasJuego);
-        return juegoMapa;
-    }
-
-    private String lineaRespuestas(ArrayList<String> lista) {
-        StringBuilder linea = new StringBuilder();
-        for (int i = 0; i < lista.size(); i++) {
-            linea.append(lista.get(i));
-            if (i < lista.size() - 1) {
-                linea.append(";");
-            }
-        }
-        return linea.toString();
     }
 
 }
