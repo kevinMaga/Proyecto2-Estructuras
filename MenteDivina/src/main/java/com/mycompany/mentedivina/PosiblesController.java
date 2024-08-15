@@ -5,6 +5,7 @@
 package com.mycompany.mentedivina;
 
 
+import com.goxr3plus.speech.translator.GoogleTranslate;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
@@ -77,6 +78,15 @@ public class PosiblesController implements Initializable {
                 }
             });
             APLista.getChildren().add(contenedor);
+        }
+        if (InicioController.idioma != "es") {
+            try {
+                LBL1.setText(GoogleTranslate.translate("es", InicioController.idioma, LBL1.getText()));
+                LBLPosibles.setText(GoogleTranslate.translate("es", InicioController.idioma, LBLPosibles.getText()));
+                BTNInicio.setText(GoogleTranslate.translate("es", InicioController.idioma, BTNInicio.getText()));
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
     }
     

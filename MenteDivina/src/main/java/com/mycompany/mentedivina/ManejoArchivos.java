@@ -6,9 +6,11 @@ package com.mycompany.mentedivina;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,7 +24,7 @@ import modelo.Tipo;
 public class ManejoArchivos {
     public static ArrayList<String> leerArchivo(String nombreArchivo){
         ArrayList<String> resultado = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(App.pathFiles+nombreArchivo))) {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(App.pathFiles+nombreArchivo), "UTF-8"))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 resultado.add(linea.trim());

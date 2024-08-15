@@ -4,6 +4,7 @@
  */
 package com.mycompany.mentedivina;
 
+import com.goxr3plus.speech.translator.GoogleTranslate;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,6 +24,8 @@ public class VentanaPensarController implements Initializable {
 
     @FXML
     private Label secuencia;
+    @FXML
+    private Label LBL1;
 
     @FXML
     private Label lblAnimalObjeto;
@@ -55,6 +58,14 @@ public class VentanaPensarController implements Initializable {
                 }
             });
         });
+        if (InicioController.idioma != "es") {
+            try {
+                LBL1.setText(GoogleTranslate.translate("es", InicioController.idioma, LBL1.getText()));
+                lblAnimalObjeto.setText(GoogleTranslate.translate("es", InicioController.idioma, lblAnimalObjeto.getText()));
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
         t.start();
     }
 }

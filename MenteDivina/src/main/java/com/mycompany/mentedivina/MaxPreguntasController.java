@@ -4,6 +4,7 @@
  */
 package com.mycompany.mentedivina;
 
+import com.goxr3plus.speech.translator.GoogleTranslate;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -34,6 +35,8 @@ public class MaxPreguntasController implements Initializable {
     @FXML
     private Label lblAnimalObjeto;
     @FXML
+    private Label LBL1;
+    @FXML
     private ImageView imgAnimalCosa;
 
     @Override
@@ -42,6 +45,14 @@ public class MaxPreguntasController implements Initializable {
             lblPreguntasMax.setText(String.valueOf(InicioController.preguntasAnimal.size()));
         } else {
             lblPreguntasMax.setText(String.valueOf(InicioController.preguntasObjeto.size()));
+        }
+        if (InicioController.idioma != "es") {
+            try {
+                LBL1.setText(GoogleTranslate.translate("es", InicioController.idioma, LBL1.getText()));
+                lblAnimalObjeto.setText(GoogleTranslate.translate("es", InicioController.idioma, lblAnimalObjeto.getText()));
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
 
         Thread t = new Thread(() -> {

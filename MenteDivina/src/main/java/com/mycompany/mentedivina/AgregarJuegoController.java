@@ -4,6 +4,7 @@
  */
 package com.mycompany.mentedivina;
 
+import com.goxr3plus.speech.translator.GoogleTranslate;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -56,6 +57,15 @@ public class AgregarJuegoController implements Initializable {
         LBLPosibles.setFont(font);
         contenedorSeleccionado=null;
         inicializarListaDeJuegos(mapa,APLista,font2);
+        if(InicioController.idioma!="es"){
+            try {
+                BTNAgregar.setText(GoogleTranslate.translate("es",InicioController.idioma,BTNAgregar.getText()));
+                LBL1.setText(GoogleTranslate.translate("es",InicioController.idioma,LBL1.getText()));
+                LBLPosibles.setText(GoogleTranslate.translate("es",InicioController.idioma,LBLPosibles.getText()));
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
         BTNAgregar.setOnMouseClicked(e -> {
             if (j==null){
                 PaginaPrincipalController.mostrarAlerta("Seleccionar conetenedor", "Porfavor seleccione un Juego para añadir");
