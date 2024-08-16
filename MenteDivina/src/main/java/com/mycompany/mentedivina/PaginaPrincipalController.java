@@ -89,7 +89,7 @@ public class PaginaPrincipalController implements Initializable {
             JuegoController.modoJuego = "animal";
             efectoSeleccionButton(btnAnimal, btnCosa, "#f7405c", "#f5687d");
             try {
-                App.abrirNuevaVentana("maxPreguntas", 177, 201);
+                App.abrirNuevaVentana("maxPreguntas", 270, 281.59999);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }       
@@ -98,7 +98,7 @@ public class PaginaPrincipalController implements Initializable {
             JuegoController.modoJuego = "objeto";
             efectoSeleccionButton(btnCosa, btnAnimal, "#f7405c", "#f5687d");
             try {
-                App.abrirNuevaVentana("maxPreguntas", 177, 201);
+                App.abrirNuevaVentana("maxPreguntas", 270, 281.59999);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }     

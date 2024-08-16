@@ -67,7 +67,7 @@ public class InicioController implements Initializable {
         respuestasAnimal = formarMapaRespuestas("respuestasAnimal.txt", Tipo.ANIMAL);
         respuestasObjeto = formarMapaRespuestas("respuestasObjeto.txt", Tipo.OBJETO);
         comboBoxIdioma.getItems().addAll("Español", "English", "Français", "Português");
-        musicaInicio = reproducirSonido("menu1.mp3");
+        comboBoxIdioma.setValue("Español");        musicaInicio = reproducirSonido("menu1.mp3");
         InicioController.reproducirSonido("menu1.mp3");
 
         Font font = Font.loadFont(getClass().getResourceAsStream("/fonts/LuckiestGuy-Regular.ttf"), 24);
@@ -91,7 +91,7 @@ public class InicioController implements Initializable {
             if (!comboBoxIdioma.getValue().equals("Español")){
                 try{
                     idioma = GoogleTranslate.detectLanguage(comboBoxIdioma.getValue().toString());
-                    App.abrirNuevaVentana("PantallaEsperar", 366, 213);
+                    App.abrirNuevaVentana("PantallaEsperar", 314, 248);
                 }catch (IOException ex) {
                     ex.printStackTrace();
                 } 
@@ -100,6 +100,11 @@ public class InicioController implements Initializable {
                 preguntasObjeto = ManejoArchivos.leerArchivo("preguntasObjeto.txt");
                 respuestasAnimal = formarMapaRespuestas("respuestasAnimal.txt", Tipo.ANIMAL);
                 respuestasObjeto = formarMapaRespuestas("respuestasObjeto.txt", Tipo.OBJETO);
+                try{
+                    App.abrirNuevaVentana("paginaPrincipal", 424, 520);
+                }catch (IOException ex) {
+                    ex.printStackTrace();
+                } 
             }
             
             s.close();

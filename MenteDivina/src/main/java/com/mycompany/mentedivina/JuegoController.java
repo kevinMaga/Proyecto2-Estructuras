@@ -158,7 +158,7 @@ public class JuegoController implements Initializable {
                 musicaJuego.stop();
                 musicaJuego = InicioController.reproducirSonido("victoria.mp3");
                 String fin,fin1;
-
+                String l= modoJuego.equals("animal")? "e":"";
                 if (lista.size() == 1) {
                     Juego juego = lista.get(0);
 
@@ -179,9 +179,10 @@ public class JuegoController implements Initializable {
 
                     // Abrir la ventana de información del juego
                     App.abrirNuevaVentana("infoJuego", 466, 494);
-                    fin="El " + modoJuego + " es: " + juego.getNombre();
+                    
+                    fin="El " + modoJuego + l+"s: " + juego.getNombre();
                     fin1=fin;
-                    if(InicioController.idioma!="es"){
+                    if(!"es".equals(InicioController.idioma)){
                         try{
                         fin1=GoogleTranslate.translate("es",InicioController.idioma,fin);
                         }catch (IOException ex) {
@@ -192,9 +193,22 @@ public class JuegoController implements Initializable {
                 } else {
                     // Si hay más de un juego en la lista, abrir la ventana de posibles juegos
                     PosiblesController.lista = lista;
-                    Stage s = (Stage) contenedor.getScene().getWindow();
-                    s.close();
+                    fin="Varios "+ modoJuego + l+"s";
+                    fin1=fin;
+                    if(!"es".equals(InicioController.idioma)){
+                        try{
+                        fin1=GoogleTranslate.translate("es",InicioController.idioma,fin);
+                        }catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
                     App.abrirNuevaVentana("posibles", 424, 448);
+                    LBLPreguntas.setText(fin1);
+                    contenedor.getChildren().clear();
+                    FileInputStream fis = new FileInputStream(App.pathImages + "feliz.gif");
+                    Image image = new Image(fis, 250, 250, true, true);
+                    imageView = new ImageView(image);
+                    contenedor.getChildren().add(imageView);
                 }
             } else {
                 String fin,fin1;
@@ -203,7 +217,7 @@ public class JuegoController implements Initializable {
                 musicaJuego = InicioController.reproducirSonido("derrota.mp3");
                 fin="No se encontró un " + modoJuego + " así.";
                 fin1=fin;
-                    if(InicioController.idioma!="es"){
+                    if(!"es".equals(InicioController.idioma)){
                         try{
                         fin1=GoogleTranslate.translate("es",InicioController.idioma,fin);
                         }catch (IOException ex) {
