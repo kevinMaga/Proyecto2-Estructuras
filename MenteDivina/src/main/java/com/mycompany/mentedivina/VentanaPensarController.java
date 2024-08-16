@@ -38,6 +38,14 @@ public class VentanaPensarController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         lblAnimalObjeto.setText(JuegoController.modoJuego);
+        if (InicioController.idioma != "es") {
+            try {
+                LBL1.setText(GoogleTranslate.translate("es", InicioController.idioma, LBL1.getText()));
+                lblAnimalObjeto.setText(GoogleTranslate.translate("es", InicioController.idioma, lblAnimalObjeto.getText()));
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
         Thread t = new Thread(() -> {
             for (int i = 5; i >= 1; i--) {
                 final int count = i;
@@ -58,14 +66,7 @@ public class VentanaPensarController implements Initializable {
                 }
             });
         });
-        if (InicioController.idioma != "es") {
-            try {
-                LBL1.setText(GoogleTranslate.translate("es", InicioController.idioma, LBL1.getText()));
-                lblAnimalObjeto.setText(GoogleTranslate.translate("es", InicioController.idioma, lblAnimalObjeto.getText()));
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
+        
         t.start();
     }
 }

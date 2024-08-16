@@ -157,6 +157,7 @@ public class JuegoController implements Initializable {
             if (!lista.isEmpty()) {
                 musicaJuego.stop();
                 musicaJuego = InicioController.reproducirSonido("victoria.mp3");
+                String fin,fin1;
 
                 if (lista.size() == 1) {
                     Juego juego = lista.get(0);
@@ -178,7 +179,16 @@ public class JuegoController implements Initializable {
 
                     // Abrir la ventana de información del juego
                     App.abrirNuevaVentana("infoJuego", 466, 494);
-                    LBLPreguntas.setText("El " + modoJuego + " es: " + juego.getNombre());
+                    fin="El " + modoJuego + " es: " + juego.getNombre();
+                    fin1=fin;
+                    if(InicioController.idioma!="es"){
+                        try{
+                        fin1=GoogleTranslate.translate("es",InicioController.idioma,fin);
+                        }catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                    LBLPreguntas.setText(fin1);
                 } else {
                     // Si hay más de un juego en la lista, abrir la ventana de posibles juegos
                     PosiblesController.lista = lista;
@@ -187,10 +197,20 @@ public class JuegoController implements Initializable {
                     App.abrirNuevaVentana("posibles", 424, 448);
                 }
             } else {
+                String fin,fin1;
                 // Si no se encontró ningún juego
                 musicaJuego.stop();
                 musicaJuego = InicioController.reproducirSonido("derrota.mp3");
-                LBLPreguntas.setText("No se encontró un " + modoJuego + " así.");
+                fin="No se encontró un " + modoJuego + " así.";
+                fin1=fin;
+                    if(InicioController.idioma!="es"){
+                        try{
+                        fin1=GoogleTranslate.translate("es",InicioController.idioma,fin);
+                        }catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                LBLPreguntas.setText(fin1);
                 contenedor.getChildren().clear();
                 FileInputStream fis = new FileInputStream(App.pathImages + "triste.gif");
                 Image image = new Image(fis, 250, 250, true, true);

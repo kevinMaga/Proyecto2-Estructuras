@@ -67,10 +67,19 @@ public class AgregarJuegoController implements Initializable {
             }
         }
         BTNAgregar.setOnMouseClicked(e -> {
+            
             if (j==null){
+                try{
                 PaginaPrincipalController.mostrarAlerta("Seleccionar conetenedor", "Porfavor seleccione un Juego para añadir");
+                }catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             }else if(verificarSiJuegoEstaAnadido(j)){
+                try{
                 PaginaPrincipalController.mostrarAlerta("Juego encontrado", "Juego dentro de la lista de juegos del sistema, escoja otro juego");
+                }catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             }else{
                 if(j.getTipo().equals(Tipo.ANIMAL)){
                     InicioController.respuestasAnimal.put(j, respuestasJuego);          
@@ -81,6 +90,7 @@ public class AgregarJuegoController implements Initializable {
                 Stage s =(Stage)BTNAgregar.getScene().getWindow();
                 s.close();
             }
+            
         });
         
         

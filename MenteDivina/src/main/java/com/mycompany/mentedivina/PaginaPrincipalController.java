@@ -60,6 +60,7 @@ public class PaginaPrincipalController implements Initializable {
         musicaPaginaPrincipal =InicioController.reproducirSonido("menu2.mp3");
         if(InicioController.idioma!="es"){
             try {
+                BTNAgregar.setText(GoogleTranslate.translate("es",InicioController.idioma,BTNAgregar.getText()));
                 btnAnimal.setText(GoogleTranslate.translate("es",InicioController.idioma,btnAnimal.getText()));
                 btnCosa.setText(GoogleTranslate.translate("es",InicioController.idioma,btnCosa.getText()));
                 BTNEmpezar.setText(GoogleTranslate.translate("es",InicioController.idioma,BTNEmpezar.getText()));
@@ -104,6 +105,7 @@ public class PaginaPrincipalController implements Initializable {
         });
 
         BTNEmpezar.setOnMouseClicked(e -> {
+            try{
             String textoPreguntas = txtPreguntas.getText();
             boolean esNumeroValido = textoPreguntas != null && esNumeroEntero(textoPreguntas);
             boolean modoJuegoSeleccionado = JuegoController.modoJuego != null;
@@ -138,10 +140,17 @@ public class PaginaPrincipalController implements Initializable {
                     }
                 }
             }
+            }catch(IOException ex){
+                ex.printStackTrace();
+            }
         });
         BTNAgregar.setOnMouseClicked(e -> {
             if (JuegoController.modoJuego == null) {
-                mostrarAlerta("Llene todos los campos", "Por favor, seleccione el modo de juego");
+                try {
+                    mostrarAlerta("Llene todos los campos", "Por favor, seleccione el modo de juego");
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             } else {
                 String nombreArchivo = InicioController.idioma.equals("es") ? "agregarAnimal.txt" : "agregarAnimalTraducido.txt";
                 if (JuegoController.modoJuego.equals("animal")) {
@@ -192,10 +201,15 @@ public class PaginaPrincipalController implements Initializable {
         }
     }
 
-    public static void mostrarAlerta(String titulo, String mensaje) {
+    public static void mostrarAlerta(String titulo, String mensaje) throws IOException {
+        String t=titulo,m=mensaje;
+        if(InicioController.idioma!="es"){
+            t = GoogleTranslate.translate("es",InicioController.idioma,titulo);
+            m =GoogleTranslate.translate("es",InicioController.idioma,mensaje);
+        }
         Alert a = new Alert(Alert.AlertType.WARNING);
-        a.setTitle(titulo);
-        a.setContentText(mensaje);
+        a.setTitle(t);
+        a.setContentText(m);
         a.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
         a.showAndWait();
     }

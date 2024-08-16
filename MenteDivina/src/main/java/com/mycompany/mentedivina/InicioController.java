@@ -17,9 +17,11 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Region;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import modelo.BinaryTree;
@@ -82,20 +84,29 @@ public class InicioController implements Initializable {
             System.out.println("No se pudo cargar la fuente.");
         }
         BtnJugar.setOnAction(e -> {
-
             Stage s = (Stage) BtnJugar.getScene().getWindow();
-            s.close();
-            try {
-                App.abrirNuevaVentana("paginaPrincipal", 416, 520);
-            } catch (IOException ex) {
-                ex.printStackTrace();
+            
+            
+            //Traducion archivos. Es Pesado se espera un momento
+            if (!comboBoxIdioma.getValue().equals("Español")){
+                try{
+                    idioma = GoogleTranslate.detectLanguage(comboBoxIdioma.getValue().toString());
+                    App.abrirNuevaVentana("PantallaEsperar", 366, 213);
+                }catch (IOException ex) {
+                    ex.printStackTrace();
+                } 
+            }else {
+                preguntasAnimal = ManejoArchivos.leerArchivo("preguntasAnimal.txt");
+                preguntasObjeto = ManejoArchivos.leerArchivo("preguntasObjeto.txt");
+                respuestasAnimal = formarMapaRespuestas("respuestasAnimal.txt", Tipo.ANIMAL);
+                respuestasObjeto = formarMapaRespuestas("respuestasObjeto.txt", Tipo.OBJETO);
             }
+            
+            s.close();
+            
         });
         comboBoxIdioma.setOnAction(e -> {
-            if (!comboBoxIdioma.getValue().equals("Español")) {
                 try {
-                    idioma = GoogleTranslate.detectLanguage(comboBoxIdioma.getValue().toString());
-                    traducirArchivos();
                     LBL1.setText(GoogleTranslate.translate(GoogleTranslate.detectLanguage(comboBoxIdioma.getValue().toString()), LBL1.getText()));
                     LBL2.setText(GoogleTranslate.translate(GoogleTranslate.detectLanguage(comboBoxIdioma.getValue().toString()), LBL2.getText()));
                     LBL3.setText(GoogleTranslate.translate(GoogleTranslate.detectLanguage(comboBoxIdioma.getValue().toString()), LBL3.getText()));
@@ -103,17 +114,6 @@ public class InicioController implements Initializable {
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
-                preguntasAnimal = ManejoArchivos.leerArchivo("preguntasAnimalTraducido.txt");
-                preguntasObjeto = ManejoArchivos.leerArchivo("preguntasObjetoTraducido.txt");
-                respuestasAnimal = formarMapaRespuestas("respuestasAnimalTraducido.txt", Tipo.ANIMAL);
-                respuestasObjeto = formarMapaRespuestas("respuestasObjetoTraducido.txt", Tipo.OBJETO);
-            } else {
-                preguntasAnimal = ManejoArchivos.leerArchivo("preguntasAnimal.txt");
-                preguntasObjeto = ManejoArchivos.leerArchivo("preguntasObjeto.txt");
-                respuestasAnimal = formarMapaRespuestas("respuestasAnimal.txt", Tipo.ANIMAL);
-                respuestasObjeto = formarMapaRespuestas("respuestasObjeto.txt", Tipo.OBJETO);
-            }
-
         });
     }
 
@@ -163,68 +163,7 @@ public class InicioController implements Initializable {
         return mediaPlayer;
     }
 
-    private void traducirArchivo(String archivoEntrada, String archivoSalida, String esRespuesta) throws IOException {
-        ArrayList<String> lineas = ManejoArchivos.leerArchivo(archivoEntrada);
-        for (String linea : lineas) {
-            String translatedLine="";
-            switch (esRespuesta) {
-                case "respuesta":
-                    String[] parts = linea.split(",");
-                    String entidad = parts[0];
-                    String datos = parts[1];
-                    String translatedText = GoogleTranslate.translate("es", idioma, entidad);
-                    translatedLine = translatedText + "," + datos;
-                    break;
-                case "descripcion":
-                    String nombre = linea.split(",")[0];
-                    String descripcion = linea.split(",")[1];
-                    translatedLine = GoogleTranslate.translate("es", idioma, nombre)+","+GoogleTranslate.translate("es", idioma, descripcion);
-                    break;
-                case "pregunta":
-                    translatedLine = GoogleTranslate.translate("es", idioma, linea);
-                    break;
-                default:
-                    break;
-            }
-            ManejoArchivos.escribirEnArchivo(archivoSalida, translatedLine);
-        }
-    }
-
-    private void traducirArchivos() throws IOException {
-        // Borrar contenido de archivos traducidos antes de empezar la traducción
-        ManejoArchivos.borrarContenidoArchivo("respuestasAnimalTraducido.txt");
-        ManejoArchivos.borrarContenidoArchivo("respuestasObjetoTraducido.txt");
-        ManejoArchivos.borrarContenidoArchivo("preguntasAnimalTraducido.txt");
-        ManejoArchivos.borrarContenidoArchivo("preguntasObjetoTraducido.txt");
-        ManejoArchivos.borrarContenidoArchivo("descripcionObjetoTraducido.txt");
-        ManejoArchivos.borrarContenidoArchivo("descripcionAnimalTraducido.txt");
-        ManejoArchivos.borrarContenidoArchivo("agregarAnimalTraducido.txt");
-        ManejoArchivos.borrarContenidoArchivo("agregarObjetoTraducido.txt");
-
-        // Traducción de respuestas de animales
-        traducirArchivo("respuestasAnimal.txt", "respuestasAnimalTraducido.txt","respuesta");
-
-        // Traducción de respuestas de objetos
-        traducirArchivo("respuestasObjeto.txt", "respuestasObjetoTraducido.txt", "respuesta");
-
-        // Traducción de preguntas de animales
-        traducirArchivo("preguntasAnimal.txt", "preguntasAnimalTraducido.txt", "pregunta");
-
-        // Traducción de preguntas de objetos
-        traducirArchivo("preguntasObjeto.txt", "preguntasObjetoTraducido.txt", "pregunta");
-        
-        //Traducción de descripción de animales
-        traducirArchivo("descripcionAnimal.txt","descripcionAnimalTraducido.txt","descripcion");
-        
-        //Traducción de descripción de objetos
-        traducirArchivo("descripcionObjeto.txt","descripcionObjetoTraducido.txt","descripcion");
-        
-        //Traducción de agregarAnimal
-        traducirArchivo("agregarAnimal.txt","agregarAnimalTraducido.txt","respuesta");
-        
-        //Traducción de agregarObjeto
-        traducirArchivo("agregarObjeto.txt","agregarObjetoTraducido.txt","respuesta");
-    }
+    
 
     public static Map<Juego, ArrayList<String>> formarMapaRespuestas(String nombreArchivo, Tipo t) {
         Map<Juego, ArrayList<String>> resultado = new HashMap<>();
