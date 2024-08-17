@@ -70,13 +70,13 @@ public class AgregarJuegoController implements Initializable {
             
             if (j==null){
                 try{
-                PaginaPrincipalController.mostrarAlerta("Seleccionar conetenedor", "Porfavor seleccione un Juego para añadir");
+                PrincipalController.mostrarAlerta("Seleccionar conetenedor", "Porfavor seleccione un Juego para añadir");
                 }catch (IOException ex) {
                     ex.printStackTrace();
                 }
             }else if(verificarSiJuegoEstaAnadido(j)){
                 try{
-                PaginaPrincipalController.mostrarAlerta("Juego encontrado", "Juego dentro de la lista de juegos del sistema, escoja otro juego");
+                PrincipalController.mostrarAlerta("Juego encontrado", "Juego dentro de la lista de juegos del sistema, escoja otro juego");
                 }catch (IOException ex) {
                     ex.printStackTrace();
                 }

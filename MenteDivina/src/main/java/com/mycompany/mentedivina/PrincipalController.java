@@ -25,7 +25,7 @@ import modelo.Tipo;
  *
  * @author Justin Roldan
  */
-public class PaginaPrincipalController implements Initializable {
+public class PrincipalController implements Initializable {
 
     @FXML
     private Button btnAnimal;
@@ -54,8 +54,8 @@ public class PaginaPrincipalController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        JuegoController.modoJuego=null;
-        JuegoController.musicaJuego.stop();
+        PaginaPrincipalJuegoController.modoJuego=null;
+        PaginaPrincipalJuegoController.musicaJuego.stop();
         InicioController.musicaInicio.stop();
         musicaPaginaPrincipal =InicioController.reproducirSonido("menu2.mp3");
         if(InicioController.idioma!="es"){
@@ -86,7 +86,7 @@ public class PaginaPrincipalController implements Initializable {
         BTNEmpezar.setFont(font5);
         estilos();
         btnAnimal.setOnAction(e -> {
-            JuegoController.modoJuego = "animal";
+            PaginaPrincipalJuegoController.modoJuego = "animal";
             efectoSeleccionButton(btnAnimal, btnCosa, "#f7405c", "#f5687d");
             try {
                 App.abrirNuevaVentana("maxPreguntas", 270, 281.59999);
@@ -95,7 +95,7 @@ public class PaginaPrincipalController implements Initializable {
             }       
         });
         btnCosa.setOnAction(e -> {
-            JuegoController.modoJuego = "objeto";
+            PaginaPrincipalJuegoController.modoJuego = "objeto";
             efectoSeleccionButton(btnCosa, btnAnimal, "#f7405c", "#f5687d");
             try {
                 App.abrirNuevaVentana("maxPreguntas", 270, 281.59999);
@@ -108,7 +108,7 @@ public class PaginaPrincipalController implements Initializable {
             try{
             String textoPreguntas = txtPreguntas.getText();
             boolean esNumeroValido = textoPreguntas != null && esNumeroEntero(textoPreguntas);
-            boolean modoJuegoSeleccionado = JuegoController.modoJuego != null;
+            boolean modoJuegoSeleccionado = PaginaPrincipalJuegoController.modoJuego != null;
             if (!modoJuegoSeleccionado && !esNumeroValido) {
                 mostrarAlerta("Llene todos los campos", "Por favor, seleccione el modo de juego, y llene el campo de número de preguntas con un número válido");
             } else if (!modoJuegoSeleccionado) {
@@ -119,10 +119,10 @@ public class PaginaPrincipalController implements Initializable {
                 int numeroPreguntas = Integer.valueOf(textoPreguntas);
                 boolean numeroPreguntasAdecuado = false;
                 int maximoPreguntas =0;
-                if (JuegoController.modoJuego.equals("animal")) {
+                if (PaginaPrincipalJuegoController.modoJuego.equals("animal")) {
                     numeroPreguntasAdecuado = numeroPreguntas >= 1 && numeroPreguntas <= InicioController.preguntasAnimal.size();
                     maximoPreguntas=InicioController.preguntasAnimal.size();
-                } else if (JuegoController.modoJuego.equals("objeto")) {
+                } else if (PaginaPrincipalJuegoController.modoJuego.equals("objeto")) {
                     numeroPreguntasAdecuado = numeroPreguntas >= 1 && numeroPreguntas <= InicioController.preguntasObjeto.size();
                     maximoPreguntas=InicioController.preguntasObjeto.size();
                 }
@@ -130,7 +130,7 @@ public class PaginaPrincipalController implements Initializable {
                 if (!numeroPreguntasAdecuado) {
                     mostrarAlerta("Número de preguntas", "Por favor, ingrese un número de preguntas adecuado. Recuerde que el máximo de preguntas es "+maximoPreguntas);
                 } else {
-                    JuegoController.cantidadPreguntas = numeroPreguntas;
+                    PaginaPrincipalJuegoController.cantidadPreguntas = numeroPreguntas;
                     Stage s = (Stage) txtPreguntas.getScene().getWindow();
                     s.close();
                     try {
@@ -145,7 +145,7 @@ public class PaginaPrincipalController implements Initializable {
             }
         });
         BTNAgregar.setOnMouseClicked(e -> {
-            if (JuegoController.modoJuego == null) {
+            if (PaginaPrincipalJuegoController.modoJuego == null) {
                 try {
                     mostrarAlerta("Llene todos los campos", "Por favor, seleccione el modo de juego");
                 } catch (IOException ex) {
@@ -153,7 +153,7 @@ public class PaginaPrincipalController implements Initializable {
                 }
             } else {
                 String nombreArchivo = InicioController.idioma.equals("es") ? "agregarAnimal.txt" : "agregarAnimalTraducido.txt";
-                if (JuegoController.modoJuego.equals("animal")) {
+                if (PaginaPrincipalJuegoController.modoJuego.equals("animal")) {
                     AgregarJuegoController.mapa = InicioController.formarMapaRespuestas(nombreArchivo, Tipo.ANIMAL);
                 } else {
                     nombreArchivo = InicioController.idioma.equals("es") ? "agregarObjeto.txt" : "agregarObjetoTraducido.txt";

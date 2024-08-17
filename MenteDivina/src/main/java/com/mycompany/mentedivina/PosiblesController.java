@@ -45,8 +45,8 @@ public class PosiblesController implements Initializable {
         LBL1.setFont(font);
         LBLPosibles.setFont(font);
 
-        String text = JuegoController.modoJuego.equals("animal") ? "e" : "";
-        LBLPosibles.setText(JuegoController.modoJuego + text + "s");
+        String text = PaginaPrincipalJuegoController.modoJuego.equals("animal") ? "e" : "";
+        LBLPosibles.setText(PaginaPrincipalJuegoController.modoJuego + text + "s");
 
         // Crear la lista circular doblemente enlazada
         listaJuegos = new ListaCircularDoble(lista);

@@ -41,7 +41,7 @@ public class MaxPreguntasController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        if (JuegoController.modoJuego.equals("animal")) {
+        if (PaginaPrincipalJuegoController.modoJuego.equals("animal")) {
             lblPreguntasMax.setText(String.valueOf(InicioController.preguntasAnimal.size()));
         } else {
             lblPreguntasMax.setText(String.valueOf(InicioController.preguntasObjeto.size()));

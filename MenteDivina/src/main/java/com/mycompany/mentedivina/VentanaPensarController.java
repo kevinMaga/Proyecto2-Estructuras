@@ -37,7 +37,7 @@ public class VentanaPensarController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        lblAnimalObjeto.setText(JuegoController.modoJuego);
+        lblAnimalObjeto.setText(PaginaPrincipalJuegoController.modoJuego);
         if (InicioController.idioma != "es") {
             try {
                 LBL1.setText(GoogleTranslate.translate("es", InicioController.idioma, LBL1.getText()));

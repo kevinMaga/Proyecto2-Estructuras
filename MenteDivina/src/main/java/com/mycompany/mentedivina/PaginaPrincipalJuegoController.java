@@ -25,7 +25,7 @@ import modelo.Juego;
 import modelo.ListaCircularDoble;
 import modelo.NodeBinaryTree;
 
-public class JuegoController implements Initializable {
+public class PaginaPrincipalJuegoController implements Initializable {
 
     public static String modoJuego;
     public static Integer cantidadPreguntas;
@@ -68,7 +68,7 @@ public class JuegoController implements Initializable {
         }
         BTNSi.setCursor(Cursor.HAND);
         BTNNo.setCursor(Cursor.HAND);
-        PaginaPrincipalController.musicaPaginaPrincipal.stop();
+        PrincipalController.musicaPaginaPrincipal.stop();
         musicaJuego = InicioController.reproducirSonido("pensando.mp3");
         actualizarImagen();
         if (modoJuego.equals("animal")) {

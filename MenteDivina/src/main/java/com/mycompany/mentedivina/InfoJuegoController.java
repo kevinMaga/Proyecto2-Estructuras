@@ -68,7 +68,7 @@ public class InfoJuegoController implements Initializable {
         LBLDescripcion.setWrapText(true);
 
         // Construir la ruta del archivo
-        String tipo = JuegoController.modoJuego; // "Animal" u "Objeto"
+        String tipo = PaginaPrincipalJuegoController.modoJuego; // "Animal" u "Objeto"
         String nombreArchivo = InicioController.idioma.equals("es") ? "descripcion" + tipo + ".txt":"descripcion" + tipo + "traducido.txt";
 
         // Leer la descripción del archivo
