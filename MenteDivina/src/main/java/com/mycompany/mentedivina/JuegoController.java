@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Stack;
 import javafx.fxml.FXML;
@@ -70,9 +72,9 @@ public class JuegoController implements Initializable {
         musicaJuego = InicioController.reproducirSonido("pensando.mp3");
         actualizarImagen();
         if (modoJuego.equals("animal")) {
-            arbol = InicioController.buscarAgregarClave(cantidadPreguntas, InicioController.preguntasAnimal, InicioController.respuestasAnimal);
+            arbol = buscarAgregarClave(cantidadPreguntas, InicioController.preguntasAnimal, InicioController.respuestasAnimal);
         } else if (modoJuego.equals("objeto")) {
-            arbol = InicioController.buscarAgregarClave(cantidadPreguntas, InicioController.preguntasObjeto, InicioController.respuestasObjeto);
+            arbol = buscarAgregarClave(cantidadPreguntas, InicioController.preguntasObjeto, InicioController.respuestasObjeto);
         }
         nodoActual = arbol.getRoot();
         mostrarPreguntaActual();
@@ -236,5 +238,43 @@ public class JuegoController implements Initializable {
             mostrarPreguntaActual();
         }
     }
+    public static BinaryTree<Object> crearArbol(int nivelActual, int preguntasUsuario, List<String> listaPreguntas) {
+        BinaryTree<Object> arbol = new BinaryTree<>();
 
+        if (nivelActual >= preguntasUsuario) {
+            arbol.setRoot(new NodeBinaryTree<>(new ArrayList<Juego>()));
+        } else {
+            NodeBinaryTree<Object> nodo = new NodeBinaryTree<>(listaPreguntas.get(nivelActual));
+            nodo.setLeft(crearArbol(nivelActual + 1, preguntasUsuario, listaPreguntas));
+            nodo.setRight(crearArbol(nivelActual + 1, preguntasUsuario, listaPreguntas));
+            arbol.setRoot(nodo);
+        }
+
+        return arbol;
+    }
+
+    public static BinaryTree<Object> buscarAgregarClave(int preguntasUsuario, ArrayList<String> preguntas, Map<Juego, ArrayList<String>> respuestas) {
+        BinaryTree<Object> arbol = crearArbol(0, preguntasUsuario, preguntas);
+        for (Juego juego : respuestas.keySet()) {
+            ArrayList<String> rJuego = respuestas.get(juego);
+            NodeBinaryTree<Object> nodoActual = arbol.getRoot();
+            for (int i = 0; i < preguntasUsuario; i++) {
+                String respuesta = rJuego.get(i);
+                if (respuesta.equals("si")) {
+                    if (nodoActual.getLeft() != null) {
+                        nodoActual = nodoActual.getLeft().getRoot();
+                    }
+                } else {
+                    if (nodoActual.getRight() != null) {
+                        nodoActual = nodoActual.getRight().getRoot();
+                    }
+                }
+            }
+            ArrayList<Juego> juegosEnHoja = (ArrayList<Juego>) nodoActual.getContent();
+            juegosEnHoja.add(juego);
+        }
+        return arbol;
+    }
+    
+    
 }

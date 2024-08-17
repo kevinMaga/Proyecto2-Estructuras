@@ -122,43 +122,7 @@ public class InicioController implements Initializable {
         });
     }
 
-    public static BinaryTree<Object> crearArbol(int nivelActual, int preguntasUsuario, List<String> listaPreguntas) {
-        BinaryTree<Object> arbol = new BinaryTree<>();
-
-        if (nivelActual >= preguntasUsuario) {
-            arbol.setRoot(new NodeBinaryTree<>(new ArrayList<Juego>()));
-        } else {
-            NodeBinaryTree<Object> nodo = new NodeBinaryTree<>(listaPreguntas.get(nivelActual));
-            nodo.setLeft(crearArbol(nivelActual + 1, preguntasUsuario, listaPreguntas));
-            nodo.setRight(crearArbol(nivelActual + 1, preguntasUsuario, listaPreguntas));
-            arbol.setRoot(nodo);
-        }
-
-        return arbol;
-    }
-
-    public static BinaryTree<Object> buscarAgregarClave(int preguntasUsuario, ArrayList<String> preguntas, Map<Juego, ArrayList<String>> respuestas) {
-        BinaryTree<Object> arbol = crearArbol(0, preguntasUsuario, preguntas);
-        for (Juego juego : respuestas.keySet()) {
-            ArrayList<String> rJuego = respuestas.get(juego);
-            NodeBinaryTree<Object> nodoActual = arbol.getRoot();
-            for (int i = 0; i < preguntasUsuario; i++) {
-                String respuesta = rJuego.get(i);
-                if (respuesta.equals("si")) {
-                    if (nodoActual.getLeft() != null) {
-                        nodoActual = nodoActual.getLeft().getRoot();
-                    }
-                } else {
-                    if (nodoActual.getRight() != null) {
-                        nodoActual = nodoActual.getRight().getRoot();
-                    }
-                }
-            }
-            ArrayList<Juego> juegosEnHoja = (ArrayList<Juego>) nodoActual.getContent();
-            juegosEnHoja.add(juego);
-        }
-        return arbol;
-    }
+    
 
     public static MediaPlayer reproducirSonido(String nombre) {
         String ubicacion = App.pathMusic + nombre;
