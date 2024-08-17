@@ -36,27 +36,14 @@ public class PosiblesController implements Initializable {
     @FXML
     private FlowPane APLista;
     @FXML
-    private Button BTNInicio;
-    @FXML
     private Label LBL1;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Font font = Font.loadFont(getClass().getResourceAsStream("/fonts/LuckiestGuy-Regular.ttf"), 28);
         Font font2 = Font.loadFont(getClass().getResourceAsStream("/fonts/LuckiestGuy-Regular.ttf"), 18);
-        BTNInicio.setFont(font2);
         LBL1.setFont(font);
         LBLPosibles.setFont(font);
-
-        BTNInicio.setOnMouseClicked(e -> {
-            Stage s = (Stage) BTNInicio.getScene().getWindow();
-            s.close();
-            try {
-                App.abrirNuevaVentana("paginaPrincipal", 416, 520);
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        });
 
         String text = JuegoController.modoJuego.equals("animal") ? "e" : "";
         LBLPosibles.setText(JuegoController.modoJuego + text + "s");
@@ -83,7 +70,6 @@ public class PosiblesController implements Initializable {
             try {
                 LBL1.setText(GoogleTranslate.translate("es", InicioController.idioma, LBL1.getText()));
                 LBLPosibles.setText(GoogleTranslate.translate("es", InicioController.idioma, LBLPosibles.getText()));
-                BTNInicio.setText(GoogleTranslate.translate("es", InicioController.idioma, BTNInicio.getText()));
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
