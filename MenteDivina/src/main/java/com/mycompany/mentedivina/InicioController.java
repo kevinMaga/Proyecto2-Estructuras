@@ -101,7 +101,7 @@ public class InicioController implements Initializable {
                 respuestasAnimal = formarMapaRespuestas("respuestasAnimal.txt", Tipo.ANIMAL);
                 respuestasObjeto = formarMapaRespuestas("respuestasObjeto.txt", Tipo.OBJETO);
                 try{
-                    App.abrirNuevaVentana("paginaPrincipal", 424, 520);
+                    App.abrirNuevaVentana("principal", 424, 520);
                 }catch (IOException ex) {
                     ex.printStackTrace();
                 } 

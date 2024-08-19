@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="439.0" prefWidth="806.0" style="-fx-background-color: #fbce85;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mentedivina.JuegoController">
+<AnchorPane id="AnchorPane" prefHeight="439.0" prefWidth="806.0" style="-fx-background-color: #fbce85;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mentedivina.PaginaPrincipalJuegoController">
    <children>
       <Label fx:id="LBL1" alignment="CENTER" prefHeight="92.0" prefWidth="823.0" style="-fx-background-color: black;" text="Mente Divina" textFill="WHITE">
          <font>

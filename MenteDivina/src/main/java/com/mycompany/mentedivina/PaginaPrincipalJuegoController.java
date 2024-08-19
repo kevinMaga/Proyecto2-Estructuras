@@ -82,7 +82,7 @@ public class PaginaPrincipalJuegoController implements Initializable {
             Stage s = (Stage) IVInicio.getScene().getWindow();
             s.close();
             try {
-                App.abrirNuevaVentana("paginaPrincipal", 416, 520);
+                App.abrirNuevaVentana("principal", 416, 520);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }

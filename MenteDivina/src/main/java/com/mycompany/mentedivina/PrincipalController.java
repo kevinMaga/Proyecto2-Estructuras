@@ -89,7 +89,7 @@ public class PrincipalController implements Initializable {
             PaginaPrincipalJuegoController.modoJuego = "animal";
             efectoSeleccionButton(btnAnimal, btnCosa, "#f7405c", "#f5687d");
             try {
-                App.abrirNuevaVentana("maxPreguntas", 270, 281.59999);
+                App.abrirNuevaVentana("maxPreguntas", 245, 267.2);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }       
