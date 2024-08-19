@@ -58,7 +58,7 @@ public class PantallaEsperarController implements Initializable {
                 Stage s = (Stage) LBL1.getScene().getWindow();
                 s.close();
                 try {
-                    App.abrirNuevaVentana("paginaPrincipal", 416, 520);
+                    App.abrirNuevaVentana("principal", 416, 520);
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
