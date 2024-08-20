@@ -25,9 +25,9 @@ public class MenuController implements Initializable {
     @FXML
     private ImageView imgArchivoP;
     @FXML
-    private ImageView imgArchivoR;
-    @FXML
     private Label label;
+    @FXML
+    private ImageView imgFileR;
     @FXML
     private Button btnSiguiente;
 
@@ -40,11 +40,12 @@ public class MenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        InicioController.musicaInicio.stop();
         btnSiguiente.setOnMouseClicked(E->{
             Stage s =(Stage)imgArchivoP.getScene().getWindow();
             s.close();
             try {
-                App.abrirNuevaVentana("principal", 424, 520);
+                App.abrirNuevaVentana("inicio", 394, 486);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -54,7 +55,7 @@ public class MenuController implements Initializable {
             checkIfBothFilesUploaded();
         });
 
-        imgArchivoR.setOnMouseClicked(event -> {
+        imgFileR.setOnMouseClicked(event -> {
             isArchivoRSubido = handleFileUpload(false);
             checkIfBothFilesUploaded();
         });

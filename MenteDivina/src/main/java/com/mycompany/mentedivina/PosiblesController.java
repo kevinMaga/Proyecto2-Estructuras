@@ -88,7 +88,14 @@ public class PosiblesController implements Initializable {
             Image image = new Image(imageStream, 80, 80, true, true);
             imageView.setImage(image);
         } catch (IOException ex) {
-            ex.printStackTrace();
+            Image image =null;
+            // Cargar una imagen por defecto si no se encuentra la imagen original
+            try (FileInputStream defaultImageStream = new FileInputStream(App.pathImages + "noFotos.png")) {
+                image = new Image(defaultImageStream, 80, 80, true, true);
+                imageView.setImage(image);
+            } catch (IOException e) {
+                e.printStackTrace();   
+            }
         }
 
         VBox contenedor = new VBox();

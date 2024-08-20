@@ -33,7 +33,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fx:id="imgArchivoR" fitHeight="85.0" fitWidth="83.0" layoutX="280.0" layoutY="141.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgFileR" fitHeight="85.0" fitWidth="83.0" layoutX="280.0" layoutY="141.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../images/archivoR.png" />
          </image>

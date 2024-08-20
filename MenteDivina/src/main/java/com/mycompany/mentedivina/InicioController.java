@@ -36,10 +36,10 @@ public class InicioController implements Initializable {
     public static String idioma;
 
     // Archivos por defecto o subidos
-    public static String nombreArchivoPAnimal = MenuController.nombreArchivoP != null ? MenuController.nombreArchivoP : "preguntasAnimal.txt";
-    public static String nombreArchivoRAnimal = MenuController.nombreArchivoR != null ? MenuController.nombreArchivoR : "respuestasAnimal.txt";
-    public static String nombreArchivoPObjeto = MenuController.nombreArchivoP != null ? MenuController.nombreArchivoP : "preguntasObjeto.txt";
-    public static String nombreArchivoRObjeto = MenuController.nombreArchivoR != null ? MenuController.nombreArchivoR : "respuestasObjeto.txt";
+    public static String nombreArchivoPAnimal;
+    public static String nombreArchivoRAnimal;
+    public static String nombreArchivoPObjeto ;
+    public static String nombreArchivoRObjeto;
 
     @FXML
     private Button BtnJugar;
@@ -59,7 +59,10 @@ public class InicioController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         ManejoArchivos.borrarContenidoArchivo("juegosAnadidos.txt");
         idioma = "es";
-
+        nombreArchivoPAnimal = MenuController.isArchivoPSubido ? MenuController.nombreArchivoP : "preguntasAnimal.txt";
+        nombreArchivoRAnimal = MenuController.isArchivoRSubido ? MenuController.nombreArchivoR : "respuestasAnimal.txt";
+        nombreArchivoPObjeto = MenuController.isArchivoPSubido ? MenuController.nombreArchivoP : "preguntasObjeto.txt";
+        nombreArchivoRObjeto = MenuController.isArchivoRSubido ? MenuController.nombreArchivoR : "respuestasObjeto.txt";
         // Cargar archivos utilizando los nombres adecuados (subidos o predeterminados)
         preguntasAnimal = ManejoArchivos.leerArchivo(nombreArchivoPAnimal);
         preguntasObjeto = ManejoArchivos.leerArchivo(nombreArchivoPObjeto);
@@ -85,7 +88,7 @@ public class InicioController implements Initializable {
             System.out.println("No se pudo cargar la fuente.");
         }
 
-        menu.setOnMouseClicked(e -> {
+        menu.setOnMouseClicked(e -> {    
             Stage s =(Stage)BtnJugar.getScene().getWindow();
             s.close();
             try {

@@ -61,7 +61,14 @@ public class InfoJuegoController implements Initializable {
             Image image = new Image(fis, 250, 250, true, true);
             imagenJuego.setImage(image);
         } catch (IOException e) {
-            e.printStackTrace();
+           Image image =null;
+            // Cargar una imagen por defecto si no se encuentra la imagen original
+            try (FileInputStream defaultImageStream = new FileInputStream(App.pathImages + "noFotos.png")) {
+                image = new Image(defaultImageStream, 250, 250, true, true);
+                imagenJuego.setImage(image);
+            } catch (IOException e1) {
+                e1.printStackTrace();   
+            }
         }
         nombreJuego.setText(juego.getNombre());
         LBLDescripcion.setWrapText(true);

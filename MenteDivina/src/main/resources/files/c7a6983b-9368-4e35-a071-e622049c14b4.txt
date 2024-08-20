@@ -1,0 +1,20 @@
+¿Es un mamífero este animal?
+¿Este animal habita en tierra firme?
+¿Se puede considerar a este animal como doméstico?
+¿El tamaño de este animal es mayor que el de un gato?
+¿Este animal cuenta con cuatro patas?
+¿Este animal posee cola?
+¿Tiene este animal pelo?
+¿Es capaz de nadar este animal?
+¿Este animal se alimenta de carne?
+¿Este animal es capaz de volar?
+¿Se trata de un animal salvaje?
+¿Este animal tiene orejas?
+¿Este animal se alimenta de plantas?
+¿Este animal suele ser una mascota?
+¿Este animal tiene garras?
+¿Es este animal conocido por su velocidad?
+¿Este animal tiene hábitos nocturnos?
+¿Este animal posee colmillos?
+¿Es este un animal social?
+¿Este animal es común en los zoológicos?
