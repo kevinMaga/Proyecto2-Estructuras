@@ -63,17 +63,14 @@ public class InfoJuegoController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         nombreJuego.setText(juego.getNombre());
         LBLDescripcion.setWrapText(true);
 
-        // Construir la ruta del archivo
         String tipo = PaginaPrincipalJuegoController.modoJuego; // "Animal" u "Objeto"
-        String nombreArchivo = InicioController.idioma.equals("es") ? "descripcion" + tipo + ".txt":"descripcion" + tipo + "traducido.txt";
+        String nombreArchivo = InicioController.idioma.equals("es") ? "descripcion" + tipo + ".txt" : "descripcion" + tipo + "traducido.txt";
 
-        // Leer la descripción del archivo
         String descripcion = getDescripcionFromFile(nombreArchivo, juego.getNombre());
-        LBLDescripcion.setText(descripcion);
+        LBLDescripcion.setText(descripcion.isEmpty() ? "No existe descripción de ese " + tipo.toLowerCase() : descripcion);
     }
 
     private String getDescripcionFromFile(String nombreArchivo, String nombreJuego) {

@@ -1,31 +1,21 @@
 package com.mycompany.mentedivina;
 
 import com.goxr3plus.speech.translator.GoogleTranslate;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Region;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import modelo.BinaryTree;
-import modelo.NodeBinaryTree;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import modelo.Juego;
@@ -44,8 +34,16 @@ public class InicioController implements Initializable {
     public static Map<Juego, ArrayList<String>> respuestasObjeto;
     public static MediaPlayer musicaInicio;
     public static String idioma;
+
+    // Archivos por defecto o subidos
+    public static String nombreArchivoPAnimal = MenuController.nombreArchivoP != null ? MenuController.nombreArchivoP : "preguntasAnimal.txt";
+    public static String nombreArchivoRAnimal = MenuController.nombreArchivoR != null ? MenuController.nombreArchivoR : "respuestasAnimal.txt";
+    public static String nombreArchivoPObjeto = MenuController.nombreArchivoP != null ? MenuController.nombreArchivoP : "preguntasObjeto.txt";
+    public static String nombreArchivoRObjeto = MenuController.nombreArchivoR != null ? MenuController.nombreArchivoR : "respuestasObjeto.txt";
+
     @FXML
     private Button BtnJugar;
+    
     @FXML
     private Label LBL1;
     @FXML
@@ -54,20 +52,23 @@ public class InicioController implements Initializable {
     private Label LBL3;
     @FXML
     private ComboBox comboBoxIdioma;
+    @FXML
+    private ImageView menu;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ManejoArchivos.borrarContenidoArchivo("juegosAnadidos.txt");
         idioma = "es";
-        preguntasAnimal = ManejoArchivos.leerArchivo("preguntasAnimal.txt");
-        preguntasObjeto = ManejoArchivos.leerArchivo("preguntasObjeto.txt");
-        respuestasAnimal = formarMapaRespuestas("respuestasAnimal.txt", Tipo.ANIMAL);
-        respuestasObjeto = formarMapaRespuestas("respuestasObjeto.txt", Tipo.OBJETO);
+
+        // Cargar archivos utilizando los nombres adecuados (subidos o predeterminados)
+        preguntasAnimal = ManejoArchivos.leerArchivo(nombreArchivoPAnimal);
+        preguntasObjeto = ManejoArchivos.leerArchivo(nombreArchivoPObjeto);
+        respuestasAnimal = formarMapaRespuestas(nombreArchivoRAnimal, Tipo.ANIMAL);
+        respuestasObjeto = formarMapaRespuestas(nombreArchivoRObjeto, Tipo.OBJETO);
+
         comboBoxIdioma.getItems().addAll("Español", "English", "Français", "Português");
-        comboBoxIdioma.setValue("Español");        musicaInicio = reproducirSonido("menu1.mp3");
+        comboBoxIdioma.setValue("Español");
+        musicaInicio = reproducirSonido("menu1.mp3");
         InicioController.reproducirSonido("menu1.mp3");
 
         Font font = Font.loadFont(getClass().getResourceAsStream("/fonts/LuckiestGuy-Regular.ttf"), 24);
@@ -83,46 +84,55 @@ public class InicioController implements Initializable {
         } else {
             System.out.println("No se pudo cargar la fuente.");
         }
+
+        menu.setOnMouseClicked(e -> {
+            Stage s =(Stage)BtnJugar.getScene().getWindow();
+            s.close();
+            try {
+                App.abrirNuevaVentana("menu", 452, 454);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+
         BtnJugar.setOnAction(e -> {
             Stage s = (Stage) BtnJugar.getScene().getWindow();
-            
-            
-            //Traducion archivos. Es Pesado se espera un momento
-            if (!comboBoxIdioma.getValue().equals("Español")){
-                try{
+
+            // Traducción de archivos si es necesario
+            if (!comboBoxIdioma.getValue().equals("Español")) {
+                try {
                     idioma = GoogleTranslate.detectLanguage(comboBoxIdioma.getValue().toString());
                     App.abrirNuevaVentana("PantallaEsperar", 314, 248);
-                }catch (IOException ex) {
-                    ex.printStackTrace();
-                } 
-            }else {
-                preguntasAnimal = ManejoArchivos.leerArchivo("preguntasAnimal.txt");
-                preguntasObjeto = ManejoArchivos.leerArchivo("preguntasObjeto.txt");
-                respuestasAnimal = formarMapaRespuestas("respuestasAnimal.txt", Tipo.ANIMAL);
-                respuestasObjeto = formarMapaRespuestas("respuestasObjeto.txt", Tipo.OBJETO);
-                try{
-                    App.abrirNuevaVentana("principal", 424, 520);
-                }catch (IOException ex) {
-                    ex.printStackTrace();
-                } 
-            }
-            
-            s.close();
-            
-        });
-        comboBoxIdioma.setOnAction(e -> {
-                try {
-                    LBL1.setText(GoogleTranslate.translate(GoogleTranslate.detectLanguage(comboBoxIdioma.getValue().toString()), LBL1.getText()));
-                    LBL2.setText(GoogleTranslate.translate(GoogleTranslate.detectLanguage(comboBoxIdioma.getValue().toString()), LBL2.getText()));
-                    LBL3.setText(GoogleTranslate.translate(GoogleTranslate.detectLanguage(comboBoxIdioma.getValue().toString()), LBL3.getText()));
-                    BtnJugar.setText(GoogleTranslate.translate(GoogleTranslate.detectLanguage(comboBoxIdioma.getValue().toString()), BtnJugar.getText()));
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
-        });
-    }
+            } else {
+                preguntasAnimal = ManejoArchivos.leerArchivo(nombreArchivoPAnimal);
+                preguntasObjeto = ManejoArchivos.leerArchivo(nombreArchivoPObjeto);
+                respuestasAnimal = formarMapaRespuestas(nombreArchivoRAnimal, Tipo.ANIMAL);
+                respuestasObjeto = formarMapaRespuestas(nombreArchivoRObjeto, Tipo.OBJETO);
+                try {
+                    App.abrirNuevaVentana("principal", 424, 520);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
 
-    
+            s.close();
+        });
+
+        comboBoxIdioma.setOnAction(e -> {
+            try {
+                LBL1.setText(GoogleTranslate.translate(GoogleTranslate.detectLanguage(comboBoxIdioma.getValue().toString()), LBL1.getText()));
+                LBL2.setText(GoogleTranslate.translate(GoogleTranslate.detectLanguage(comboBoxIdioma.getValue().toString()), LBL2.getText()));
+                LBL3.setText(GoogleTranslate.translate(GoogleTranslate.detectLanguage(comboBoxIdioma.getValue().toString()), LBL3.getText()));
+                BtnJugar.setText(GoogleTranslate.translate(GoogleTranslate.detectLanguage(comboBoxIdioma.getValue().toString()), BtnJugar.getText()));
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+
+    }
 
     public static MediaPlayer reproducirSonido(String nombre) {
         String ubicacion = App.pathMusic + nombre;
@@ -131,8 +141,6 @@ public class InicioController implements Initializable {
         mediaPlayer.play();
         return mediaPlayer;
     }
-
-    
 
     public static Map<Juego, ArrayList<String>> formarMapaRespuestas(String nombreArchivo, Tipo t) {
         Map<Juego, ArrayList<String>> resultado = new HashMap<>();

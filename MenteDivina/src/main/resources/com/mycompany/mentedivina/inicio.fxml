@@ -31,6 +31,14 @@
                         <Font name="Baloo 2 Regular" size="16.0" />
                      </font>
                   </Label>
+                  <ImageView fx:id="menu" fitHeight="26.0" fitWidth="60.0" layoutX="360.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/menu.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
