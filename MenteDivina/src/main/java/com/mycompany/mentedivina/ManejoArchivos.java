@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.mentedivina;
 
 import java.io.BufferedReader;
@@ -24,6 +20,7 @@ import modelo.Tipo;
  * @author Justin Roldan
  */
 public class ManejoArchivos {
+    //Esto es un cambio
     public static ArrayList<String> leerArchivo(String nombreArchivo){
         ArrayList<String> resultado = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(App.pathFiles+nombreArchivo), "UTF-8"))) {
